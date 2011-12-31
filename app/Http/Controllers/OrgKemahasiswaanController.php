@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Car;
+use App\Layout;
+use App\Thumbnail;
+use App\Title;
+use App\User;
 
 class OrgKemahasiswaanController extends Controller
 {
@@ -17,8 +21,15 @@ class OrgKemahasiswaanController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        return view('ok/index', array('car' => $cars));
+        $data = array(
+            $margin = 0,
+            $index = 0,
+            $section = 0,
+            $prev = ''
+        );
+        
+        $user = User::all();
+        return view('ok/index', array('user' => $user, 'data' => $data));
     }
 
     /**

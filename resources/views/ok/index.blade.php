@@ -3,139 +3,81 @@
 @section('title','Beranda')
 
 @section('content')
+<span class="hidden" id="count-section">{{count($user)}}</span>
+
 <div class="col-md-12 header">
     <img src="{{{ asset('picture/pelantikan-bemu.jpg') }}}">
 </div>
 <div class="col-md-8 col-md-offset-1">
-    <div class="col-md-12">
-        <div id="section-0" class="main-section col-md-12">
-            <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-0"></a>
-                <h1 class="primary-color display-inline-block">Lembaga Kemahasiswaan</h1>
-            </div>
-            <div class="profile-desc">
-				<div class="col-md-6 thumbnail-container">
-					<div class="thumbnail border" style="background-color:red">
-					
-					</div>
-					<div class="thumbnail border" style="background-color:yellow">
-						
-					</div>
-					<div class="thumbnail border" style="background-color:red">
-					
-					</div>
-					<div class="thumbnail border" style="background-color:yellow">
-						
-					</div>
-				</div>
-				<div class="col-md-6 thumbnail-container" style="margin-top:75px;">
-					<div class="thumbnail border" style="background-color:yellow">
-						
-					</div>
-					<div class="thumbnail border" style="background-color:red">
-					
-					</div>
-					<div class="thumbnail border" style="background-color:yellow">
-						
-					</div>
-				</div>
-            </div>
+    @for ($i = 0; $i < 4; $i++)
+        @if($i === 0)
+            <?php $title = 'Lembaga Kemahasiswaan' ?>
+        @elseif($i === 1)
+            <?php $title = 'Unit Kegiatan Mahasiswa' ?>
+        @elseif($i === 2)
+            <?php $title = 'Unit Kegiatan Kebudayaan' ?>
+        @else
+            <?php $title = 'Unit Kegiatan Kerohanian' ?>
+        @endif
+        <div id="section-{{ $data[2] }}" class="main-section profile-title col-md-12 pad-bot-small">
+            <a class="glyphicon glyphicon-link link-ico jumper" href="#section-{{ $data[2] }}"></a>
+            <h1 class="primary-color display-inline-block">{{$title}}</h1>
         </div>
-        <div id="section-1" class="main-section col-md-12">
-            <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-1"></a>
-                <h1 class="primary-color display-inline-block">Unit Kegiatan Mahasiswa</h1>
-            </div>
-            <div class="profile-desc">
-                Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.
-            </div>
-        </div>
-        <div id="section-2" class="main-section col-md-12">
-            <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-2"></a>
-                <h1 class="primary-color display-inline-block">Unit Kegiatan Kebudayaan</h1>
-            </div>
-			<div class="col-md-6 thumbnail-container">
-				<div id="section-3" class="sub-section thumbnail">
+        <div class="col-md-12 margin-btm-small">
+        <?php $data[2]++ ?>
+        @foreach ($user as $key => $value)
+            @if($value->ok == $title)
+                @if ($data[1] === 0)
+                    <?php $data[0] = 0 ?>
+                @elseif ($data[1] === 1)
+                    <?php $data[0] = 75 ?>
+                @elseif ($data[1] % 2 === 1)
+                    <?php $data[0] = 0 ?>
+                @else
+                    <?php $data[0] = -75 ?>
+                @endif
+                <div id="section-{{ $data[2] }}" class="sub-section thumbnail col-md-6" style="margin-top:{{ $data[0] }}px">
                     <div class="thumbnail-photo" style="background-image: url({{{ asset('picture/bemukdw.png') }}})">
                     </div>
                     <div class="thumbnail-content">
-                        <h4 id="thumb-header">Badan Eksekutif Mahasiswa Universitas</h4>
-                        <span class="fa fa-envelope" aria-hidden="true"> bemu@students.ukdw.ac.id</span>
-                        {{ count($car) }}
-                        @foreach ($car as $c)
-                            <span>{{ $c->model }}</span>
-                        @endforeach
+                        <h4 id="thumb-header-{{$key}}">{{ $value->name }}</h4>
+                        <span class="fa fa-envelope" aria-hidden="true"> {{ $value->email }}</span>
+                        <span class="fa fa-envelope" aria-hidden="true"> {{$key}} </span>
+                        <span class="fa fa-envelope" aria-hidden="true"> {{$data[1]}}</span>
                     </div>
-				</div>
-				<div id="section-5" class="sub-section thumbnail" style="background-color:red">
-					
-				</div>
-				<div id="section-7" class="sub-section thumbnail" style="background-color:yellow">
-					
-				</div>
-				<div id="section-9" class="sub-section thumbnail" style="background-color:red">
-					
-				</div>
-				<div id="section-11" class="sub-section thumbnail" style="background-color:yellow">
-					
-				</div>
-			</div>
-			<div class="col-md-6 thumbnail-container" style="margin-top:75px;">
-				<div id="section-4" class="sub-section thumbnail" style="background-color:red">
-					
-				</div>
-				<div id="section-6" class="sub-section thumbnail" style="background-color:yellow">
-					
-				</div>
-				<div id="section-8" class="sub-section thumbnail" style="background-color:red">
-					
-				</div>
-				<div id="section-10" class="sub-section thumbnail" style="background-color:yellow">
-					
-				</div>
-				<div id="section-12" class="sub-section thumbnail" style="background-color:red">
-					
-				</div>
-			</div>
+                </div>
+                <?php $data[1]++; $data[2]++?>
+            @endif
+        @endforeach
+        <?php $data[1] = 0 ?>
         </div>
-        <div id="section-13" class="main-section col-md-12">
-            <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-13"></a>
-                <h1 class="primary-color display-inline-block">Unit Kegiatan Kerohanian</h1>
-            </div>
-            <div class="profile-desc">
-                Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
-                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.
-            </div>
-        </div>
-    </div>
+    @endfor
 </div>
 <div class="col-md-2 sub-nav pad-top">
     <div class="sub-nav-outer">
-        <a href="#section-0" class="jumper sub-nav-btn btn-outer" id="btn-0">Visi</a>
-        <a href="#section-1" class="jumper sub-nav-btn btn-outer" id="btn-1">Misi</a>
-        <a href="#section-2" class="jumper sub-nav-btn btn-outer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-2">Struktur Organisasi</a>
-        <div class="sub-nav-inner" id="costum-dropdown-menu-2">
-            <a href="#section-3" class="jumper sub-nav-btn-inner btn-inner" id="btn-3">Bagan Struktur Organisasi</a>
-            <a href="#section-4" class="jumper sub-nav-btn-inner btn-inner" id="btn-4">Presiden Universitas</a>
-            <a href="#section-5" class="jumper sub-nav-btn-inner btn-inner" id="btn-5">Wakil Presiden Universitas</a>
-            <a href="#section-6" class="jumper sub-nav-btn-inner btn-inner" id="btn-6">Kementrian Kesekretariatan</a>
-            <a href="#section-7" class="jumper sub-nav-btn-inner btn-inner" id="btn-7">Kementrian Keuangan</a>
-            <a href="#section-8" class="jumper sub-nav-btn-inner btn-inner" id="btn-8">Kementrian Luar Negeri</a>
-            <a href="#section-9" class="jumper sub-nav-btn-inner btn-inner" id="btn-9">Kementrian Dalam Negeri</a>
-            <a href="#section-10" class="jumper sub-nav-btn-inner btn-inner" id="btn-10">Kementrian Olahraga</a>
-            <a href="#section-11" class="jumper sub-nav-btn-inner btn-inner" id="btn-11">Kementrian Sosial Seni & Budaya</a>
-            <a href="#section-12" class="jumper sub-nav-btn-inner btn-inner" id="btn-12">Kementrian Teknik Informasi</a>
-        </div>
-        <a href="#section-13" class="jumper sub-nav-btn btn-outer" id="btn-13">Contact Us</a>
-    </div>
+        <?php $data[2]=0 ?>
+        @for ($i = 0; $i < 4; $i++)
+            @if($i === 0)
+                <?php $title = 'Lembaga Kemahasiswaan' ?>
+            @elseif($i === 1)
+                <?php $title = 'Unit Kegiatan Mahasiswa' ?>
+            @elseif($i === 2)
+                <?php $title = 'Unit Kegiatan Kebudayaan' ?>
+            @else
+                <?php $title = 'Unit Kegiatan Kerohanian' ?>
+            @endif
+            <a href="#section-{{ $data[2] }}" class="jumper sub-nav-btn btn-outer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-{{ $data[2] }}">{{$title}}</a>
+            <div class="sub-nav-inner" id="costum-dropdown-menu-{{$data[2]}}">
+            <?php $data[2]++ ?>
+
+            @foreach ($user as $key => $value)
+                @if($value->ok == $title)
+                    <a href="#section-{{ $data[2] }}" class="jumper sub-nav-btn-inner btn-inner" id="btn-{{ $data[2] }}">{{ $value->nickname }}</a>
+                    <?php $data[2]++ ?>
+                @endif
+            @endforeach
+            </div>
+        @endfor
+     </div>
 </div>
 @stop
