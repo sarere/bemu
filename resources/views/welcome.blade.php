@@ -5,18 +5,35 @@
 @section('content')
 <div class="col-md-12 slider">
 	<!-- <img class="slider-picture" src="https://i.ytimg.com/vi/ij89qLQ23QE/maxresdefault.jpg"> -->
-	<div class="slider-picture" id="slide-one" style="background-image: url({{ asset('picture/welcome.jpg') }})">
-		<div class="slider-text">
-			<p>Selamat Datang Pada Website BEM UKDW</p>
+	<div class="slider-bg">
+		<div class="slider-picture" id="slide-1" style="background-image: url({{ asset('picture/welcome.jpg') }})">
+			<div class="slider-text">
+				<p>Selamat Datang Pada Website BEM UKDW</p>
+			</div>
 		</div>
-	</div>
-	<div class="slider-picture" id="slide-two" style="background-image: url({{ asset('picture/welcome.jpg') }})">
-		<div class="slider-text">
-			<p>tes</p>
+		<div class="slider-picture" id="slide-2" style="background-image: url({{ asset('picture/welcome.jpg') }})">
+			<div class="slider-text">
+				<p>tes</p>
+			</div>
 		</div>
-	</div>
-	<div class="more-info">
-		<a href="#section-0" class="jumper"><h1>See More About Us</h1></a>
+		<div class="slider-picture" id="slide-3" style="background-image: url({{ asset('picture/welcome.jpg') }})">
+			<div class="slider-text">
+				<p>3</p>
+			</div>
+		</div>
+		<div class="slider-picture" id="slide-4" style="background-image: url({{ asset('picture/welcome.jpg') }})">
+			<div class="slider-text">
+				<p>4</p>
+			</div>
+		</div>
+		<div class="slider-picture" id="slide-5" style="background-image: url({{ asset('picture/welcome.jpg') }})">
+			<div class="slider-text">
+				<p>5</p>
+			</div>
+		</div>
+		<div class="more-info">
+			<a href="#section-0" class="jumper"><h1>See More About Us</h1></a>
+		</div>
 	</div>
 </div>
 <div class="col-md-12 box-content pad-top-large" id="section-0">

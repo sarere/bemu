@@ -101,6 +101,7 @@ html body {
 	.slider {
 		z-index: 1;
 		padding: 0;
+		overflow: hidden;
 	}
 
 	.slider-picture {
@@ -112,7 +113,14 @@ html body {
 		background-position: center;
 		background-size: cover;
 		display: none;
+		float: left;
 		background-repeat: no-repeat;
+		position: absolute;
+	}
+
+	.slider-bg{
+		position: relative;
+		height: 100vh;
 	}
 
 	.more-info{
@@ -207,6 +215,8 @@ html body {
 
 .pad-bot{padding-bottom: 1em;}
 .pad-bot-large{padding-bottom: 5em;}
+
+.behind{z-index: -1;}
 
 .margin-left{margin-left: 4em;}
 
