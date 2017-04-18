@@ -1,0 +1,9 @@
+nav {
+	text-decoration: none;
+	list-style-type: none;
+	display: inline-block;
+}
+
+.container {
+	color:red;
+}
