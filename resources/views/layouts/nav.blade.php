@@ -1,5 +1,5 @@
 <nav {{{ (Request::is('/') ? 'class=nav-fixed' : 'class=nav') }}}>
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-10 col-md-offset-1">
 		<a href="{{ url('/') }}"><img src="http://2015.bemukdw.org/public/img/header-logo.png" alt="BEM UKDW"></a>
 		<ul>
 			<li><a href="{{ url('/') }}" {{{ (Request::is('/') ? 'class=nav-active' : '') }}}>BERANDA</a></li>
