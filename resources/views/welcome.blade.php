@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="col-md-12 slider">
-	<!-- <img class="slider-picture" src="https://i.ytimg.com/vi/ij89qLQ23QE/maxresdefault.jpg"> -->
 	<div class="slider-bg">
 		<div class="slider-picture" id="slide-1" style="background-image: url({{ asset('picture/welcome.jpg') }})">
 			<div class="slider-text">
@@ -32,7 +31,7 @@
 			</div>
 		</div>
 		<div class="more-info">
-			<a href="#section-0" class="jumper"><h1>See More About Us</h1></a>
+			<a href="#section-0" class="jumper"><h3>See More About Us</h3></a>
 		</div>
 	</div>
 </div>
