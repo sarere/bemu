@@ -13,7 +13,7 @@
 						<li><a href="">UKM</a></li>
 						<li><a href="">LK</a></li>
 					</ul>
-				<li><a href="">Tentang BEM UKDW</a></li>
+				<li><a href="">PROFIL BEM UKDW</a></li>
 			</ul>
 		</div>
 		<div class="col-md-4 pad-top-small">

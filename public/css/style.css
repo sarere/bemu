@@ -35,7 +35,7 @@ html body {
 		font-size: 1.000em;
 		list-style-type: none;
 		display: inline-block;
-		padding-left: 15px;
+		padding-left: 2em;
 		font-size: 16px;
 	}
 
@@ -126,8 +126,6 @@ html body {
 	.more-info{
 		position: absolute;
 		text-align: center;
-		padding-top: 0.5em;
-		padding-bottom: 0.5em;
 		bottom: 0;
 		left: 0;
 		right: 0;
@@ -159,7 +157,7 @@ html body {
 	}
 
 	.content {
-		height: 85vh;
+		height: 70vh;
 		vertical-align: middle;
 		display: table;
 		border-bottom: 1px solid #f94314;
