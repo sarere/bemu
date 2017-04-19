@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Page Tes')
+@section('title','Beranda')
 
 @section('content')
 <div class="col-md-12 slider">
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 </div>
-<div class="col-md-12 box-content pad-top-large" id="section-0">
+<div class="col-md-12 box-content" id="section-0">
 	<div class="col-md-10 col-md-offset-1 content">
 		<div class="text-content align-center">
 			<h1 class="title-content col-md-12">Badan Eksekutif Mahasiswa <br> Universitas Kristen Duta Wacana</h1>
@@ -59,10 +59,12 @@
 	<div class="col-md-6 content">
 		<div class="text-content">
 			<h1 class="title-content col-md-11">Organisasi Kemahasiswaan</h1>
-			<p class="desc-content col-md-11">Organisasi Kemahasiswaan (OK) terdiri dari Unit Kegiatan Kebudayaan (UKKb),
-			Unit Kegiatan Kerohanian (UKKr), Unit Kegiatan Kemahasiswaan (UKM), Lembaga Kemahasiswaan (LK).
-			Selain dalam akademik Mahasiswa dapat menyalurkan bakat mereka pada 
-			Organisasi Kemahasiswaan.</p>
+			<p class="desc-content col-md-11">
+				Organisasi Kemahasiswaan (OK) terdiri dari Unit Kegiatan Kebudayaan (UKKb),
+				Unit Kegiatan Kerohanian (UKKr), Unit Kegiatan Kemahasiswaan (UKM), Lembaga Kemahasiswaan (LK).
+				Selain dalam akademik Mahasiswa dapat menyalurkan bakat mereka pada 
+				Organisasi Kemahasiswaan.
+			</p>
 		</div>
 		<a href="#section-2" class="btn-img jumper"></a>
 	</div>
