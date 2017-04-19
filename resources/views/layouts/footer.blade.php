@@ -1,5 +1,5 @@
 <footer class="col-md-12">
-	<div class="col-md-8 col-md-offset-2 pad-top pad-bot-large">
+	<div class="col-md-10 col-md-offset-1 pad-top pad-bot-large">
 		<div class="col-md-3 pad-top-small">
 			<h4>Peta Situs</h4>
 			<ul>
