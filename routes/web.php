@@ -14,3 +14,5 @@
 Route::get('/', 'WellcomeController@index');
 
 Route::resource('cars', 'CarController');
+
+Route::get('/events/details', 'CarController@details');

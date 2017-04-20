@@ -13,10 +13,17 @@ class CarController extends Controller
       return view('welcome');
     }
 
-	public function show($id)
+    public function details()
+    {
+      return view('welcome');
+    }
+
+	   public function show($id)
     {
       $car = Car::find($id);
       return view('show', array('car' => $car));
     }
+
+    
     //
 }
