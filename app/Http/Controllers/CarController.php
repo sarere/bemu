@@ -10,7 +10,7 @@ class CarController extends Controller
 {
 	public function index()
     {
-      return view('welcome');
+      return view('profil/profil');
     }
 
 	public function show($id)

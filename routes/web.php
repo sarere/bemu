@@ -13,4 +13,4 @@
 
 Route::get('/', 'WellcomeController@index');
 
-Route::resource('cars', 'CarController');
+Route::resource('profil', 'CarController');
