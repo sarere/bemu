@@ -14,7 +14,8 @@
                 <h1 class="primary-color display-inline-block">Visi</h1>
             </div>
             <div class="profile-desc">
-                Visi kami
+                Mewujudkan organisasi kemahasiswaan menjadi wadah yang kondusif bagi mahasiswa untuk mengasah 
+                semua softskill yang dibutuhkan sesuai bidang minat.
             </div>
         </div>
         <div id="section-misi">
@@ -23,7 +24,8 @@
                 <h1 class="primary-color display-inline-block">Misi</h1>
             </div>
             <div class="profile-desc">
-                asd
+                Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.
             </div>
         </div>
         <div id="section-struktur-org">
