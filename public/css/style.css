@@ -217,6 +217,8 @@ html body {
 .pad-bot{padding-bottom: 1em;}
 .pad-bot-large{padding-bottom: 5em;}
 
+.primary-color{color: #f94314;}
+
 .behind{z-index: -1;}
 
 .margin-left{margin-left: 4em;}
