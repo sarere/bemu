@@ -8,7 +8,7 @@
 </div>
 <div class="col-md-8 col-md-offset-1">
     <div class="col-md-12">
-        <div id="section-0">
+        <div id="section-0" class="main-section">
             <div class="profile-title">
                 <a class="glyphicon glyphicon-link link-ico jumper" href="#section-visi"></a>
                 <h1 class="primary-color display-inline-block">Visi</h1>
@@ -18,7 +18,7 @@
                 semua softskill yang dibutuhkan sesuai bidang minat.
             </div>
         </div>
-        <div id="section-1">
+        <div id="section-1" class="main-section">
             <div class="profile-title">
                 <a class="glyphicon glyphicon-link link-ico jumper" href="#section-misi"></a>
                 <h1 class="primary-color display-inline-block">Misi</h1>
@@ -33,7 +33,7 @@
                 <a class="glyphicon glyphicon-link link-ico jumper" href="#section-struktur-org"></a>
                 <h1 class="primary-color display-inline-block">Struktur Organisasi</h1>
             </div>
-            <div id="section-bagan-struktur">
+            <div id="section-3" class="sub-section">
                 <div class="profile-sub-title">
                     <a class="glyphicon glyphicon-link link-ico jumper" href="#section-bagan-struktur"></a>
                     <h3 class="primary-color display-inline-block margin-top-tiny">Bagan Struktur Organisasi BEMU</<h3>
@@ -42,9 +42,9 @@
             <div class="profile-desc">
                 asd
             </div>
-            <div id="section-presiden-univ">
+            <div id="section-4" class="sub-section">
                 <div class="profile-sub-title">
-                    <a class="glyphicon glyphicon-link link-ico jumper" href="#section-presiden-univ"></a>
+                    <a class="glyphicon glyphicon-link link-ico jumper" href="#section-4"></a>
                     <h3 class="primary-color display-inline-block margin-top-tiny">Presiden Universitas</h3>
                 </div>
             </div>
@@ -124,6 +124,22 @@
                 asd
             </div>
         </div>
+        <div id="section-5" class="main-section">
+            <div class="profile-title">
+                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-misi"></a>
+                <h1 class="primary-color display-inline-block">Misi</h1>
+            </div>
+            <div class="profile-desc">
+                Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.Menjadikan Organisasi Kemahasiswaan (OK) sebagai wadah yang kondusif bagi mahasiswa untuk 
+                menyalurkan minat bakat. Meningkatkan kesadaran mahasiswa akan pentingnya beroganisasi.
+            </div>
+        </div>
     </div>
 </div>
 <div class="col-md-2 sub-nav pad-top">
@@ -131,9 +147,9 @@
         <a href="#section-0" class="jumper sub-nav-btn border-left-primary" id="btn-0">Visi</a>
         <a href="#section-1" class="jumper sub-nav-btn" id="btn-1">Misi</a>
         <a href="#section-2" class="jumper sub-nav-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-2">Struktur Organisasi BEMU</a>
-        <div class="sub-nav-inner dropdown-menu" id="costum-dropdown-menu-2">
-            <a href="#section-bagan-struktur" class="jumper sub-nav-btn-inner" id="btn-bagan-struktur">Bagan Struktur Organisasi</a>
-            <a href="#section-presiden-univ" class="jumper sub-nav-btn-inner" id="btn-presiden-univ">Presiden Universitas</a>
+        <div class="sub-nav-inner" id="costum-dropdown-menu-2">
+            <a href="#section-3" class="jumper sub-nav-btn-inner" id="btn-3">Bagan Struktur Organisasi</a>
+            <a href="#section-4" class="jumper sub-nav-btn-inner" id="btn-4">Presiden Universitas</a>
             <a href="#section-wakil-presiden-univ" class="jumper sub-nav-btn-inner">Wakil Presiden Universitas</a>
             <a href="#section-kementrian-kesekretariatan" class="jumper sub-nav-btn-inner">Kementrian Kesekretariatan</a>
             <a href="#section-kementrian-keuangan" class="jumper sub-nav-btn-inner">Kementrian Keuangan</a>
@@ -143,6 +159,7 @@
             <a href="#section-kementrian-sosebud" class="jumper sub-nav-btn-inner">Kementrian Sosial Seni & Budaya</a>
             <a href="#section-kementrian-ti" class="jumper sub-nav-btn-inner">Kementrian Teknik Informasi</a>
         </div>
+        <a href="#section-4" class="jumper sub-nav-btn" id="btn-5">Contact Us</a>
     </div>
 </div>
 @stop

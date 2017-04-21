@@ -7,11 +7,13 @@ var sectionOffsetTop = [];
 var element = "";
 var originalY = "";
 var isDropdownToggle = false;
+var isSubSection = false;
+var sectionCount= 6;
 
 $(document).ready(function(){
+	jumperAnimation();
 	initial();
-	floatSubNav();
-	jumperAnimation();	
+	floatSubNav();	
 });
 
 function jumperAnimation(){
@@ -33,7 +35,7 @@ function globalVariable(){
 	element = $(".sub-nav");
 	originalY = element.offset().top;
 	isDropdownToggle = false;
-	for(i=0 ; i<3 ; i++){sectionOffsetTop[i] = $("#section-"+i);}
+	for(i=0 ; i<sectionCount ; i++){sectionOffsetTop[i] = $("#section-"+i);}
 }
 
 function slideShow(){
@@ -52,19 +54,20 @@ function floatSubNav(){
 function posisitionFloatSubNav(){
 	var scrollTop = $(window).scrollTop();
 	
-	for(i=0 ; i<3 ; i++){	
+	for(i=0 ; i<sectionCount ; i++){	
 		if(scrollTop >= sectionOffsetTop[i].offset().top - 1) {
 			$("#btn-"+(i-1)).removeClass("sub-nav-btn-active");
 			$("#btn-"+i).addClass("sub-nav-btn-active");
 			$("#btn-"+(i+1)).removeClass("sub-nav-btn-active");
+			isSubSection = $("#section-"+i).hasClass('sub-section')
 			isDropdownToggle = $("#btn-"+(i)).hasClass('dropdown-toggle');
 			if(isDropdownToggle){
 				indexDropdownMenu = i;
 			}
 		}
 	}
-
-	if(isDropdownToggle){	
+	if(isDropdownToggle || isSubSection){
+		$("#btn-"+indexDropdownMenu).addClass("sub-nav-btn-active");
 		$("#costum-dropdown-menu-"+indexDropdownMenu).slideDown("fast");	
 	} else {
 		$("#costum-dropdown-menu-"+indexDropdownMenu).slideUp("fast");	
