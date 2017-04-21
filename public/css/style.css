@@ -301,6 +301,7 @@ html body {
 }
 
 .sub-nav-inner{
+	position: relative;
 	box-shadow: none;
 	padding-top: 0;
 	margin-top: 0;

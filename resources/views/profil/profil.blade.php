@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div id="section-0" class="main-section">
             <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-visi"></a>
+                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-0"></a>
                 <h1 class="primary-color display-inline-block">Visi</h1>
             </div>
             <div class="profile-desc">
@@ -20,7 +20,7 @@
         </div>
         <div id="section-1" class="main-section">
             <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-misi"></a>
+                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-1"></a>
                 <h1 class="primary-color display-inline-block">Misi</h1>
             </div>
             <div class="profile-desc">
@@ -30,12 +30,12 @@
         </div>
         <div id="section-2">
             <div class="profile-title">
-                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-struktur-org"></a>
+                <a class="glyphicon glyphicon-link link-ico jumper" href="#section-2"></a>
                 <h1 class="primary-color display-inline-block">Struktur Organisasi</h1>
             </div>
             <div id="section-3" class="sub-section">
                 <div class="profile-sub-title">
-                    <a class="glyphicon glyphicon-link link-ico jumper" href="#section-bagan-struktur"></a>
+                    <a class="glyphicon glyphicon-link link-ico jumper" href="#section-3"></a>
                     <h3 class="primary-color display-inline-block margin-top-tiny">Bagan Struktur Organisasi BEMU</<h3>
                 </div>
             </div>
@@ -147,7 +147,7 @@
         <a href="#section-0" class="jumper sub-nav-btn border-left-primary" id="btn-0">Visi</a>
         <a href="#section-1" class="jumper sub-nav-btn" id="btn-1">Misi</a>
         <a href="#section-2" class="jumper sub-nav-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-2">Struktur Organisasi BEMU</a>
-        <div class="sub-nav-inner" id="costum-dropdown-menu-2">
+        <div class="sub-nav-inner dropdown-menu" id="costum-dropdown-menu-2">
             <a href="#section-3" class="jumper sub-nav-btn-inner" id="btn-3">Bagan Struktur Organisasi</a>
             <a href="#section-4" class="jumper sub-nav-btn-inner" id="btn-4">Presiden Universitas</a>
             <a href="#section-wakil-presiden-univ" class="jumper sub-nav-btn-inner">Wakil Presiden Universitas</a>

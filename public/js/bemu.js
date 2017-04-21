@@ -66,6 +66,7 @@ function posisitionFloatSubNav(){
 			}
 		}
 	}
+
 	if(isDropdownToggle || isSubSection){
 		$("#btn-"+indexDropdownMenu).addClass("sub-nav-btn-active");
 		$("#costum-dropdown-menu-"+indexDropdownMenu).slideDown("fast");	
