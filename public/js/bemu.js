@@ -8,7 +8,12 @@ var element = "";
 var originalY = "";
 var isDropdownToggle = false;
 var isSubSection = false;
-var sectionCount= 6;
+var isSubNavBtnInner = false;
+var isBtnBeforeBtnInner = false;
+var isBtnAfterBtnInner = false;
+var btnBefore = "";
+var btnAfter = "";
+var sectionCount= 14;
 
 $(document).ready(function(){
 	jumperAnimation();
@@ -59,13 +64,30 @@ function posisitionFloatSubNav(){
 			$("#btn-"+(i-1)).removeClass("sub-nav-btn-active");
 			$("#btn-"+i).addClass("sub-nav-btn-active");
 			$("#btn-"+(i+1)).removeClass("sub-nav-btn-active");
+
+			btnNow = $("#btn-"+i);
+			btnBefore = $("#btn-"+(i-1));
+			btnAfter = $("#btn-"+(i+1));
+
+			isBtnBeforeBtnInner = $("#btn-"+(i-1)).hasClass('sub-nav-btn-inner');
+			isBtnAfterBtnInner = $("#btn-"+(i+1)).hasClass('sub-nav-btn-inner');
+			isSubNavBtnInner = $("#btn-"+i).hasClass('btn-inner');
 			isSubSection = $("#section-"+i).hasClass('sub-section')
 			isDropdownToggle = $("#btn-"+(i)).hasClass('dropdown-toggle');
-			if(isDropdownToggle){
-				indexDropdownMenu = i;
-			}
+
+			if(isDropdownToggle){indexDropdownMenu = i;}
+			if(btnNow.hasClass('btn-inner')){$("#btn-"+i).removeClass("btn-inner");}
+			if(btnBefore.hasClass('sub-nav-btn-inner')){$("#btn-"+(i-1)).addClass("btn-inner");}
+			if(btnAfter.hasClass('sub-nav-btn-inner')){$("#btn-"+(i+1)).addClass("btn-inner");}
+			if(btnNow.hasClass('btn-outer')){$("#btn-"+i).removeClass("btn-outer");}
+			if(btnBefore.hasClass('sub-nav-btn')){$("#btn-"+(i-1)).addClass("btn-outer");}
+			if(btnAfter.hasClass('sub-nav-btn')){$("#btn-"+(i+1)).addClass("btn-outer");}
+		} else{
+			$("#btn-"+i).removeClass("sub-nav-btn-active");
+			$("#btn-"+i).addClass("btn-outer");
 		}
 	}
+
 
 	if(isDropdownToggle || isSubSection){
 		$("#btn-"+indexDropdownMenu).addClass("sub-nav-btn-active");
