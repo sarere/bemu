@@ -223,8 +223,8 @@ html body {
 }
 
 .sub-nav-outer a:hover{
-	padding-left: 1em;
 	border-left: 0.1em solid #f94314;
+	padding-left: 0.57em;
 }
 
 .sub-nav-btn-inner{
@@ -235,7 +235,7 @@ html body {
 	border-left: 0.2em solid transparent;
 }
 .sub-nav-inner a:hover{
-	padding-left: 1em;
+	padding-left: 1.57em;
 	border-left: 0.1em solid #f94314;
 }
 
@@ -300,6 +300,7 @@ html body {
 }
 
 .sub-nav-inner{
+	display: none;
 	position: relative;
 	box-shadow: none;
 	padding-top: 0;
