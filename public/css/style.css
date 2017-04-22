@@ -214,6 +214,7 @@ html body {
 }
 
 .sub-nav-btn{
+	font-family: inherit;
 	display: block;
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
@@ -228,6 +229,7 @@ html body {
 }
 
 .sub-nav-btn-inner{
+	font-family: inherit;
 	display: block;
 	padding-top: 0.15em;
 	padding-bottom: 0.15em;
