@@ -223,6 +223,7 @@ html body {
 }
 
 .sub-nav-outer a:hover{
+	padding-left: 1em;
 	border-left: 0.1em solid #f94314;
 }
 
@@ -234,6 +235,7 @@ html body {
 	border-left: 0.2em solid transparent;
 }
 .sub-nav-inner a:hover{
+	padding-left: 1em;
 	border-left: 0.1em solid #f94314;
 }
 
