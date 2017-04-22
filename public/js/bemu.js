@@ -69,9 +69,9 @@ function posisitionFloatSubNav(){
 
 	if(isDropdownToggle || isSubSection){
 		$("#btn-"+indexDropdownMenu).addClass("sub-nav-btn-active");
-		$("#costum-dropdown-menu-"+indexDropdownMenu).slideDown("fast");	
+		$("#costum-dropdown-menu-"+indexDropdownMenu).slideDown(0);	
 	} else {
-		$("#costum-dropdown-menu-"+indexDropdownMenu).slideUp("fast");	
+		$("#costum-dropdown-menu-"+indexDropdownMenu).slideUp(0);	
 	}
 
 	if(scrollTop > originalY){
