@@ -146,7 +146,7 @@
     <div class="sub-nav-outer">
         <a href="#section-0" class="jumper sub-nav-btn border-left-primary" id="btn-0">Visi</a>
         <a href="#section-1" class="jumper sub-nav-btn" id="btn-1">Misi</a>
-        <a href="#section-2" class="jumper sub-nav-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-2">Struktur Organisasi BEMU</a>
+        <a href="#section-2" class="jumper sub-nav-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="btn-2">Struktur Organisasi</a>
         <div class="sub-nav-inner dropdown-menu" id="costum-dropdown-menu-2">
             <a href="#section-3" class="jumper sub-nav-btn-inner" id="btn-3">Bagan Struktur Organisasi</a>
             <a href="#section-4" class="jumper sub-nav-btn-inner" id="btn-4">Presiden Universitas</a>
