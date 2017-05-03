@@ -91,6 +91,7 @@ function posisitionFloatSubNav(){
 
 	if(isDropdownToggle || isSubSection){
 		$("#btn-"+indexDropdownMenu).addClass("sub-nav-btn-active");
+		$("#btn-"+indexDropdownMenu).removeClass("btn-outer");
 		$("#costum-dropdown-menu-"+indexDropdownMenu).slideDown(0);	
 	} else {
 		$("#costum-dropdown-menu-"+indexDropdownMenu).slideUp(0);	

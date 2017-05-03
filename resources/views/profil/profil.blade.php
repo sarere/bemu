@@ -3,8 +3,8 @@
 @section('title','Profil')
 
 @section('content')
-<div class="col-md-12">
-    asd
+<div class="col-md-12 header">
+    <img src="{{{ asset('picture/pelantikan-bemu.jpg') }}}">
 </div>
 <div class="col-md-8 col-md-offset-1">
     <div class="col-md-12">

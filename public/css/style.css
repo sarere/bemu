@@ -311,3 +311,14 @@ html body {
 	overflow: hidden;
 	background-color: transparent;
 }
+
+.header {
+	height: 30em;
+	padding: 0;
+	overflow: hidden;
+}
+
+.header img {
+	width: 100%;
+	margin-top: -20em;
+}
