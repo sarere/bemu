@@ -5,7 +5,7 @@
 			<li><a href="{{ url('/') }}" {{{ (Request::is('/') ? 'class=nav-active' : '') }}}>BERANDA</a></li>
 			<li><a href="">KEGIATAN</a></li>
 			<li><a href="" class="">ORG. KEMAHASISWAAN</a></li>
-			<li><a href="{{ route('profil.index') }}" {{{ (Request::is('profil') ? 'class=nav-active' : '') }}}>BEM UKDW</a></li>
+			<li><a href="{{ route('profil.index') }}" {{{ (Request::is('profil') ? 'class=nav-active' : '') }}}>PROFIL BEM UKDW</a></li>
 		</ul>
 	</div>
 </nav>
