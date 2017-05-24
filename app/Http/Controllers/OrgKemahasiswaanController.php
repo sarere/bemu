@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Car;
-
-class WellcomeController extends Controller
+class OrgKemahasiswaanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class WellcomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('ok/index');
     }
 
     /**
@@ -47,9 +45,7 @@ class WellcomeController extends Controller
      */
     public function show($id)
     {
-        $car = Car::find($id);
-        
-      return view('show', array('car' => $car));
+        //
     }
 
     /**

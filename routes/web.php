@@ -11,6 +11,15 @@
 |
 */
 
+use App\Car;
+
 Route::get('/', 'WellcomeController@index');
 
 Route::resource('profil', 'CarController');
+
+Route::get('/ok','OrgKemahasiswaanController@index')->name('ok.index');
+
+Route::get('/{id}', 'CarController@show');
+
+
+

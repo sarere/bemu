@@ -39,7 +39,7 @@
 	<div class="col-md-10 col-md-offset-1 content">
 		<div class="text-content align-center">
 			<h1 class="title-content col-md-12">Badan Eksekutif Mahasiswa <br> Universitas Kristen Duta Wacana</h1>
-			<img src="http://2015.bemukdw.org/public/img/header-logo.png" alt="BEM UKDW" class="pad-top">
+			<img src="{{ asset('picture/bemukdw.png') }}" alt="BEM UKDW" class="pad-top col-md-4 col-md-offset-4">
 			<p class="desc-content col-md-12 pad-top pad-bot">
 				Badan Eksekutif Mahasiswa Universitas (BEMU) merupakan salah satu organisasi kemahasiswaan yang membawahi 
 				Unit Kegiatan Kebudayaan (UKKb), Unit Kegiatan Kerohanian (UKKr), Unit Kegiatan Kemahasiswaan (UKM), dan 
@@ -99,18 +99,18 @@
 	</div>
 </div>
 <div class="col-md-12 box-content" id="section-4">
-	<div  class="col-md-6">
-
-	</div>
 	<div class="col-md-6 content">
 		<div class="text-content">
-			<h1 class="title-content col-md-10">Unit Kegiatan Mahasiswa</h1>
-			<p class="desc-content col-md-10">
+			<h1 class="title-content  align-right col-md-10 col-md-offset-2">Unit Kegiatan Mahasiswa</h1>
+			<p class="desc-content  align-right col-md-10 col-md-offset-2">
 				Unit Kegiatan Kerohanian (UKKr) merupakan wadah yang dapat digunakan Mahasiswa untuk mengembangkan 
 				kehidupan spiritual dan komunikasi lintas keyakinan dalam kehidupan Mahasiswa.
 			</p>
 			<a href="#section-5" class="btn-img jumper"></a>
 		</div>
+	</div>
+	<div  class="col-md-6">
+
 	</div>
 </div>
 <div class="col-md-12 box-content" id="section-5">
