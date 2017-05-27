@@ -271,6 +271,8 @@ html body {
 .border {border: 1px solid black;}
 
 .bg-red {background-color: #d8d4d4;}
+.bg-ukdw {background-color: #5e1b2c;}
+.bg-teologi {background-color: #250b3a;}
 
 .display-inline-block{display: inline-block;}
 
@@ -316,9 +318,83 @@ html body {
 	height: 30em;
 	padding: 0;
 	overflow: hidden;
+	margin-bottom: 1.5em;
 }
 
 .header img {
 	width: 100%;
 	margin-top: -20em;
 }
+
+.thumbnail{
+	width: 20%;
+    padding-top:20%;
+    position: relative;
+    margin: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    float: left;
+    border:none;
+}
+
+.thumbnail:hover .thumbnail-cover{
+	visibility: visible;
+}
+
+.thumbnail-container{
+	padding: 0;
+	margin-bottom: 1.5em;
+}
+
+.thumbnail-header{
+	width: 100%;
+    padding-top:10%;
+    position: relative;
+    background-color: black;
+    color:white;
+}
+
+.thumbnail-sub-header{
+	width: 100%;
+    position: relative;
+    background-color: gray;
+    color:white;
+}
+
+.thumbnail-cover{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.9);
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: white;
+	font-size: 1.5em;
+	text-align: center;
+	visibility: hidden;
+	cursor: pointer;
+}
+
+.thumbnail-cover div{
+	display: table;
+	height: 100%;
+}
+
+.thumbnail-cover div div{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.thumbnail-cover span{
+	display: block;
+}
+
+.thumbnail-cover-detail {
+	padding-top: 1em;
+	font-size: 0.8em;
+}
+
+.table{display: table;text-align: center;}
+.table-cell{display: table-cell;vertical-align: middle;text-align: center;}
+
