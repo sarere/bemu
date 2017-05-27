@@ -10,13 +10,13 @@ class CarController extends Controller
 {
 	public function index()
     {
-      return view('welcome');
+      return view('profil/profil');
     }
 
 	public function show($id)
     {
       $car = Car::find($id);
-      return view('show', array('car' => $car));
+      return redirect()->to($car->make);
     }
     //
 }

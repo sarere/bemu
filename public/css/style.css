@@ -27,20 +27,19 @@ html body {
 	}
 
 	nav ul {
-		padding-left: 1.5em;
+		padding-left: 0.5em;
 		display: inline-block;
 	}
 
 	nav ul li  {
-		font-size: 1.000em;
 		list-style-type: none;
 		display: inline-block;
-		padding-left: 2em;
+		padding-left: 1em;
 		font-size: 16px;
 	}
 
 	nav ul li a {
-		font-size: 1em;
+		font-size: 0.9em;
 		color: #8e8e8e;
 		font-family: inherit, sans-serif;
 		font-weight: bold;
@@ -71,6 +70,7 @@ html body {
 		background-color: #e8e5e5;
 		color:#f94314;
 		font-size: 1em;
+		margin-top:5em;
 	}
 
 	footer ul {
@@ -198,17 +198,57 @@ html body {
 	}
 }
 
-.aign-left{
-	text-align: left;
+.sub-nav-fixed{
+	position: fixed;
+	top:0;
+	right:0;
+	margin-right: 8.33%;
+	padding-left: 0;
+	padding-right: 0;
 }
 
-.align-right{
-	text-align: right;
+.sub-nav{
+	padding-left: 0;
+	padding-right: 0;
 }
 
-.align-center{
-	text-align: center;
+.sub-nav-btn{
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	padding-left: 0.5em;
+	border-left: 0.2em solid transparent;
+	margin-bottom: -2;
 }
+
+.sub-nav-btn-inner{
+	font-family: Arial, Helvetica, sans-serif;
+	display: block;
+	padding-top: 0.15em;
+	padding-bottom: 0.15em;
+	padding-left: 1.5em;
+	border-left: 0.2em solid transparent;
+}
+
+.btn-outer:hover{
+	border-left: 0.1em solid #f94314;
+	padding-left: 0.57em;
+}
+
+.btn-inner:hover{
+	padding-left: 1.57em;
+	border-left: 0.1em solid #f94314;
+}
+
+.sub-nav-btn-active {
+	border-left: 0.2em solid #f94314;
+	color: #f94314;
+}	
+
+.aign-left{text-align: left;}
+.align-right{text-align: right;}
+.align-center{text-align: center;}
 
 .pad-top-small{padding-top: 1em;}
 .pad-top{padding-top: 1.5em;}
@@ -217,13 +257,144 @@ html body {
 .pad-bot{padding-bottom: 1em;}
 .pad-bot-large{padding-bottom: 5em;}
 
+.primary-color{color: #f94314;}
+
+.left-over{
+	display: inline;
+}
+
 .behind{z-index: -1;}
 
 .margin-left{margin-left: 4em;}
+.margin-top-tiny{margin-top:0.3em;}
 
 .border {border: 1px solid black;}
 
-
-
 .bg-red {background-color: #d8d4d4;}
+.bg-ukdw {background-color: #5e1b2c;}
+.bg-teologi {background-color: #250b3a;}
+
+.display-inline-block{display: inline-block;}
+
+.link-ico{
+	visibility: hidden;
+}
+
+.profile-title{
+	font-size: 2em;
+	margin-left: -1.1em;
+}
+
+.profile-sub-title{
+	margin-left: -1.1em;
+	font-size: 1.5em;
+}
+
+.profile-title:hover .link-ico{
+	visibility: visible;
+}
+
+.profile-sub-title:hover .link-ico{
+	visibility: visible;
+}
+
+.profile-desc{
+	padding-left: 0.5em;
+	font-size: 1.25em;
+}
+
+.sub-nav-inner{
+	display: none;
+	position: relative;
+	box-shadow: none;
+	padding-top: 0;
+	margin-top: 0;
+	border:none;
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.header {
+	height: 30em;
+	padding: 0;
+	overflow: hidden;
+	margin-bottom: 1.5em;
+}
+
+.header img {
+	width: 100%;
+	margin-top: -20em;
+}
+
+.thumbnail{
+	width: 20%;
+    padding-top:20%;
+    position: relative;
+    margin: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    float: left;
+    border:none;
+}
+
+.thumbnail:hover .thumbnail-cover{
+	visibility: visible;
+}
+
+.thumbnail-container{
+	padding: 0;
+	margin-bottom: 1.5em;
+}
+
+.thumbnail-header{
+	width: 100%;
+    padding-top:10%;
+    position: relative;
+    background-color: black;
+    color:white;
+}
+
+.thumbnail-sub-header{
+	width: 100%;
+    position: relative;
+    background-color: gray;
+    color:white;
+}
+
+.thumbnail-cover{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.9);
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: white;
+	font-size: 1.5em;
+	text-align: center;
+	visibility: hidden;
+	cursor: pointer;
+}
+
+.thumbnail-cover div{
+	display: table;
+	height: 100%;
+}
+
+.thumbnail-cover div div{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.thumbnail-cover span{
+	display: block;
+}
+
+.thumbnail-cover-detail {
+	padding-top: 1em;
+	font-size: 0.8em;
+}
+
+.table{display: table;text-align: center;}
+.table-cell{display: table-cell;vertical-align: middle;text-align: center;}
 
