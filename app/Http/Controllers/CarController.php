@@ -16,7 +16,7 @@ class CarController extends Controller
 	public function show($id)
     {
       $car = Car::find($id);
-      return redirect()->to($car->make);
+      return view('show', array('car' => $car));
     }
     //
 }
