@@ -347,10 +347,11 @@ html body {
 
 .thumbnail-photo{
 	position: absolute;
-	top: 5;
+	top: 50%;
 	width: 35%;
 	padding-top: 35%;
 	background-size: cover;
+	transform: translateY(-50%);
 }
 
 .thumbnail-container{
@@ -358,12 +359,12 @@ html body {
 }
 
 .thumbnail-content{
-	top: 0;
 	right: 0;
 	width: 60%;
     position: absolute;
-	margin: 0 10px 0 0;
-	transform: translateY(25%);
+	margin: 0 10px 0 0;	
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .thumbnail-content h4{
