@@ -19,29 +19,17 @@ $(document).ready(function(){
 	jumperAnimation();
 	initial();
 	floatSubNav();
-	window.onresize = function(){
-		if ($('#thumb-header')[0].scrollHeight >  43) {
-        	$('#thumb-header').addClass('ellipsis');
-    	} else {
-    		$('#thumb-header').removeClass('ellipsis')
-    	}
-	};
+	ellipsis();
+	window.onresize = ellipsis
 });
 
-function checkOverflow(el)
-{
-   var curOverflow = el.style.overflow;
-
-   if ( !curOverflow || curOverflow === "visible" )
-      el.style.overflow = "hidden";
-
-   var isOverflowing = el.clientWidth < el.scrollWidth 
-      || el.clientHeight < el.scrollHeight;
-
-   el.style.overflow = curOverflow;
-
-   return isOverflowing;
-}
+function ellipsis(){
+	if ($('#thumb-header')[0].scrollHeight >  43) {
+		$('#thumb-header').addClass('ellipsis');
+	} else {
+		$('#thumb-header').removeClass('ellipsis')
+	}
+};
 
 function jumperAnimation(){
 	$(".jumper").on("click", function( e ) {
