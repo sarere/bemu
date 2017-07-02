@@ -337,10 +337,8 @@ html body {
     position: relative;
     margin: 5px;
     background: none;
-	border: none;
 	box-shadow: none;
     float: left;
-
 }
 
 .thumbnail:hover .thumbnail-cover{
@@ -359,15 +357,16 @@ html body {
 	padding: 5px;
 }
 
-.thumbnail-header{
-	top:3.5;
+.thumbnail-content{
+	top:10%;
 	right: 0;
 	width: 60%;
     position: absolute;
 	margin: 10px 10px 0 0;
+	vertical-align: middle;
 }
 
-.thumbnail-header h4{
+.thumbnail-content h4{
 	margin: 0 0 5px 0;
 	font-weight: bold;
 	padding: 0;
@@ -377,10 +376,8 @@ html body {
 	border-bottom: 2px solid black;
 }
 
-.thumbnail-detail {
-	position: absolute;
-	right: 0;
-	top :0;
+.thumbnail-content span {
+	display: block;
 }
 
 .table{display: table;text-align: center;}

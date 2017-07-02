@@ -58,12 +58,12 @@
             </div>
 			<div class="col-md-6 thumbnail-container">
 				<div id="section-3" class="sub-section thumbnail">
-                    <div class="thumbnail-photo broder" style="background-image: url({{{ asset('picture/bemukdw.png') }}})">
+                    <div class="thumbnail-photo" style="background-image: url({{{ asset('picture/bemukdw.png') }}})">
                     </div>
-                    <div class="thumbnail-header">
+                    <div class="thumbnail-content">
                         <h4>Badan Eksekutif Mahasiswa Universitas</h4>
-                        <span>bemu@students.ukdw.ac.id</span>
-                        <span>08xxxxxxxx<br></span>
+                        <span class="fa fa-envelope" aria-hidden="true"> bemu@students.ukdw.ac.id</span>
+                        <span>08xxxxxxxx</span>
                         <span>08xxxxxxxx</span>
                     </div>
 				</div>
