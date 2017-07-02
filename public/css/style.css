@@ -369,13 +369,20 @@ html body {
 
 .thumbnail-content h4{
 	margin: 0 0 5px 0;
+	display: -webkit-box;
+  	overflow: hidden;
 	font-weight: bold;
 	padding: 0;
 	height: 45px;
 	line-height: 20px;
 	overflow: hidden;
-	text-overflow: ellipsis;
 	border-bottom: 2px solid black;
+}
+
+.ellipsis:after{
+	position: absolute;
+	content:"...";
+	top: 20px;
 }
 
 .thumbnail-content span {

@@ -61,7 +61,7 @@
                     <div class="thumbnail-photo" style="background-image: url({{{ asset('picture/bemukdw.png') }}})">
                     </div>
                     <div class="thumbnail-content">
-                        <h4>Badan Eksekutif Mahasiswa Universitas</h4>
+                        <h4 id="thumb-header">Badan Eksekutif Mahasiswa Universitas</h4>
                         <span class="fa fa-envelope" aria-hidden="true"> bemu@students.ukdw.ac.id</span>
                         <span>08xxxxxxxx</span>
                         <span>08xxxxxxxx</span>
