@@ -63,8 +63,10 @@
                     <div class="thumbnail-content">
                         <h4 id="thumb-header">Badan Eksekutif Mahasiswa Universitas</h4>
                         <span class="fa fa-envelope" aria-hidden="true"> bemu@students.ukdw.ac.id</span>
-                        <span>08xxxxxxxx</span>
-                        <span>08xxxxxxxx</span>
+                        {{ count($car) }}
+                        @foreach ($car as $c)
+                            <span>{{ $c->model }}</span>
+                        @endforeach
                     </div>
 				</div>
 				<div id="section-5" class="sub-section thumbnail" style="background-color:red">

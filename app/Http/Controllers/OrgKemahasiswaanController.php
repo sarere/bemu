@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+
+use App\Car;
+
 class OrgKemahasiswaanController extends Controller
 {
     /**
@@ -13,7 +17,8 @@ class OrgKemahasiswaanController extends Controller
      */
     public function index()
     {
-        return view('ok/index');
+        $cars = Car::all();
+        return view('ok/index', array('car' => $cars));
     }
 
     /**
