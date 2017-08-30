@@ -409,9 +409,17 @@ html body {
 	padding: 0 0 5px 0;
 }
 
-.space{
-	height: 15em;
+.square-box{
+	padding-top: 15%;
+	position: relative;
+	display: inline-block;
 }
+
+.arrow{
+	display: block;
+}
+
+.space{height: 15em;}
 
 .align-left{text-align: left;}
 .align-right{text-align: right;}
@@ -425,6 +433,9 @@ html body {
 .pad-bot{padding-bottom: 1em;}
 .pad-bot-large{padding-bottom: 3em;}
 
+.padding{padding: 2em;}
+.padding-small{padding:0.5em}
+
 .primary-color{color: #f94314;}
 
 .behind{z-index: -1;}
@@ -436,6 +447,8 @@ html body {
 .margin-btm-tiny{margin-bottom: 0.3em;}
 
 .border {border: 1px solid black;}
+
+.border-radius-col-primary {border: 10px solid #f94314;border-radius: 5px;}
 
 .display-inline-block{display: inline-block;}
 
@@ -452,3 +465,7 @@ html body {
 .bg-color-primary{background-color:#f94314}
 
 .font-white{color: white;}
+
+.inline-block{display: inline-block;}
+
+.vertical-align-abs{transform: translateY(-50%);top:50%;position:absolute;}

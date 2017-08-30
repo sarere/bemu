@@ -11,7 +11,19 @@
         yang dijalankan maka perlu adanya penetapan pembagian alokasi dana kemahasiswaan tahun 2017 kepada 
         seluruh Organisasi Kemahasiswaan Universitas Kristen Duta Wacana.
     </div>
-	<h2 class="primary-color">Alur Pencairan Dana</h2>	
+	<h2 class="primary-color">Alur Pencairan Dana</h2>
+	<h3>Secara Online</h3>
+	<div class="col-md-12 padding-small">
+		<div  class="square-box border-radius-col-primary col-md-2">
+			<span class="align-center vertical-align-abs">Membuat Proposal</span>
+		</div>
+		
+		<span class="fa fa-long-arrow-right fa-5x vertical-align-abs arrow col-md-2 border"></span>
+		
+		<div  class="square-box border-radius-col-primary col-md-2">
+			<span class="align-center vertical-align-abs">Membuat Proposal</span>
+		</div>
+	</div>
 </div>
 
 <div class="col-md-8 col-md-offset-2 pad-top-large hidden">	
