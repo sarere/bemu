@@ -19,7 +19,6 @@ Route::resource('profil', 'CarController');
 
 Route::get('/ok','OrgKemahasiswaanController@index')->name('ok.index');
 
-Route::get('/{id}', 'CarController@show');
+Route::get('/word', 'CarController@index');
 
-
-
+Route::post('/post','CarController@store')->name('post.word');

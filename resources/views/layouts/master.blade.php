@@ -1,7 +1,7 @@
 <html>
     <head>
         @include('layouts.head')
-        <title>Bemu - @yield('title')</title>
+        <title> @yield('title') Badan Eksekutif Mahasiswa Universitas Kristen Duta Wacana</title>
     </head>
     <body>
         @include('layouts.nav')

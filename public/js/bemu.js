@@ -1,7 +1,7 @@
 var slidePosition = 1;
 var tampPosition = 0;
 var firstSlider = 1;
-var maxPosisition = 6;
+var maxPosisition = 3;
 var indexDropdownMenu = 0;
 var sectionOffsetTop = [];
 var element = "";
@@ -22,8 +22,6 @@ $(document).ready(function(){
 	initial();
 	floatSubNav();
 	posisitionFloatSubNav();
-	ellipsis();
-	window.onresize = ellipsis
 });
 
 function ellipsis(){
@@ -42,9 +40,9 @@ function ellipsis(){
 function jumperAnimation(){
 	$(".jumper").on("click", function( e ) {
 		e.preventDefault();
-		$("body, html").animate({ 
+		$("body, html").stop().animate({ 
 		    scrollTop: $( $(this).attr('href') ).offset().top 
-		}, 0.1);
+		}, 1000);
 	});	
 }
 
@@ -65,6 +63,30 @@ function slideShow(){
 	tampPosition = slidePosition;
 	slidePosition += 1;
 	setTimeout(slider,5000);
+}
+
+function slider(){
+	if(slidePosition == maxPosisition){
+		slideLeft(firstSlider, slidePosition - 1);
+		slidePosition = firstSlider + 1;
+		tampPosition = firstSlider;
+	} else if(slidePosition > tampPosition){
+		slideLeft(slidePosition,tampPosition);
+		tampPosition = slidePosition;
+		slidePosition += 1;
+	}
+}
+
+function slideLeft(x, y){
+	$('#slide-'+x).stop().show('slide', {direction: 'right'}, 1000);
+	$('#slide-'+y).stop().hide('slide', {direction: 'left'}, 1000);
+	setTimeout(slider, 6000) 
+}
+
+function slideRight(x, y){
+	$('#slide-'+x).stop().show('slide', {direction: 'left'}, 1000);
+	$('#slide-'+y).stop().hide('slide', {direction: 'right'}, 1000);
+	setTimeout(slider, 6000) 
 }
 
 function floatSubNav(){
@@ -105,6 +127,11 @@ function posisitionFloatSubNav(){
 			if($("#btn-"+i).hasClass('sub-nav-btn-inner')){$("#btn-"+i).addClass("btn-inner");}
 			else{$("#btn-"+i).addClass("btn-outer");}
 		}
+		var bottom = $(window).height() - screen.height;
+
+		// if(scrollTop == bottom){
+		// 	console.log(i);
+		// }
 	}
 
 
@@ -133,26 +160,4 @@ function posisitionFloatSubNav(){
 	}
 }
 
-function slider(){
-	if(slidePosition == maxPosisition){
-		slideLeft(firstSlider, slidePosition - 1);
-		slidePosition = firstSlider + 1;
-		tampPosition = firstSlider;
-	} else if(slidePosition > tampPosition){
-		slideLeft(slidePosition,tampPosition);
-		tampPosition = slidePosition;
-		slidePosition += 1;
-	}
-}
 
-function slideLeft(x, y){
-	$('#slide-'+x).show('slide', {direction: 'right'}, 1000);
-	$('#slide-'+y).hide('slide', {direction: 'left'}, 1000);
-	setTimeout(slider, 6000) 
-}
-
-function slideRight(x, y){
-	$('#slide-'+x).show('slide', {direction: 'left'}, 1000);
-	$('#slide-'+y).hide('slide', {direction: 'right'}, 1000);
-	setTimeout(slider, 6000) 
-}
