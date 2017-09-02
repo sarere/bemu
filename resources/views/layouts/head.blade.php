@@ -11,5 +11,5 @@
 <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{ asset('js/bemu.js') }}"></script>
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+<!--<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>-->
+<!--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>-->

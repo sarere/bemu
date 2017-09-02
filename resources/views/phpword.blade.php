@@ -128,8 +128,8 @@
 				<input type="hidden" name="skipped" id="skipped" value='false'>
 			</div>
 		</div>
-		<div class="col-md-6 padding-large bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden max-height scrollable" id="form-sec-two">
-			<div class="form-horizontal">
+		<div class="col-md-6 .padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-two">
+			<div class="form-horizontal scrollable max-height">
 				<h2 class="primary-color col-md-12 align-center pad-bot">Detail Program Kerja</h2>	
 				<div class="form-group">
 					<label for="programKerja" class="col-md-4 control-label">Program Kerja</label>
@@ -146,7 +146,7 @@
 				    	</div>
 			    	</div>
 			    	<div class="col-md-4">
-			    		<input type="text" class="form-control form-two" id="skDanaTerbilang" name="danaTerbilang" placeholder="lima juta lima ratus ribu rupiah">
+			    		<input type="text" class="form-control form-two" id="skDanaTerbilang" name="skDanaTerbilang" placeholder="lima juta lima ratus ribu rupiah">
 			    	</div>
 				</div>
 				<div class="form-group">
@@ -199,7 +199,7 @@
 						<input type="text" class="form-control form-two" id="temaAcara" name="temaAcara" placeholder="Nama">
 					</div>
 			  	</div>
-			  	<div class="form-group pad-top-large">
+			  	<div class="form-group pad-top-med">
 					<div class="col-md-2 col-md-offset-3">
 						<button type="reset" class="btn btn-danger col-md-12 btn-batal">Batal</button>
 					</div>
@@ -216,6 +216,7 @@
 </div>
 
 <script>
+	var wD = '';
 	$('#wakil-dekan').hide();
 	$('#download-template').click(function(){
 		$('.bg-color-darker').fadeIn().removeClass('hidden');
@@ -252,9 +253,12 @@
 	$('input:radio[name="danaFakultas"]').change(function() {
 	  	if ($(this).val() == 'Ya') {
 	    	$('#wakil-dekan').slideDown();
+			wD = 'ya';
 	 	} else {
 	    	$('#wakil-dekan').slideUp();
+			wD = 'tidak';
 	  	}
+		  formTwoValidation();
 	});
 
 	$('select').on('change', function (e) {
@@ -277,22 +281,27 @@
 		} else {
 			$('#btn-lanjut').prop("disabled", false);
 		}
-
-		
 	});
 
 	$('.form-two').keyup(function() {
-		if(!$('#proker').val() || !$('#temaAcara').val() || !$('#nimKetuaOK').val() || !$('input:radio[name="danaFakultas"]').val()){
+		formTwoValidation();
+	});
+
+	function formTwoValidation(){
+		if(!$('#proker').val() || !wD || !$('#temaAcara').val() || !$('#namaKetuaOK').val() || !$('#namaKetuaProker').val() || !$('#namaSekreProker').val() ||
+		!$('#nimKetuaOK').val() || !$('#nimKetuaProker').val() || !$('#nimSekreProker').val() || !$('#skDanaJumlah').val() || !$('#skDanaTerbilang').val()){
 			$('#btn-unduh').prop("disabled", true);
 		} else {
-			if($('input:radio[name="danaFakultas"]').val() == "Ya"){
-				$('#btn-unduh').prop("disabled", false);
-				
-			} else {
-				console.log($('input:radio[name="danaFakultas"]').val());
+			$('#btn-unduh').prop("disabled", false);
+			if(wD == 'ya'){
+				if(!$('#wakilDekan').val()){
+					$('#btn-unduh').prop("disabled", true);
+				} else {
+					$('#btn-unduh').prop("disabled", false);
+				}
 			}
 		}
-	});
+	}
 	
 </script>
 @stop

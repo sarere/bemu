@@ -13,7 +13,7 @@
 
 use App\Car;
 
-Route::get('/', 'WellcomeController@index');
+Route::get('/', 'WellcomeController@index')->name('home');
 
 Route::resource('profil', 'CarController');
 
