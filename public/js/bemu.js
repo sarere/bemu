@@ -18,6 +18,7 @@ var dropDownBefore = 0;
 var dropDownNow = 0;
 
 $(document).ready(function(){
+	action()
 	jumperAnimation();
 	initial();
 	floatSubNav();
@@ -36,6 +37,10 @@ function ellipsis(){
 		}
 	}
 };
+
+function action(){
+	
+}
 
 function jumperAnimation(){
 	$(".jumper").on("click", function( e ) {
@@ -159,5 +164,4 @@ function posisitionFloatSubNav(){
 		element.removeClass("sub-nav-fixed");
 	}
 }
-
 

@@ -403,21 +403,41 @@ html body {
     opacity: 1;
     text-align: center;
 }
-
+	
 .thumbnail-content span {
 	display: block;
 	padding: 0 0 5px 0;
 }
 
 .square-box{
-	padding-top: 15%;
+	width: 12%;
+	padding-top: 11%;
 	position: relative;
 	display: inline-block;
+	color: white;
+	font-weight: bold;
+	margin-left: 2em;
+	margin-right: 2em;
 }
 
-.arrow{
-	display: block;
+.number{
+	width: 1.7em;
+	height: 1.7em;
+	border-radius: 100%;
+	 box-shadow: 0 0 0 3pt white;
+	position: absolute;
+	top: -10px;
+	right: -5px;
+	padding: 0;
+	padding-top: 3.5px;
+	padding-left: 0px;
+	margin: 0;
+	font-weight: bold;
+	color: white;
+	font-size: 1.5em;
 }
+
+
 
 .space{height: 15em;}
 
@@ -425,6 +445,12 @@ html body {
 .align-right{text-align: right;}
 .align-center{text-align: center;}
 
+.pad-left{padding-left: 2em;}
+.pad-left-null{padding-left: 0;}
+
+.pad-right-null{padding-right: 0;}
+
+.pad-top-tiny{padding-top: 0.1em;}
 .pad-top-small{padding-top: 1em;}
 .pad-top{padding-top: 1.5em;}
 .pad-top-large{padding-top: 5em;}
@@ -434,12 +460,15 @@ html body {
 .pad-bot-large{padding-bottom: 3em;}
 
 .padding{padding: 2em;}
+.padding-large{padding: 4em;}
 .padding-small{padding:0.5em}
+.padding-null{padding: 0;}
 
 .primary-color{color: #f94314;}
 
 .behind{z-index: -1;}
 
+.margin-left-small{margin-left: 2em;}
 .margin-left{margin-left: 4em;}
 .margin-top-tiny{margin-top:0.3em;}
 .margin-btm{margin-bottom: 10em;}
@@ -448,7 +477,9 @@ html body {
 
 .border {border: 1px solid black;}
 
-.border-radius-col-primary {border: 10px solid #f94314;border-radius: 5px;}
+.border-radius-col-primary {border: 10px solid #f94314;border-radius: 50%;}
+.border-radius-col-primary-20 {border: 10px solid #f94314;border-radius: 20px;}
+.border-rad{border-radius: 20px;}
 
 .display-inline-block{display: inline-block;}
 
@@ -460,12 +491,28 @@ html body {
 
 .hidden{display: none;}
 .visible{visibility: visible;}
+.a-visible{visibility: none;}
 
 .bg-color-transparent{background-color: rgba(0,0,0,0.5);}
+.bg-color-darker{background-color: rgba(0,0,0,0.95);}
+.bg-color-white{background-color: white;}
 .bg-color-primary{background-color:#f94314}
 
-.font-white{color: white;}
+.max-height{max-height: 50vh;}
+.scrollable{overflow: scroll;}
 
-.inline-block{display: inline-block;}
+.font-white{color: white;}
+.font-2-em{font-size: 1.2em;}
+
+.inline{display: inline-block;}
 
 .vertical-align-abs{transform: translateY(-50%);top:50%;position:absolute;}
+
+.hidden-overflow{overflow: hidden;}
+
+.fades{
+	position: fixed;
+	top:0;
+	bottom: 0;
+	z-index: 1;
+}
