@@ -125,7 +125,7 @@
 						<button type="button" class="btn btn-warning col-md-12" id="btn-lewati">Lewati</button>
 					</div>
 				</div>
-				<input type="hidden" name="skipped" id="skipped" value='false'>
+				<input type="hidden" name="skipped" id="skipped" value='true'>
 			</div>
 		</div>
 		<div class="col-md-6 .padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-two">

@@ -40,25 +40,29 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-      $templateProcessor = null;
-      require_once '../vendor/autoload.php';
-      $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Dana Fak.docx');
+      
+      if($request->skipped){
+        if($request->danaFakultas === 'Ya'){
+          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Dana Fak.docx');
           $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
-      // if($request->skipped){
-      //   if($request->danaFakultas === 'Ya')
-          
-      //   }
-      // } 
-      //else{
-      //   $templateProcessor->setValue('namaOrganisasiKemahasiswaan', 'KINE KLUB');
-      //   $templateProcessor->setValue('tempatSekretariat', 'Gedung Filia Lt.2');
-      //   $templateProcessor->setValue('email', 'kineklub@students.ukdw.ac.id');
-      //   $templateProcessor->setValue('alamatMedsos', '');
-      //   $templateProcessor->setValue('medsos', '-');
-      // }
-      
-      $templateProcessor->setValue('programKerja', $request->proker);
-      
+        } else{
+          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Non Dana Fak.docx');
+        }
+      } else {
+        if($request->danaFakultas === 'Ya'){
+          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Non Kop Surat - Dana Fak.docx');
+          $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
+        } else{
+          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Non Kop Surat - Non Dana Fak.docx');
+        }
+        $templateProcessor->setValue('namaOrganisasiKemahasiswaan', 'KINE KLUB');
+        $templateProcessor->setValue('tempatSekretariat', 'Gedung Filia Lt.2');
+        $templateProcessor->setValue('email', 'kineklub@students.ukdw.ac.id');
+        $templateProcessor->setValue('alamatMedsos', '');
+        $templateProcessor->setValue('medsos', '-');
+      }
+    
+      $templateProcessor->setValue('programKerja', $request->proker);      
       // $templateProcessor->setValue('nama', 'Utha');
       // $templateProcessor->setValue('nomorKontak', '08123456789');
       $templateProcessor->setValue('nominal', $request->skDanaJumlah);
@@ -72,7 +76,7 @@ class CarController extends Controller
       $templateProcessor->setValue('tema', $request->temaAcara);
 
       $templateProcessor->saveAs('P3DK.docx');
-      return view('home');
+      return view('welcome');
     }
 
 	public function show($id)
