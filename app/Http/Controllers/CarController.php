@@ -40,8 +40,8 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
-      
-      if($request->skipped){
+      $proker = strtoupper($request->proker);
+      if($request->skipped === 'true'){
         if($request->danaFakultas === 'Ya'){
           $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Dana Fak.docx');
           $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
@@ -55,16 +55,16 @@ class CarController extends Controller
         } else{
           $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Non Kop Surat - Non Dana Fak.docx');
         }
-        $templateProcessor->setValue('namaOrganisasiKemahasiswaan', 'KINE KLUB');
-        $templateProcessor->setValue('tempatSekretariat', 'Gedung Filia Lt.2');
-        $templateProcessor->setValue('email', 'kineklub@students.ukdw.ac.id');
-        $templateProcessor->setValue('alamatMedsos', '');
-        $templateProcessor->setValue('medsos', '-');
+        $templateProcessor->setValue('namaOrganisasiKemahasiswaan', $request->organisasiKemahasiswaan);
+        $templateProcessor->setValue('tempatSekretariat', $request->kesekretariatan);
+        $templateProcessor->setValue('email', $request->email);
+        $templateProcessor->setValue('alamat', $request->alamatMedsos);
+        $templateProcessor->setValue('medsos', $request->medsos);
       }
     
-      $templateProcessor->setValue('programKerja', $request->proker);      
-      // $templateProcessor->setValue('nama', 'Utha');
-      // $templateProcessor->setValue('nomorKontak', '08123456789');
+      $templateProcessor->setValue('programKerja', $proker);      
+      $templateProcessor->setValue('nama', $request->namaKontak);
+      $templateProcessor->setValue('nomorKontak', $request->nomorKontak);
       $templateProcessor->setValue('nominal', $request->skDanaJumlah);
       $templateProcessor->setValue('terbilang', $request->skDanaTerbilang);
       $templateProcessor->setValue('nimKetuaProker', $request->nimKetuaProker);
@@ -75,7 +75,7 @@ class CarController extends Controller
       $templateProcessor->setValue('ketuaOK', $request->namaKetuaOK);
       $templateProcessor->setValue('tema', $request->temaAcara);
 
-      $templateProcessor->saveAs('P3DK.docx');
+      $templateProcessor->saveAs('P3DK - '.$proker.'.docx');
       return view('welcome');
     }
 

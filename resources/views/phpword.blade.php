@@ -138,6 +138,15 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label for="kontak" class="col-md-4 control-label">Nama & No Kontak</label>
+					<div class="col-md-4">
+						<input type="text" class="form-control form-two" id="namaKontak" name="namaKontak" placeholder="Nama Panggilan">
+					</div>
+					<div class="col-md-2">
+						<input type="text" class="form-control form-two" id="nomorKontak" name="nomorKontak" placeholder="No Telepon/HP">
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="SKDana" class="col-md-4 control-label">SK Dana</label>
 					<div class="col-md-3">
 			    		<div class="input-group">
@@ -248,6 +257,7 @@
 		$('#form-sec-one').fadeIn().addClass('hidden');
 		$('#form-sec-two').fadeIn().removeClass('hidden');
 		$('#skipped').val('false');
+		console.log($('#skipped').val())
 	});
 
 	$('input:radio[name="danaFakultas"]').change(function() {

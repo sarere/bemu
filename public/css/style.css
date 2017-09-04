@@ -488,6 +488,8 @@ html body {
 .height-px-small{height: 25px;}
 .height-px{height: 45px;}
 
+.right-abs{ right: 0;};
+
 .table{display: table;text-align: center;}
 .table-cell{display: table-cell;vertical-align: middle;text-align: center;}
 
