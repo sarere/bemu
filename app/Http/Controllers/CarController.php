@@ -11,31 +11,11 @@ class CarController extends Controller
 {
 	public function index()
     {
-      // require_once '../vendor/autoload.php';
-      // $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK.docx');
-      // $templateProcessor->setValue('programKerja', 'DUTA WACANA PROJECT');
-      // $templateProcessor->setValue('namaOrganisasiKemahasiswaan', 'KINE KLUB');
-      // $templateProcessor->setValue('tempatSekretariat', 'Gedung Filia Lt.2');
-      // $templateProcessor->setValue('email', 'kineklub@students.ukdw.ac.id');
-      // $templateProcessor->setValue('website', '-');
-      // $templateProcessor->setValue('nama', 'Utha');
-      // $templateProcessor->setValue('nomorKontak', '08123456789');
-      // $templateProcessor->setValue('nominal', '1.500.000');
-      // $templateProcessor->setValue('terbilang', 'satu juta lima ratus ribu rupiah');
-      // $templateProcessor->setValue('nimKetuaProker', 'Rere');
-      // $templateProcessor->setValue('nimSekreProker', 'Rere');
-      // $templateProcessor->setValue('nimKetuaOK', 'Rere');
-      // $templateProcessor->setValue('ketuaProker', 'Rere');
-      // $templateProcessor->setValue('sekreProker', 'Rere');
-      // $templateProcessor->setValue('ketuaOK', 'Rere');
-      // $templateProcessor->setValue('ketuaOK', 'Rere');
-      // $templateProcessor->setValue('wakilDekan', 'Rere');
-      // $templateProcessor->setValue('tema', 'Rere');
-      
-      
-      // $templateProcessor->saveAs('P3DK.docx');
-      $tes = 's';
-      return view('phpword')->with('tes',$tes);
+      if(session()->has('my_name')){
+        return view('phpword');
+      } else{
+        return redirect('login');
+      }
     }
 
     public function store(Request $request)

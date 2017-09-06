@@ -3,7 +3,14 @@
 @section('title','P3DK - ')
 
 @section('content')
-<div class="col-md-10 col-md-offset-1 pad-top">
+<div class="col-md-10 col-md-offset-1 pad-top pad-left-null">
+  <ol class="breadcrumb bg-color-white font-2-em">
+    <li><a {{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}} href="{{ url('p3dk') }}">Pengantar</a></li>
+    <li><a {{{ (Request::is('status') ? 'class=nav-active' : '') }}} href="{{ url('status') }}">Status Proposal</a></li>
+    <li><a {{{ (Request::is('upload') ? 'class=nav-active' : '') }}} href="{{ url('upload') }}">Upload Proposal</a></li>
+  </ol>
+</div>
+<div class="col-md-10 col-md-offset-1">
 	<h1 class="primary-color">Proposal Permohonan Pencairan Dana Kemahasiswaan (P3DK)</h1>
 	<div class="profile-desc">
         Demi terciptanya keharmonisan dan dinamika yang terjadi di Organisasi Kemahasiswaan baik 
@@ -13,52 +20,61 @@
     </div>
 	<h2 class="primary-color pad-top">Alur Pencairan Dana</h2>
 	<h3 class="pad-top-tiny pad-bot-small col-md-12">Secara Online</h3>
-	<div class="col-md-12 padding-small">
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+	<div class="col-md-12 col-sm-12 col-xs-12 padding-small">
+		<div  class="bg-color-primary square-box col-md-2 col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center">Membuat Proposal</span>
+			<span class="font-2-em col-md-12 vertical-align-abs align-center font-white col-sm-12">Membuat Proposal</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">2</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center">Upload File</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Upload File</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">3</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center">Melengkapi Tanda Tangan</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Melengkapi Tanda Tangan</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">4</span>
-			<span class="vertical-align-abs font-2-em align-center">Kumpulkan Ke Biro III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
 	<h3 class="pad-top-tiny pad-bot-small col-md-12">Secara Offline</h3>
 	<div class="col-md-12 padding-small">
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center">Membuat Proposal</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Membuat Proposal</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">2</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center"> Ttd Ketua & Sekre Proker & Ketua OK</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12"> Ttd Ketua & Sekre Proker & Ketua OK</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">3</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center">Kumpulkan Ke BEMU Untuk Pengecekan</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Kumpulkan Ke BEMU Untuk Pengecekan</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">4</span>
-			<span class="vertical-align-abs font-2-em align-center">Ttd Wakil Dekan (Jika Mendapat Dana Fakultas)</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Ttd Wakil Dekan (Jika Mendapat Dana Fakultas)</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">5</span>
-			<span class="vertical-align-abs font-2-em align-center">Ttd Wakil Rektor III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Ttd Wakil Rektor III</span>
 		</div>
-		<div  class="square-box border-radius-col-primary bg-color-primary">
+		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">6</span>
-			<span class="vertical-align-abs font-2-em align-center">Kumpulkan Ke Biro III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
-	<h2 class="primary-color pad-top col-md-12 pad-left-null">Status Proposal</h2>
+	<h2 class="primary-color pad-top col-md-12 pad-left-null">Template Proposal</h2>
+	<div class="profile-desc">
+		Template Proposal dapat di download melalui tombol berikut <button class="btn btn-success" id="download-template">Download Template</button>
+	</div>
+	<h2 class="primary-color pad-top">Upload Proposal</h2>
+	<div class="profile-desc">
+        Setelah mengedit proposal yang telah di download. Proposal dapat diupload pada <a href="#">Upload Proposal</a>. 
+        Akan dilakukan pengecekan proposal oleh pihak BEMU. Tunggu hasil pengecekan pada bagian <a href="#">Status Proposal</a> 
+    </div>
+	<h2 class="primary-color pad-top">Status Proposal</h2>
 	<div class="profile-desc">
         Proposal yang telah di upload ataupun dikumpulkan ke BEMU untuk dicek dapat dilihat statusnya pada 
         bagian <a href="#">Status Proposal</a>
@@ -66,13 +82,9 @@
     </div>
     <h2 class="primary-color pad-top">Download Proposal Sesudah Dicek (Alur Pencairan Dana Secara Online)</h2>
 	<div class="profile-desc">
-        Proposal yang dikumpulkan melalui upload file dapat mendownload file yang sudah dicek melalu <a href="#">Status Proposal</a>. 
-        Untuk dicetak dan melengkapi tanda tangan.
+        Proposal yang dikumpulkan melalui <a href="#">Upload Proposal</a> dapat mendownload file yang sudah dicek melalu <a href="#">Status Proposal</a>. 
+        Untuk dicetak dan melengkapi tanda tangan atau direvisi dan dikumpulkan kembali melalui jalur offline ataupun online.
     </div>
-    <h2 class="primary-color pad-top">Template Proposal</h2>
-	<div class="profile-desc">
-		Template Proposal dapat di download melalui tombol berikut <button class="btn btn-success" id="download-template">Download Template</button><a>
-	</div>
 </div>
 
 <div class="fades col-md-12 bg-color-darker hidden">

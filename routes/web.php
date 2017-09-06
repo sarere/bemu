@@ -17,8 +17,26 @@ Route::get('/', 'WellcomeController@index')->name('home');
 
 Route::resource('profil', 'CarController');
 
-Route::get('/ok','OrgKemahasiswaanController@index')->name('ok.index');
+Route::get('ok','OrgKemahasiswaanController@index')->name('ok.index');
 
-Route::get('/word', 'CarController@index');
+Route::get('p3dk', 'CarController@index');
 
-Route::post('/post','CarController@store')->name('post.word');
+Route::post('post','CarController@store')->name('post.word');
+
+Route::get('login', 'LoginController@index');
+
+Route::get('logout', 'LoginController@destroy');
+
+Route::post('login/post','LoginController@store')->name('login');
+
+Route::get('session/get','SessionController@accessSessionData');
+
+Route::get('session/set','SessionController@storeSessionData');
+
+Route::get('session/remove','SessionController@deleteSessionData');
+
+Route::get('upload','ProposalController@indexUpload');
+
+Route::get('status','ProposalController@indexStatus');
+
+Route::post('upload/file','ProposalController@uploadStorage');

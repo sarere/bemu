@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'proposal' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/proposal',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),

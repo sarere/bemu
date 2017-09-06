@@ -17,6 +17,10 @@ var sectionCount= 12;
 var dropDownBefore = 0;
 var dropDownNow = 0;
 
+$(window).on('load', function(){
+	$(".loader").fadeOut("slow");
+});
+
 $(document).ready(function(){
 	action()
 	jumperAnimation();

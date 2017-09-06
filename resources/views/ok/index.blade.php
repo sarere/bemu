@@ -8,7 +8,7 @@
 <div class="col-md-12 header">
     <img src="{{{ asset('picture/pelantikan-bemu.jpg') }}}" class="tes">
 </div>
-<div class="col-md-10 col-md-offset-1 border">
+<div class="col-md-10 col-md-offset-1">
     @for ($i = 0; $i < 4; $i++)
         @if($i === 0)
             <?php $title = 'Lembaga Kemahasiswaan' ?>
