@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class ProposalController extends Controller
 {
@@ -16,10 +17,13 @@ class ProposalController extends Controller
     }
 
     public function uploadStorage(Request $request){
-    	$file = $request->fileUpload;
+        // $file = $request->input('firstname');
 
-    	$filename = 'P3DK.docx';
+    	$file = $request->uploadFile;
+    	$filename = $file->getClientOriginalName();;
 
     	Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
+        // return redirect('/');
+        // return Response::json('success', 200);
     }
 }

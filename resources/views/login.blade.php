@@ -4,6 +4,12 @@
 
 @section('content')
 <div class="col-md-4 col-md-offset-4 pad-top-large" style="min-height:73vh">
+	@if ($message = Session::get('error'))
+	<div class="alert alert-danger margin-btm-med" role="alert">
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		{{ $message }}
+	</div>
+	@endif
 	<form action="{{ route('login') }}" method='POST'>
 		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 	  	<div class="form-group">

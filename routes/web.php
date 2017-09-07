@@ -39,4 +39,4 @@ Route::get('upload','ProposalController@indexUpload');
 
 Route::get('status','ProposalController@indexStatus');
 
-Route::post('upload/file','ProposalController@uploadStorage');
+Route::post('upload/file','ProposalController@uploadStorage')->name('test');

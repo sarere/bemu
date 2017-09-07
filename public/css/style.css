@@ -452,37 +452,42 @@ html body {
 .align-right{text-align: right;}
 .align-center{text-align: center;}
 
-.pad-left{padding-left: 2em;}
+.pad-left{padding-left: 2rem;}
 .pad-left-null{padding-left: 0;}
 
 .pad-right-null{padding-right: 0;}
 
-.pad-top-tiny{padding-top: 0.1em;}
-.pad-top-small{padding-top: 1em;}
-.pad-top{padding-top: 1.5em;}
-.pad-top-med{padding-top: 2.5em;}
-.pad-top-large{padding-top: 5em;}
+.pad-top-tiny{padding-top: 0.1rem;}
+.pad-top-small{padding-top: 1rem;}
+.pad-top{padding-top: 1.5rem;}
+.pad-top-med{padding-top: 2.5rem;}
+.pad-top-large{padding-top: 5rem;}
 
-.pad-bot-small{padding-bottom: 0.1em;}
-.pad-bot{padding-bottom: 1em;}
-.pad-bot-large{padding-bottom: 3em;}
+.pad-bot-small{padding-bottom: 0.1rem;}
+.pad-bot{padding-bottom: 1rem;}
+.pad-bot-large{padding-bottom: 3rem;}
 
-.padding{padding: 2em;}
-.padding-large{padding: 4em;}
-.padding-small{padding:0.5em}
+.padding{padding: 2rem;}
+.padding-large{padding: 4rem;}
+.padding-small{padding:0.5rem}
 .padding-null{padding: 0;}
 
 .primary-color{color: #f94314;}
 
 .behind{z-index: -1;}
 
-.margin-left-small{margin-left: 2em;}
-.margin-left{margin-left: 4em;}
-.margin-top-tiny{margin-top:0.3em;}
-.margin-btm{margin-bottom: 10em;}
-.margin-btm-small{margin-bottom: 1.5em;}
-.margin-btm-tiny{margin-bottom: 0.3em;}
-.margin-tiny{margin:2em}
+.margin-left-small{margin-left: 2rem;}
+.margin-left{margin-left: 4rem;}
+.margin-top-tiny{margin-top:0.3rem;}
+.margin-top{margin-top:10rem;}
+.margin-top-med{margin-top: 7rem;}
+.margin-top-small{margin-top: 1.5rem;}
+.margin-btm{margin-bottom: 10rem;}
+.margin-btm-med{margin-bottom: 3rem;}
+.margin-btm-small{margin-bottom: 1.5rem;}
+.margin-btm-med-tiny{margin-bottom: 0.5rem;}
+.margin-btm-tiny{margin-bottom:1rem;}
+.margin-tiny{margin:2rem}
 .margin-null{margin: 0;}
 
 .border {border: 1px solid black;}
@@ -515,6 +520,7 @@ html body {
 
 .font-white{color: white;}
 .font-2-em{font-size: 1.2em;}
+.font-10-em{font-size: 10em;}
 
 .inline{display: inline-block;}
 
@@ -530,11 +536,37 @@ html body {
 }
 
 #dropzone{
-    width:300px;
-    height:100px;
-    line-height:100px;
-    border:5px dashed #CCC;
-
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+    padding: 5em;
+    border:5px dashed #CCC;    
     font-family:Verdana;
     text-align:center;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.shade{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background-color: rgba(150,150,150,.4);
+	z-index: 1;
+}
+
+#lblSelectFile{
+	cursor: pointer;
+}
+
+#lblSelectFile:hover{
+	color: #f94314;
 }

@@ -10,22 +10,38 @@
     <li><a {{{ (Request::is('upload') ? 'class=nav-active' : '') }}} href="{{ url('upload') }}">Upload Proposal</a></li>
   </ol>
 </div>
-<div id="dropzone" class="col-md-10">Drop here</div>
+<form  id="dropzone" class="form-horizontal col-md-8 col-md-offset-2" id="register" action="">
+    <div class="col-md-12">
+        <span class="fa fa-file-word-o font-10-em margin-btm-med-tiny"></span>
+        <h1 class="margin-btm-med-tiny margin-top-med mssg">Drop atau <label for="fileUpload" id="lblSelectFile"> Pilih File</label> Untuk Upload Proposal</h1>
+        <h3 class="margin-btm-med-tiny error hidden"></h3>
+        <div class="progress hidden margin-top-med">
+          <div class="progress-bar" role="progressbar" id="progress-upload" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+            0%
+          </div>
+        </div>
+        <input type="file" class="inputfile" name="fileUpload" id="fileUpload">
+        
+    </div>
+</form>
+
 <script>
+
+$(":file").change(function() {
+    
+    var files = this.files;
+    upload(files);
+    // var formData = new FormData();
+
+    // uploadFile(formData);
+});
+
 $('#dropzone').on(
-    'dragover',
+    'dragover dragenter',
     function(e) {
         e.preventDefault();
         e.stopPropagation();
-        $('#dropzone').addClass('bg-color-primary');
-    }
-)
-$('#dropzone').on(
-    'dragenter',
-    function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $('#dropzone').addClass('bg-color-primary');
+        $('#dropzone').addClass('bg-color-transparent');
     }
 )
 .on(
@@ -33,7 +49,7 @@ $('#dropzone').on(
     function(e) {
         e.preventDefault();
         e.stopPropagation();
-        $('#dropzone').removeClass('bg-color-primary');
+        $('#dropzone').removeClass('bg-color-transparent');
     }
 )
 .on(
@@ -45,13 +61,74 @@ $('#dropzone').on(
                 e.stopPropagation();
                 /*UPLOAD FILES HERE*/
                 upload(e.originalEvent.dataTransfer.files);
-            }   
+            }else{
+                e.preventDefault();
+                e.stopPropagation();
+
+            }  
         }
     }
 );
+
 function upload(files){
-    alert('Upload '+files.length+' File(s).');
-    $('#dropzone').removeClass('bg-color-primary');
+    if(files.length > 1){
+        $('.error').removeClass('hidden').text('Opps.. Upload satu file saja..');
+        $('#dropzone').removeClass('bg-color-transparent');
+    } else{
+        if(docxValidation(files[0].name)){
+            var formData = new FormData();
+            formData.append("uploadFile",files[0],files[0].name);
+            uploadFile(formData);
+        } else{
+            $('.error').removeClass('hidden').text('Opps.. Extension file harus .docx atau .doc !');
+            $('#dropzone').removeClass('bg-color-transparent');
+        }
+    }
+    $('.shade').addClass('hidden');
+}
+
+function docxValidation(filename){
+    $extension = (/[.]/.exec(filename)) ? /[^.]+$/.exec(filename) : undefined;
+    if($extension == 'docx' || $extension == 'doc'){
+        return true;
+    } else{
+        return false;
+    }
+}
+
+function uploadFile(formData){
+    
+     $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "upload/file",
+        data: formData,
+        contentType: false,
+        processData: false,
+        beforeSend:function(){
+            $('.mssg').text('File sedang di upload...');
+            $('.error').text('File sedang di upload...').addClass('hidden');;
+            $('.progress').removeClass('hidden');
+            $('#progress-upload').attr('style','width: 0%');
+            $('#progress-upload').text('0%');
+        },
+        uploadProgress: function (event, position, total, percentComplete){
+            ('#progress-upload').attr('style','width: '+percentComplete+'%');
+            $('#progress-upload').text(percentComplete+'%');
+        },
+        success: function(data){
+            $('#dropzone').removeClass('bg-color-transparent');
+            $('.mssg').text('Upload selesai...');
+            $('#progress-upload').attr('style','width: 100%');
+            $('#progress-upload').text('100%');
+             setTimeout(function(){location.href = "status"}, 2000);
+        }
+    })
 }
 
 
