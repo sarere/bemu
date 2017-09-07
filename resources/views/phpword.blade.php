@@ -67,7 +67,7 @@
 	</div>
 	<h2 class="primary-color pad-top col-md-12 pad-left-null">Template Proposal</h2>
 	<div class="profile-desc">
-		Template Proposal dapat di download melalui tombol berikut <button class="btn btn-success" id="download-template">Download Template</button>
+		Template Proposal dapat di download melalui tombol berikut <button class="btn btn-success" id="download-template">Unduh Template</button>
 	</div>
 	<h2 class="primary-color pad-top">Upload Proposal</h2>
 	<div class="profile-desc">
@@ -243,6 +243,7 @@
 		$('.bg-color-darker').fadeIn().removeClass('hidden');
 		$('body').addClass('hidden-overflow');
 		$('#form-sec-one').fadeIn().removeClass('hidden');
+		formOneValidation();
 	});
 
 	$('#btn-lewati').click(function(){
@@ -298,16 +299,20 @@
 	});
 
 	$('.form-one').keyup(function() {
-		if(!$('#organisasiKemahasiswaan').val() || !$('#keskretariatan').val() || !$('#email').val() || !$('#alamatMedsos').val()){
-			$('#btn-lanjut').prop("disabled", true);
-		} else {
-			$('#btn-lanjut').prop("disabled", false);
-		}
+		formOneValidation();
 	});
 
 	$('.form-two').keyup(function() {
 		formTwoValidation();
 	});
+
+	function formOneValidation(){
+		if(!$('#organisasiKemahasiswaan').val() || !$('#keskretariatan').val() || !$('#email').val() || !$('#alamatMedsos').val()){
+			$('#btn-lanjut').prop("disabled", true);
+		} else {
+			$('#btn-lanjut').prop("disabled", false);
+		}
+	}
 
 	function formTwoValidation(){
 		if(!$('#proker').val() || !wD || !$('#temaAcara').val() || !$('#namaKetuaOK').val() || !$('#namaKetuaProker').val() || !$('#namaSekreProker').val() ||
@@ -324,6 +329,16 @@
 			}
 		}
 	}
+
+	$('#btn-unduh').click(function(){
+		$('.bg-color-darker').fadeOut();
+		$('#form-sec-two').addClass('hidden');
+		$('#form-sec-one').removeClass('hidden');
+		$('body').removeClass('hidden-overflow');
+		setTimeout(function(){
+			$('#form-p3dk')[0].reset();
+		},1000)
+	})
 	
 </script>
 @stop

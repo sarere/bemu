@@ -57,7 +57,7 @@ return [
 
         'proposal' => [
             'driver' => 'local',
-            'root'   => public_path() . '/proposal',
+            'root'   => storage_path('app/proposal'),
         ],
 
         's3' => [

@@ -15,7 +15,7 @@
         <span class="fa fa-file-word-o font-10-em margin-btm-med-tiny"></span>
         <h1 class="margin-btm-med-tiny margin-top-med mssg">Drop atau <label for="fileUpload" id="lblSelectFile"> Pilih File</label> Untuk Upload Proposal</h1>
         <h3 class="margin-btm-med-tiny error hidden"></h3>
-        <div class="progress hidden margin-top-med">
+        <div class="progress margin-top-med hidden">
           <div class="progress-bar" role="progressbar" id="progress-upload" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
             0%
           </div>
@@ -105,28 +105,51 @@ function uploadFile(formData){
     });
 
     $.ajax({
+        xhr: function () {
+        var xhr = new window.XMLHttpRequest();
+
+        xhr.upload.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                console.log(percentComplete);
+                    $('.mssg').text('File sedang di upload...');
+                $('.error').addClass('hidden');;
+                $('.progress').removeClass('hidden');
+                $('#progress-upload').attr('style','width: '+Math.ceil(percentComplete*100)+'%');
+                $('#progress-upload').text(Math.ceil(percentComplete*100)+'%');
+                $('#progress-upload').attr('style','width: '+Math.ceil(percentComplete*100)+'%');
+                if (percentComplete === 1) {
+                    // $('.progress').addClass('hide');
+                }
+            }
+        }, false);
+        xhr.addEventListener("progress", function (evt) {
+            if (evt.lengthComputable) {
+                var percentComplete = evt.loaded / evt.total;
+                console.log(percentComplete);
+                    $('.mssg').text('File sedang di upload...');
+                $('.error').addClass('hidden');;
+                $('.progress').removeClass('hidden');
+                $('#progress-upload').attr('style','width: '+Math.ceil(percentComplete*100)+'%');
+                $('#progress-upload').text(Math.ceil(percentComplete*100)+'%');
+                $('#progress-upload').attr('style','width: '+Math.ceil(percentComplete*100)+'%');
+            
+            }
+        }, false);
+        return xhr;
+    },
         type: "POST",
         url: "upload/file",
         data: formData,
         contentType: false,
         processData: false,
-        beforeSend:function(){
-            $('.mssg').text('File sedang di upload...');
-            $('.error').text('File sedang di upload...').addClass('hidden');;
-            $('.progress').removeClass('hidden');
-            $('#progress-upload').attr('style','width: 0%');
-            $('#progress-upload').text('0%');
-        },
-        uploadProgress: function (event, position, total, percentComplete){
-            ('#progress-upload').attr('style','width: '+percentComplete+'%');
-            $('#progress-upload').text(percentComplete+'%');
-        },
+        cache: false,
         success: function(data){
             $('#dropzone').removeClass('bg-color-transparent');
             $('.mssg').text('Upload selesai...');
             $('#progress-upload').attr('style','width: 100%');
             $('#progress-upload').text('100%');
-             setTimeout(function(){location.href = "status"}, 2000);
+             setTimeout(function(){location.href = "status"}, 500);
         }
     })
 }

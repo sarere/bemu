@@ -9,11 +9,21 @@ use Carbon\Carbon;
 class ProposalController extends Controller
 {
     public function indexUpload(){
-    	return view('upload');
+    if(session()->has('my_name')){
+        return view('upload');
+      } else{
+        return redirect('login');
+      }
+    	
     }
 
     public function indexStatus(){
-    	return view('status');
+        if(session()->has('my_name')){
+        return view('status');
+      } else{
+        return redirect('login');
+      }
+    	
     }
 
     public function uploadStorage(Request $request){
