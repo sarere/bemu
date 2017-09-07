@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Status Proposal - ')
+@section('title','Upload Proposal - ')
 
 @section('content')
 <div class="col-md-10 col-md-offset-1 pad-top pad-left-null">
