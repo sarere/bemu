@@ -13,7 +13,7 @@
 
 use App\Car;
 
-Route::get('/', 'WellcomeController@index')->name('home');
+Route::get('/', 'WellcomeController@index');
 
 Route::resource('profil', 'CarController');
 
@@ -23,20 +23,16 @@ Route::get('p3dk', 'CarController@index');
 
 Route::post('post','CarController@store')->name('post.word');
 
-Route::get('login', 'LoginController@index');
+// Route::get('session/get','SessionController@accessSessionData');
 
-Route::get('logout', 'LoginController@destroy');
+// Route::get('session/set','SessionController@storeSessionData');
 
-Route::post('login/post','LoginController@store')->name('login');
-
-Route::get('session/get','SessionController@accessSessionData');
-
-Route::get('session/set','SessionController@storeSessionData');
-
-Route::get('session/remove','SessionController@deleteSessionData');
+// Route::get('session/remove','SessionController@deleteSessionData');
 
 Route::get('upload','ProposalController@indexUpload');
 
 Route::get('status','ProposalController@indexStatus');
 
-Route::post('upload/file','ProposalController@uploadStorage')->name('test');
+Route::post('upload/file','ProposalController@uploadStorage');
+
+Auth::routes();

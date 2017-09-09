@@ -9,13 +9,14 @@ use App\HTMLtoOpenXML;
 
 class CarController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	public function index()
     {
-      if(session()->has('my_name')){
         return view('phpword');
-      } else{
-        return redirect('login');
-      }
     }
 
     public function store(Request $request)

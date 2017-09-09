@@ -13,12 +13,12 @@
 	<form action="{{ route('login') }}" method='POST'>
 		<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 	  	<div class="form-group">
-	    	<label for="nim">NIM</label>
-	    	<input type="text" class="form-control" id="nim" name="nim" placeholder="NIM">
+	    	<label for="nim">Email</label>
+	    	<input type="text" class="form-control" id="nim" name="nim" placeholder="Email">
 	  	</div>
 	  	<div class="form-group">
-	    	<label for="password">Password</label>
-	    	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	    	<label for="password">Kata Sandi</label>
+	    	<input type="password" class="form-control" id="password" name="password" placeholder="Kata Sandi">
 	  	</div>
 	  	<button type="submit" class="btn btn-default">Submit</button>
 	</form>

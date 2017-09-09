@@ -6,11 +6,18 @@
 			<li class="hidden"><a href="">KEGIATAN</a></li>
 			<li><a href="{{ route('ok.index') }}"{{{ (Request::is('ok') ? 'class=nav-active' : '') }}}>ORG. KEMAHASISWAAN</a></li>
 			<li class="hidden"><a href="{{ route('profil.index') }}" {{{ (Request::is('profil') ? 'class=nav-active' : '') }}}>BEM UKDW</a></li>
-			@if(Session::get('my_name'))
-				<li><a href="{{ url('p3dk') }}"{{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}}>P3DK</a></li>
-				<li class="right-abs vertical-align-abs"><a href="{{ url('logout') }}">LOGOUT</a></li>
-			@else
+			@if (Auth::guest())
 				<li class="right-abs vertical-align-abs"><a href="{{ url('login') }}" {{{ (Request::is('login') ? 'class=nav-active' : '') }}}>LOGIN</a></li>
+			@else
+				<li><a href="{{ url('p3dk') }}"{{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}}>P3DK</a></li>
+				<li class="right-abs vertical-align-abs"><a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    LOGOUT
+                </a></li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
 			@endif
 		</ul>
 	</div>
