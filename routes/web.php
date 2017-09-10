@@ -19,9 +19,9 @@ Route::resource('profil', 'CarController');
 
 Route::get('ok','OrgKemahasiswaanController@index')->name('ok.index');
 
-Route::get('p3dk', 'CarController@index');
+Route::get('p3dk', 'ProposalController@indexPendahuluan');
 
-Route::post('post','CarController@store')->name('post.word');
+Route::post('post','ProposalControllerr@downloadTemplate')->name('post.word');
 
 // Route::get('session/get','SessionController@accessSessionData');
 

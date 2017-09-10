@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'bemu@students.ukdw.ac.id'),
-        'name' => env('MAIL_FROM_NAME', 'Tes'),
+        'address' => env('MAIL_FROM_ADDRESS', null),
+        'name' => env('MAIL_FROM_NAME', null),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'bemu@students.ukdw.ac.id',
+    'username' => env('MAIL_USERNAME', null),
 
-    'password' => 'bemuukdw2017',
+    'password' => env('MAIL_PASSWORD', null),
 
     /*
     |--------------------------------------------------------------------------
