@@ -11,8 +11,6 @@
 |
 */
 
-use App\Car;
-
 Route::get('/', 'WellcomeController@index');
 
 Route::resource('profil', 'CarController');
@@ -38,5 +36,7 @@ Route::get('status/detail','ProposalController@detaiStatus');
 Route::get('status/download','ProposalController@download');
 
 Route::post('upload/file','ProposalController@uploadStorage');
+
+Route::post('status/update','ProposalController@statusUpdate')->name('status.update');
 
 Auth::routes();

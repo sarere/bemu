@@ -21,7 +21,7 @@ class ProposalController extends Controller
     }
 
     public function indexStatus(){
-        $proposals = DB::table('proposals')->paginate(20);
+        $proposals = DB::table('proposals')->orderBy('waktu_pengecekan', 'desc')->paginate(20);
         return view('status', ['proposals' => $proposals]);
     }
 
@@ -127,8 +127,28 @@ class ProposalController extends Controller
 
     public function detaiStatus(Request $request){
         $proposal = DB::table('proposals')
-                            ->where('id', '=',$request->id)
-                            ->value('nama_proposal');
-        echo $proposal;
+                            ->where('id', $request->id)
+                            ->get();
+        return $proposal;
+    //     return response()->json(['proposal' => $proposal,
+    // 'state' => 'CA'],200);
+    }
+
+    public function statusUpdate(Request $request){
+        $now = new DateTime();
+        $file = $request->upload;
+        $filename = $request->nama_proposal;
+        $now = new DateTime();
+
+        Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
+
+        DB::table('proposals')
+            ->where('id', $request->id)
+            ->update([
+              'waktu_pengecekan' => $now,
+              'pemeriksa' => $request->pemeriksa,
+              'status' => $request->status,
+              ]);
+        return redirect('status');
     }
 }
