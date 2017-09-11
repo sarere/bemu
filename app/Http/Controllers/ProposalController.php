@@ -21,7 +21,7 @@ class ProposalController extends Controller
     }
 
     public function indexStatus(){
-        $proposals = DB::table('proposals')->orderBy('waktu_pengecekan', 'desc')->paginate(20);
+        $proposals = DB::table('proposals')->orderBy('tracking', 'desc')->paginate(20);
         return view('status', ['proposals' => $proposals]);
     }
 
@@ -102,6 +102,29 @@ class ProposalController extends Controller
       session_write_close();
     }
 
+    public function uploadRevision(Request $request){
+      $proposal = DB::table('proposals')->where('id', $request->id);
+      $timestamp=date("Y-m-d H:i:s");
+
+      $file = $request->uploadFile;
+      $filename = $proposal->value('nama_proposal');
+      Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
+
+      $now = new DateTime();
+      $revision = $proposal->value('revision') + 1;
+
+      DB::table('proposals')
+            ->where('id', $request->id)
+            ->update([
+              'waktu_masuk' => $now,
+              'jalur' => 'online',
+              'status' => 'BELUM DIPERIKSA',
+              'download_link' => '-',
+              'revision' => $revision,
+              'tracking' => $timestamp
+              ]);
+    }
+
     public function uploadStorage(Request $request){
     	$file = $request->uploadFile;
         $filename = $file->getClientOriginalName();
@@ -117,6 +140,8 @@ class ProposalController extends Controller
             'status' => 'BELUM DIPERIKSA',
             'download_link' => '-',
             'pemeriksa' => '-',
+            'revision' => 0,
+            'email' => $user->email
             ]);
     }
 
@@ -125,7 +150,7 @@ class ProposalController extends Controller
         return response()->download(storage_path("app/proposal/$proposal"));
     }
 
-    public function detaiStatus(Request $request){
+    public function detailStatus(Request $request){
         $proposal = DB::table('proposals')
                             ->where('id', $request->id)
                             ->get();
@@ -136,19 +161,61 @@ class ProposalController extends Controller
 
     public function statusUpdate(Request $request){
         $now = new DateTime();
-        $file = $request->upload;
         $filename = $request->nama_proposal;
+        $file = $request->uploadGuideFile;
+        $filename = $request->nama_proposal;
+        $timestamp=date("Y-m-d H:i:s");
+        
+        
         $now = new DateTime();
 
-        Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
+        if($file){
+          Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
+        }
+        
 
         DB::table('proposals')
             ->where('id', $request->id)
             ->update([
+              'nama_proposal' => $filename,
               'waktu_pengecekan' => $now,
               'pemeriksa' => $request->pemeriksa,
               'status' => $request->status,
+              'tracking' => $timestamp
               ]);
         return redirect('status');
+    }
+
+    public function statusTambah(Request $request){
+      $now = new DateTime();
+      $timestamp=date("Y-m-d H:i:s");
+
+      $pemeriksa = '-';
+      if($request->pemeriksa){
+        $pemeriksa = $request->pemeriksa;
+      };
+
+      DB::table('proposals')->insert([            
+        'nama_proposal' => $request->nama_proposal,
+        'jalur' => 'offline',
+        'waktu_masuk' => $now,            
+        'status' => $request->status,
+        'download_link' => '-',
+        'pemeriksa' => $pemeriksa,
+        'revision' => 0,
+        'tracking' => $timestamp
+        ]);
+      return redirect('status');
+    }
+    
+    function delete(Request $request){
+      $proposal = DB::table('proposals')->where('id', $request->id);
+      $filename = $proposal->value('nama_proposal');
+      try{
+        unlink(storage_path('app/proposal/'.$filename));
+      } finally{
+        DB::table('proposals')->where('id', $request->id)->delete();
+        return redirect('status');
+      }
     }
 }

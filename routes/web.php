@@ -31,12 +31,18 @@ Route::get('upload','ProposalController@indexUpload');
 
 Route::get('status','ProposalController@indexStatus');
 
-Route::get('status/detail','ProposalController@detaiStatus');
+Route::get('status/detail','ProposalController@detailStatus');
 
 Route::get('status/download','ProposalController@download');
 
 Route::post('upload/file','ProposalController@uploadStorage');
 
 Route::post('status/update','ProposalController@statusUpdate')->name('status.update');
+
+Route::post('status/tambah','ProposalController@statusTambah')->name('status.tambah');
+
+Route::post('status/upload', 'ProposalController@uploadRevision');
+
+Route::post('status/delete', 'ProposalController@delete');
 
 Auth::routes();
