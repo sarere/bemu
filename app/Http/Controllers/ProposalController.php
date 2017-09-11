@@ -104,7 +104,7 @@ class ProposalController extends Controller
 
     public function uploadStorage(Request $request){
     	$file = $request->uploadFile;
-        $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        $filename = $file->getClientOriginalName();
         $now = new DateTime();
 
         Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
@@ -118,7 +118,17 @@ class ProposalController extends Controller
             'download_link' => '-',
             'pemeriksa' => '-',
             ]);
+    }
 
-    	
+    public function download(Request $request){
+        $proposal = $request->proposal;
+        return response()->download(storage_path("app/proposal/$proposal"));
+    }
+
+    public function detaiStatus(Request $request){
+        $proposal = DB::table('proposals')
+                            ->where('id', '=',$request->id)
+                            ->value('nama_proposal');
+        echo $proposal;
     }
 }

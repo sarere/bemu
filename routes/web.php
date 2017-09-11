@@ -33,6 +33,10 @@ Route::get('upload','ProposalController@indexUpload');
 
 Route::get('status','ProposalController@indexStatus');
 
+Route::get('status/detail','ProposalController@detaiStatus');
+
+Route::get('status/download','ProposalController@download');
+
 Route::post('upload/file','ProposalController@uploadStorage');
 
 Auth::routes();

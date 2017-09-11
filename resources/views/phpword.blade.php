@@ -140,7 +140,7 @@
 				<input type="hidden" name="skipped" id="skipped" value='true'>
 			</div>
 		</div>
-		<div class="col-md-6 .padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-two">
+		<div class="col-md-6 padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-two">
 			<div class="form-horizontal scrollable max-height">
 				<h2 class="primary-color col-md-12 align-center pad-bot">Detail Program Kerja</h2>	
 				<div class="form-group">
@@ -239,6 +239,7 @@
 <script>
 	var wD = '';
 	$('#wakil-dekan').hide();
+
 	$('#download-template').click(function(){
 		$('.bg-color-darker').fadeIn().removeClass('hidden');
 		$('body').addClass('hidden-overflow');
@@ -258,6 +259,7 @@
 		$('#form-sec-one').addClass('hidden');
 		$('#form-sec-two').addClass('hidden');
 		$('body').removeClass('hidden-overflow');
+		$('#wakil-dekan').hide();
 		document.querySelector("input[type=text][id=alamatMedsos]").setAttribute("placeholder", "cth: bem.ukdw.ac.id");
 	});
 
@@ -335,6 +337,7 @@
 		$('#form-sec-two').addClass('hidden');
 		$('#form-sec-one').removeClass('hidden');
 		$('body').removeClass('hidden-overflow');
+		$('#wakil-dekan').hide();
 		setTimeout(function(){
 			$('#form-p3dk')[0].reset();
 		},1000)
