@@ -12,7 +12,7 @@
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
-                        <p>Check your email, click the link for reset your password</p>
+                        <p>Check your email please, and back to <a href="{{ url('/login') }}">Login</a> page.</p>
                     @else
 
                     <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
