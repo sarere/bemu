@@ -45,4 +45,6 @@ Route::post('status/upload', 'ProposalController@uploadRevision');
 
 Route::post('status/delete', 'ProposalController@delete');
 
+Route::get('user/mode', 'WellcomeController@userMode');
+
 Auth::routes();

@@ -24,7 +24,7 @@
 	<div class="col-md-10 col-md-offset-1 content">
 		<div class="text-content align-center">
 			<h1 class="title-content col-md-12">Badan Eksekutif Mahasiswa <br> Universitas Kristen Duta Wacana</h1>
-			<img src="{{ asset('picture/bemu.png') }}" alt="BEM UKDW" class="pad-top col-md-4 col-md-offset-4">
+			<img src="{{ asset('picture/bemu.png') }}" alt="BEM UKDW" class="pad-top col-md-4 col-md-offset-4 col-xs-12 col-sm-12">
 			<p class="desc-content col-md-12 pad-top pad-bot">
 				Badan Eksekutif Mahasiswa Universitas (BEMU) merupakan salah satu organisasi kemahasiswaan yang membawahi 
 				Unit Kegiatan Kebudayaan (UKKb), Unit Kegiatan Kerohanian (UKKr), Unit Kegiatan Kemahasiswaan (UKM), dan 

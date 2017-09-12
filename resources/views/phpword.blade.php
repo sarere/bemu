@@ -20,7 +20,7 @@
     </div>
 	<h2 class="primary-color pad-top">Alur Pencairan Dana</h2>
 	<h3 class="pad-top-tiny pad-bot-small col-md-12">Secara Online</h3>
-	<div class="col-md-12 col-sm-12 col-xs-12 padding-small">
+	<div class="col-md-12 col-sm-12 col-xs-10 padding-small">
 		<div  class="bg-color-primary square-box col-md-2 col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
 			<span class="font-2-em col-md-12 vertical-align-abs align-center font-white col-sm-12">Membuat Proposal</span>
@@ -38,8 +38,8 @@
 			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
-	<h3 class="pad-top-tiny pad-bot-small col-md-12">Secara Offline</h3>
-	<div class="col-md-12 padding-small">
+	<h3 class="pad-top-tiny pad-bot-small col-md-12 col-sm-12 col-xs-12">Secara Offline</h3>
+	<div class="col-md-12 col-sm-12 col-xs-10 padding-small">
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
 			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Membuat Proposal</span>
@@ -71,25 +71,25 @@
 	</div>
 	<h2 class="primary-color pad-top">Upload Proposal</h2>
 	<div class="profile-desc">
-        Setelah mengedit proposal yang telah di download. Proposal dapat diupload pada <a href="#">Upload Proposal</a>. 
-        Akan dilakukan pengecekan proposal oleh pihak BEMU. Tunggu hasil pengecekan pada bagian <a href="#">Status Proposal</a> 
+        Setelah mengedit proposal yang telah di download. Proposal dapat diupload pada <a href="{{url('upload')}}">Upload Proposal</a>. 
+        Akan dilakukan pengecekan proposal oleh pihak BEMU. Tunggu hasil pengecekan pada bagian <a href="{{url('status')}}">Status Proposal</a> 
     </div>
 	<h2 class="primary-color pad-top">Status Proposal</h2>
 	<div class="profile-desc">
         Proposal yang telah di upload ataupun dikumpulkan ke BEMU untuk dicek dapat dilihat statusnya pada 
-        bagian <a href="#">Status Proposal</a>
+        bagian <a href="{{url('status')}}">Status Proposal</a>
         agar dapat mengetahui apakah proposal sudah benar atau masih ada kesalahan.
     </div>
     <h2 class="primary-color pad-top">Download Proposal Sesudah Dicek (Alur Pencairan Dana Secara Online)</h2>
 	<div class="profile-desc">
-        Proposal yang dikumpulkan melalui <a href="#">Upload Proposal</a> dapat mendownload file yang sudah dicek melalu <a href="#">Status Proposal</a>. 
+        Proposal yang dikumpulkan melalui <a href="{{url('upload')}}">Upload Proposal</a> dapat mendownload file yang sudah dicek melalu <a href="{{url('status')}}">Status Proposal</a>. 
         Untuk dicetak dan melengkapi tanda tangan atau direvisi dan dikumpulkan kembali melalui jalur offline ataupun online.
     </div>
 </div>
 
-<div class="fades col-md-12 bg-color-darker hidden">
+<div class="fades col-md-12 bg-color-darker col-sm-12 col-xs-12 hidden padding-null">
 	<form action="{{ route('post.word') }}" method="POST" id="form-p3dk">
-		<div class="col-md-6 padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-one">
+		<div class="col-md-6 padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1" id="form-sec-one">
 			<div  class="form-horizontal">
 			<h2 class="primary-color col-md-12 align-center pad-bot">Kop Surat</h2>
 				<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -113,34 +113,34 @@
 				</div>
 				<div class="form-group">
 					<label for="mediaSosial" class="col-md-4 control-label">Media Sosial</label>
-					<div class="col-md-7 pad-right-null">
-						<div class="col-md-3 padding-null">
+					<div class="col-md-7 col-sm-12 col-xs-12 pad-right-null">
+						<div class="col-md-3 col-sm-6 col-xs-6 padding-null">
 							<select class="form-control col-md-12" id="selectMedsos" name="medsos">
 								<option>website</option>
 								<option>facebook</option>
 								<option>twitter</option>
 							</select>
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-8 col-sm-6 col-xs-6">
 							<input type="text" class="form-control form-one" id="alamatMedsos" name="alamatMedsos" placeholder="Cth : bem.ukdw.ac.id">
 						</div>
 					</div>
 				</div>
-				<div class="form-group pad-top-large">
-					<div class="col-md-2 col-md-offset-3">
-						<button type="reset" class="btn btn-danger col-md-12 btn-batal">Batal</button>
+				<div class="form-group">
+					<div class="col-md-3 col-md-offset-1 col-xs-12 col-sm-12">
+						<button type="reset" class="btn btn-danger col-xs-12 col-sm-12 btn-batal margin-top-small">Batal</button>
 					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-primary col-md-12" id="btn-lanjut" disabled>Lanjut</button>
+					<div class="col-md-4 col-xs-12 col-sm-12">
+						<button type="button" class="btn btn-primary col-xs-12 col-sm-12 margin-top-small" id="btn-lanjut" disabled>Lanjut</button>
 					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-warning col-md-12" id="btn-lewati">Lewati</button>
+					<div class="col-md-3 col-xs-12 col-sm-12">
+						<button type="button" class="btn btn-warning col-xs-12 col-sm-12 margin-top-small" id="btn-lewati">Lewati</button>
 					</div>
 				</div>
 				<input type="hidden" name="skipped" id="skipped" value='true'>
 			</div>
 		</div>
-		<div class="col-md-6 padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden" id="form-sec-two">
+		<div class="col-md-6 padding bg-color-white border-rad vertical-align-abs col-md-offset-3 hidden col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1" id="form-sec-two">
 			<div class="form-horizontal scrollable max-height">
 				<h2 class="primary-color col-md-12 align-center pad-bot">Detail Program Kerja</h2>	
 				<div class="form-group">
@@ -150,50 +150,50 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="kontak" class="col-md-4 control-label">Nama & No Kontak</label>
-					<div class="col-md-4">
+					<label for="kontak" class="col-md-4 col-xs-12 col-sm-12 control-label">Nama & No Kontak</label>
+					<div class="col-md-4 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="namaKontak" name="namaKontak" placeholder="Nama Panggilan">
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="nomorKontak" name="nomorKontak" placeholder="No Telepon/HP">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="SKDana" class="col-md-4 control-label">SK Dana</label>
-					<div class="col-md-3">
+					<label for="SKDana" class="col-md-4 col-xs-12 col-sm-12 control-label">Dana Kemahasiswaan</label>
+					<div class="col-md-3 col-xs-6 col-sm-6">
 			    		<div class="input-group">
 				    		<div class="input-group-addon">Rp</div>
 				    		<input type="text" class="form-control form-two" id="skDanaJumlah" name="skDanaJumlah" placeholder="5.500.000">
 				    	</div>
 			    	</div>
-			    	<div class="col-md-4">
+			    	<div class="col-md-4 col-xs-6 col-sm-6">
 			    		<input type="text" class="form-control form-two" id="skDanaTerbilang" name="skDanaTerbilang" placeholder="lima juta lima ratus ribu rupiah">
 			    	</div>
 				</div>
 				<div class="form-group">
-					<label for="ketuaProker" class="col-md-4 control-label">Ketua Proker</label>
-					<div class="col-md-4">
+					<label for="ketuaProker" class="col-md-4 col-xs-12 col-sm-12 control-label">Ketua Proker</label>
+					<div class="col-md-4 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="namaKetuaProker" name="namaKetuaProker" placeholder="Nama">
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="nimKetuaProker" name="nimKetuaProker" placeholder="NIM">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="sekreProker" class="col-md-4 control-label">Sekretaris Proker</label>
-					<div class="col-md-4">
+					<label for="sekreProker" class="col-md-4 col-xs-12 col-sm-12 control-label">Sekretaris Proker</label>
+					<div class="col-md-4 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="namaSekreProker" name="namaSekreProker" placeholder="Nama">
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="nimSekreProker" name="nimSekreProker" placeholder="NIM">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="ketuaOK" class="col-md-4 control-label">Ketua Organisasi Kemahasiswaan</label>
-					<div class="col-md-4">
+					<label for="ketuaOK" class="col-md-4 col-xs-12 col-sm-12 control-label">Ketua Organisasi Kemahasiswaan</label>
+					<div class="col-md-4 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="namaKetuaOK" name="namaKetuaOK" placeholder="Nama">
 					</div>
-					<div class="col-md-2">
+					<div class="col-md-2 col-xs-6 col-sm-6">
 						<input type="text" class="form-control form-two" id="nimKetuaOK" name="nimKetuaOK" placeholder="NIM">
 					</div>
 			  	</div>
@@ -220,15 +220,15 @@
 						<input type="text" class="form-control form-two" id="temaAcara" name="temaAcara" placeholder="Nama">
 					</div>
 			  	</div>
-			  	<div class="form-group pad-top-med">
-					<div class="col-md-2 col-md-offset-3">
-						<button type="reset" class="btn btn-danger col-md-12 btn-batal">Batal</button>
+			  	<div class="form-group">
+					<div class="col-md-3 col-md-offset-1 col-xs-12 col-sm-12 margin-top-small">
+						<button type="reset" class="btn btn-danger col-md-12 col-xs-12 col-sm-12 btn-batal">Batal</button>
 					</div>
-					<div class="col-md-2">
-						<button type="button" class="btn btn-primary col-md-12" id="btn-kembali">Kembali</button>
+					<div class="col-md-4 col-xs-12 col-sm-12 margin-top-small">
+						<button type="button" class="btn btn-primary col-md-12 col-xs-12 col-sm-12" id="btn-kembali">Kembali</button>
 					</div>
-					<div class="col-md-2">
-						<button type="submit" class="btn btn-success col-md-12"  id="btn-unduh" disabled>Unduh</button>
+					<div class="col-md-3 col-xs-12 col-sm-12 margin-top-small">
+						<button type="submit" class="btn btn-success col-md-12 col-xs-12 col-sm-12"  id="btn-unduh" disabled>Unduh</button>
 					</div>
 				</div>
 			</div>

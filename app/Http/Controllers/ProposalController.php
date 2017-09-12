@@ -147,6 +147,13 @@ class ProposalController extends Controller
 
     public function download(Request $request){
         $proposal = $request->proposal;
+        $timestamp=date("Y-m-d H:i:s");
+        DB::table('proposals')
+            ->where('id', $request->id)
+            ->update([
+              'status' => 'PROSES',
+              'tracking' => $timestamp
+              ]);
         return response()->download(storage_path("app/proposal/$proposal"));
     }
 
@@ -203,7 +210,8 @@ class ProposalController extends Controller
         'download_link' => '-',
         'pemeriksa' => $pemeriksa,
         'revision' => 0,
-        'tracking' => $timestamp
+        'tracking' => $timestamp,
+        'email' => $request->email
         ]);
       return redirect('status');
     }

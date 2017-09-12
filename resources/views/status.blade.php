@@ -53,8 +53,10 @@
 		  	<td class="active align-center padding" style="vertical-align:middle"><span class="label label-default padding-small">{{ $proposal->status }}</span></td>
 		  @elseif($proposal->status == 'REVISI')
 		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-warning padding-small">{{ $proposal->status }}</span></td>
-		  @else
-		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-success padding-small">{{ $proposal->status }}</span></td>
+		  @elseif($proposal->status == 'PROSES')
+		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-info padding-small">{{ $proposal->status }}</span></td>
+          @else
+            <td class="active align-center" style="vertical-align:middle"><span class="label label-success padding-small">{{ $proposal->status }}</span></td>
 		  @endif
 
 		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->waktu_masuk }}</td>
@@ -72,7 +74,7 @@
 		  @if (Auth::user()->admin)
 		  	<td class="active align-center" style="vertical-align:middle"><button type="button"  style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-edit" onclick="pilihAksi({{$proposal->id}},'{{$proposal->nama_proposal}}')"></button></td>
           @else
-            @if($proposal->status == 'BELUM DIPERIKSA' || $proposal->jalur == 'offline')
+            @if($proposal->status == 'BELUM DIPERIKSA' || $proposal->jalur == 'offline' || $proposal->status == 'PROSES')
                 <td class="active align-center" style="vertical-align:middle">{{ $proposal->download_link }}</td>
                 <td class="active align-center" style="vertical-align:middle"><span> - </span></td>
             @else
@@ -147,6 +149,7 @@
                     <select class="form-control" name="status">
                     	<option >-select-</option>
                         <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
+                        <option value="PROSES" id='proses'>PROSES</option>
 					  	<option value="REVISI" id='revisi'>REVISI</option>
 					  	<option value="OK" id='ok'>OK</option>
 					</select>
@@ -179,6 +182,7 @@
         </form>
 	</div>
 
+
     <div class="padding-large bg-color-white border-rad vertical-align-abs col-md-6 col-md-offset-3 hidden" id="section-three">
         
         <form class="form-horizontal" method="POST" action="{{ route('status.tambah') }}">
@@ -199,6 +203,14 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="email" class="col-md-4 control-label">Email</label>
+
+                <div class="col-md-6">
+                    <input type="email" class="form-control" name="email">
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="jalur" class="col-md-4 control-label">Jalur</label>
 
@@ -214,6 +226,7 @@
                     <select class="form-control" name="status">
                         <option >-select-</option>
                         <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
+                        <option value="PROSES" id='proses'>PROSES</option>
                         <option value="REVISI" id='revisi'>REVISI</option>
                         <option value="OK" id='ok'>OK</option>
                     </select>
@@ -237,6 +250,8 @@
             </div>
         </form>
     </div>
+
+
 </div>
 
 
@@ -250,6 +265,10 @@ $('input:file[name="uploadFile"]').change(function(){
     upload(this.files,this.id);
 });
 
+$('#download').click(function(){
+    setTimeout(function(){ location.href = "status"; },1000)    
+})
+
 $('#tambah').click(function(){
     $('.bg-color-darker').removeClass('hidden');
     $('#section-three').removeClass('hidden');
@@ -258,7 +277,7 @@ $('#tambah').click(function(){
 function pilihAksi(id,proposal){
 	$('.bg-color-darker').removeClass('hidden');
 	$('body').addClass('hidden-overflow');
-	$('#download').attr('href','{{url('status/download')}}?proposal='+proposal);
+	$('#download').attr('href','{{url('status/download')}}?proposal='+proposal+'&id='+id);
 	$('#update').attr('onclick','fileDetail('+id+')');
     $('#delete').attr('onclick','deleteStatus('+id+')');
 }
@@ -298,6 +317,7 @@ $('.close-window').click(function(){
 	$('body').removeClass('hidden-overflow');
     $('#section-one').removeClass('hidden');
     $('#section-two').addClass('hidden');
+    $('#section-three').addClass('hidden');
 })
 
 function fileDetail(id){
