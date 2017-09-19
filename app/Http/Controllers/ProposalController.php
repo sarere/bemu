@@ -96,7 +96,7 @@ class ProposalController extends Controller
 
       // Delete the file if you so choose. BE CAREFULE; YOU MAY NEED TO DO THIS
       // THROUGH YOUR FRAMEWORK:
-      //unlink($newDoc);
+      unlink($newDoc);
 
       // End the session. BE CAREFUL; YOU NEED TO DO THIS THROUGH YOUR FRAMEWORK:
       session_write_close();

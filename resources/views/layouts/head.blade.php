@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width; maximum-scale=1; minimum-scale=1;" />
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="shortcut icon" href="{{ asset('picture/favico.png') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">

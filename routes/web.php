@@ -19,7 +19,7 @@ Route::get('ok','OrgKemahasiswaanController@index')->name('ok.index');
 
 Route::get('p3dk', 'ProposalController@indexPendahuluan');
 
-Route::post('post','ProposalControllerr@downloadTemplate')->name('post.word');
+Route::post('post','ProposalController@downloadTemplate')->name('post.word');
 
 // Route::get('session/get','SessionController@accessSessionData');
 
@@ -46,5 +46,7 @@ Route::post('status/upload', 'ProposalController@uploadRevision');
 Route::post('status/delete', 'ProposalController@delete');
 
 Route::get('user/mode', 'WellcomeController@userMode');
+
+Route::get('dashboard', 'DashboardController@index');
 
 Auth::routes();

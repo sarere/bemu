@@ -23,46 +23,46 @@
 	<div class="col-md-12 col-sm-12 col-xs-10 padding-small">
 		<div  class="bg-color-primary square-box col-md-2 col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
-			<span class="font-2-em col-md-12 vertical-align-abs align-center font-white col-sm-12">Membuat Proposal</span>
+			<span class="font-2-em col-md-12 vertical-align-abs align-center font-white col-sm-12 col-xs-12">Membuat Proposal</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">2</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Upload File</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12 col-xs-12">Upload File</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">3</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Melengkapi Tanda Tangan</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12 col-xs-12">Melengkapi Tanda Tangan</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">4</span>
-			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Kumpulkan Ke Biro III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12 col-xs-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
 	<h3 class="pad-top-tiny pad-bot-small col-md-12 col-sm-12 col-xs-12">Secara Offline</h3>
 	<div class="col-md-12 col-sm-12 col-xs-10 padding-small">
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">1</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Membuat Proposal</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12 col-xs-12">Membuat Proposal</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">2</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12"> Ttd Ketua & Sekre Proker & Ketua OK</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12 col-xs-12"> Ttd Ketua & Sekre Proker & Ketua OK</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">3</span>
-			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12">Kumpulkan Ke BEMU Untuk Pengecekan</span>
+			<span class="vertical-align-abs font-2-em col-md-12 align-center col-sm-12 col-xs-12">Kumpulkan Ke BEMU Untuk Pengecekan</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">4</span>
-			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Ttd Wakil Dekan (Jika Mendapat Dana Fakultas)</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12 col-xs-12">Ttd Wakil Dekan (Jika Mendapat Dana Fakultas)</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">5</span>
-			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Ttd Wakil Rektor III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12 col-xs-12">Ttd Wakil Rektor III</span>
 		</div>
 		<div  class="square-box col-md-2 bg-color-primary col-sm-3 col-xs-12">
 			<span class="number bg-color-primary align-center">6</span>
-			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12">Kumpulkan Ke Biro III</span>
+			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12 col-xs-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
 	<h2 class="primary-color pad-top col-md-12 pad-left-null">Template Proposal</h2>
@@ -150,50 +150,50 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="kontak" class="col-md-4 col-xs-12 col-sm-12 control-label">Nama & No Kontak</label>
-					<div class="col-md-4 col-xs-6 col-sm-6">
+					<label for="kontak" class="col-md-4 control-label">Nama & No Kontak</label>
+					<div class="col-md-4">
 						<input type="text" class="form-control form-two" id="namaKontak" name="namaKontak" placeholder="Nama Panggilan">
 					</div>
-					<div class="col-md-2 col-xs-6 col-sm-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control form-two" id="nomorKontak" name="nomorKontak" placeholder="No Telepon/HP">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="SKDana" class="col-md-4 col-xs-12 col-sm-12 control-label">Dana Kemahasiswaan</label>
-					<div class="col-md-3 col-xs-6 col-sm-6">
+					<label for="SKDana" class="col-md-4 control-label">Dana Kemahasiswaan</label>
+					<div class="col-md-3">
 			    		<div class="input-group">
 				    		<div class="input-group-addon">Rp</div>
 				    		<input type="text" class="form-control form-two" id="skDanaJumlah" name="skDanaJumlah" placeholder="5.500.000">
 				    	</div>
 			    	</div>
-			    	<div class="col-md-4 col-xs-6 col-sm-6">
+			    	<div class="col-md-4">
 			    		<input type="text" class="form-control form-two" id="skDanaTerbilang" name="skDanaTerbilang" placeholder="lima juta lima ratus ribu rupiah">
 			    	</div>
 				</div>
 				<div class="form-group">
-					<label for="ketuaProker" class="col-md-4 col-xs-12 col-sm-12 control-label">Ketua Proker</label>
-					<div class="col-md-4 col-xs-6 col-sm-6">
+					<label for="ketuaProker" class="col-md-4 control-label">Ketua Proker</label>
+					<div class="col-md-4">
 						<input type="text" class="form-control form-two" id="namaKetuaProker" name="namaKetuaProker" placeholder="Nama">
 					</div>
-					<div class="col-md-2 col-xs-6 col-sm-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control form-two" id="nimKetuaProker" name="nimKetuaProker" placeholder="NIM">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="sekreProker" class="col-md-4 col-xs-12 col-sm-12 control-label">Sekretaris Proker</label>
-					<div class="col-md-4 col-xs-6 col-sm-6">
+					<label for="sekreProker" class="col-md-4 control-label">Sekretaris Proker</label>
+					<div class="col-md-4">
 						<input type="text" class="form-control form-two" id="namaSekreProker" name="namaSekreProker" placeholder="Nama">
 					</div>
-					<div class="col-md-2 col-xs-6 col-sm-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control form-two" id="nimSekreProker" name="nimSekreProker" placeholder="NIM">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="ketuaOK" class="col-md-4 col-xs-12 col-sm-12 control-label">Ketua Organisasi Kemahasiswaan</label>
-					<div class="col-md-4 col-xs-6 col-sm-6">
+					<label for="ketuaOK" class="col-md-4 control-label">Ketua Organisasi Kemahasiswaan</label>
+					<div class="col-md-4">
 						<input type="text" class="form-control form-two" id="namaKetuaOK" name="namaKetuaOK" placeholder="Nama">
 					</div>
-					<div class="col-md-2 col-xs-6 col-sm-6">
+					<div class="col-md-2">
 						<input type="text" class="form-control form-two" id="nimKetuaOK" name="nimKetuaOK" placeholder="NIM">
 					</div>
 			  	</div>
