@@ -17,7 +17,7 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
-							<li><a href="#">Pengaturan Pengguna</a></li>
+							<li><a href="pengaturan/profil">Pengaturan Pengguna</a></li>
 							 @if(Auth::user()->user_mode)
 			                	@if(Auth::user()->admin)
 			                		<li><a href="{{ url('user/mode') }}?user=1&admin=0">Mode Pengguna</a></li>

@@ -17,16 +17,16 @@ class ProposalController extends Controller
     }
 
     public function indexUpload(){
-        return view('upload');
+        return view('p3dk.upload');
     }
 
     public function indexStatus(){
         $proposals = DB::table('proposals')->orderBy('tracking', 'desc')->paginate(20);
-        return view('status', ['proposals' => $proposals]);
+        return view('p3dk.status', ['proposals' => $proposals]);
     }
 
     public function indexPendahuluan(){
-        return view('phpword');
+        return view('p3dk.phpword');
     }
 
      public function downloadTemplate(Request $request)

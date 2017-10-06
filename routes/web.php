@@ -49,4 +49,18 @@ Route::get('user/mode', 'WellcomeController@userMode');
 
 Route::get('dashboard', 'DashboardController@index');
 
+Route::get('sendMail', 'DashboardController@sendMail');
+
+Route::get('notify/{id}', 'DashboardController@notifyUser');
+
+Route::get('pengaturan/profil', 'PengaturanController@profil');
+
+Route::get('pengaturan/privasi', 'PengaturanController@privasi')->name('pengaturan.privasi');
+
+Route::post('pengaturan/profil/update', 'PengaturanController@update');
+
+Route::post('pengaturan/profil/upload', 'PengaturanController@changePhoto');
+
+Route::post('pengaturan/profil/change-password', 'PengaturanController@changePassword');
+
 Auth::routes();

@@ -20,23 +20,22 @@
             <?php $title = 'Unit Kegiatan Kerohanian' ?>
         @endif
         <div id="section-{{ $data[2] }}" class="main-section profile-title col-md-12 pad-bot-small">
-            <a class="glyphicon glyphicon-link link-ico jumper" href="#section-{{ $data[2] }}"></a>
+            <a class="glyphicon glyphicon-link link-ico jumper anchor" href="#section-{{ $data[2] }}"></a>
             <h1 class="primary-color display-inline-block">{{$title}}</h1>
         </div>
         <div class="col-md-12 margin-btm-small">
         <?php $data[2]++ ?>
         @foreach ($user as $key => $value)
             @if($value->ok == $title)
-                <div id="section-{{ $data[2] }}" class="sub-section thumbnail col-md-6">
+                <div id="section-{{ $data[2] }}" class="sub-section thumbnail" 
+                style="background-image:url('{{$value->logo ?  asset('picture/'.$value->logo) : asset('picture/default.png')}}">
                     @if(empty($value->logo))
-                        <img src="{{ asset('picture/default.png') }}" class="thumbnail-photo">
                         <div class="thumbnail-non-logo">
-                            <h4 class="visible" id="thumb-header-{{$key}}">{{ $value->name }}</h4>
+                            <h6 class="visible" id="thumb-header-{{$key}}">{{ $value->name }}</h6>
                         </div>
                     @else
-                    <img src="picture/{{ $value->logo }}" class="thumbnail-photo">
                     <div class="thumbnail-content">
-                        <h4 id="thumb-header-{{$key}}">{{ $value->name }}</h4>
+                        <h6 id="thumb-header-{{$key}}">{{ $value->name }}</h6>
                     </div>
                     @endif
                 </div>

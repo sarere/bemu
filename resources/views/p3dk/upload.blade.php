@@ -10,7 +10,7 @@
     <li><a {{{ (Request::is('upload') ? 'class=nav-active' : '') }}} href="{{ url('upload') }}">Upload Proposal</a></li>
   </ol>
 </div>
-<form  id="dropzone" class="form-horizontal col-md-8 col-md-offset-2" id="register" action="">
+<form  id="dropzone" class="form-horizontal col-md-8 col-md-offset-2">
     <div class="col-md-12">
         <span class="fa fa-file-word-o font-10-em margin-btm-med-tiny"></span>
         <h1 class="margin-btm-med-tiny margin-top-med mssg">Drop atau <label for="fileUpload" id="lblSelectFile"> Pilih File</label> Untuk Upload Proposal</h1>

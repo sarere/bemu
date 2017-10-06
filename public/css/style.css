@@ -159,7 +159,7 @@ footer ul li ul{
 .title-content{
 	padding-top: 0.5em;
 	color: #f94314;
-	font-size: 3.3em;
+	font-size: 3em;
 	
 	margin-bottom: 0;
 }
@@ -170,7 +170,7 @@ footer ul li ul{
 	font-size: 1.5em;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 992px) {
 	.slider-text{
 		font-size:4vw;
 		width: 10em;
@@ -197,9 +197,23 @@ footer ul li ul{
 		margin: 2em;
 		border-radius: 10px;
 	}
+
+	.anchor{
+		margin-left: -1.1em;
+	}
+
+	.thumbnail{
+		width: 15.5%;
+	    padding-top:14.27%;
+	    position: relative;
+	    margin: 0 5px 10px 5px;
+		background-size: 100% 100%;
+		cursor: pointer;
+		display: inline-block;
+	}
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
 	.slider-text{
 		font-size: 2em;
 		color: white;
@@ -239,6 +253,20 @@ footer ul li ul{
 		margin-top: 0;
 		padding: 1em;
 		font-size: 1em;
+	}
+
+	.anchor{
+		display: none;
+	}
+
+	.thumbnail{
+		display: inline-block;
+		width: 45%;
+	    padding-top:41%;
+	    position: relative;
+	    margin: 0 5px 10px 5px;
+		background-size: 100% 100%;
+		cursor: pointer;
 	}
 }
 
@@ -321,7 +349,7 @@ footer ul li ul{
 
 .profile-title{
 	font-size: 2em;
-	margin-left: -1.1em;
+	
 }
 
 .profile-sub-title{
@@ -367,21 +395,12 @@ footer ul li ul{
 	height: 100%;
 }
 
-.thumbnail{
-	width: 15.5%;
-    padding-top:14.27%;
-    position: relative;
-    margin: 0 5px 10px 5px;
-	background-size: 100% 100%;
-	cursor: pointer;
-}
+
 
 .thumbnail-photo{
 	left: 0;
 	position: absolute;
-	width: 100%;
 	top:0;
-	height: 100%;
 }
 
 .thumbnail-container{
@@ -420,7 +439,7 @@ footer ul li ul{
     opacity: 1;
 }
 
-.thumbnail-non-logo h4{
+.thumbnail-non-logo h6{
 	width: 100%;
 	margin-top: -0.025em;
 	position: absolute;
@@ -432,7 +451,7 @@ footer ul li ul{
     transform: translateY(-50%);
 }
 
-.thumbnail-content h4{
+.thumbnail-content h6{
 	width: 100%;
 	text-align: center;
 	margin-top: -0.025em;
@@ -521,6 +540,7 @@ footer ul li ul{
 
 .margin-left-small{margin-left: 2rem;}
 .margin-left{margin-left: 4rem;}
+.margin-top-null{margin-top: 0}
 .margin-top-tiny{margin-top:0.3rem;}
 .margin-top{margin-top:10rem;}
 .margin-top-med{margin-top: 7rem;}
