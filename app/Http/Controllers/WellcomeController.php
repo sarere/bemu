@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Car;
 
@@ -13,6 +15,23 @@ class WellcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function userMode(Request $request){
+        if($request->user){
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update([
+              'admin' => 0
+              ]);
+        }else{
+            DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update([
+              'admin' => 1
+              ]);
+        }
+        return back();
+    }
+
     public function index()
     {
         return view('welcome');
