@@ -22,6 +22,8 @@ $(window).on('load', function(){
 });
 
 $(document).ready(function(){
+	$('#menu').hide();
+	$('#close-menu').hide();
 	action()
 	jumperAnimation();
 	initial();

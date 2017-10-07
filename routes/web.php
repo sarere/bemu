@@ -53,7 +53,7 @@ Route::get('sendMail', 'DashboardController@sendMail');
 
 Route::get('notify/{id}', 'DashboardController@notifyUser');
 
-Route::get('pengaturan/profil', 'PengaturanController@profil');
+Route::get('pengaturan/profil', 'PengaturanController@profil')->name('pengaturan.profil');;
 
 Route::get('pengaturan/privasi', 'PengaturanController@privasi')->name('pengaturan.privasi');
 
@@ -62,5 +62,7 @@ Route::post('pengaturan/profil/update', 'PengaturanController@update');
 Route::post('pengaturan/profil/upload', 'PengaturanController@changePhoto');
 
 Route::post('pengaturan/profil/change-password', 'PengaturanController@changePassword');
+
+Route::post('dashboard/tambah-akun', 'DashboardController@tambahAkun');
 
 Auth::routes();

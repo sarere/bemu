@@ -32,8 +32,9 @@
 				berkomunikasi dengan organisasi yang berada di universitas, dan juga sebagai jembatan antara Organisasi Kemahasiswaan dengan 
 				Badan Perwakilan Mahasiswa Universitas.
 			</p>
+			<span></span>
+			<a href="#section-1" class="btn-img jumper fa fa-chevron-circle-down"></a>
 		</div>
-		<a href="#section-1" class="btn-img jumper"></a>
 	</div>
 </div>
 <div class="col-md-12 box-content" id="section-1" style="background-image:url('picture/okcover.jpg')">
@@ -46,8 +47,9 @@
 				Selain dalam akademik Mahasiswa dapat menyalurkan bakat mereka pada 
 				Organisasi Kemahasiswaan.
 			</p>
+			<span></span>
+			<a href="#section-2" class="btn-img jumper fa fa-chevron-circle-down"></a>
 		</div>
-		<a href="#section-2" class="btn-img jumper"></a>
 	</div>
 </div>
 <div class="space col-md-12 ">
@@ -60,7 +62,8 @@
 				Unit Kegiatan Kebudayaan (UKKb) merupakan sarana untuk para mahasiswa yang berasal dari berbagai macam suku daerah. 
 				UKKb dibentuk sebagai wadah memperkenalkan dan melestarikan kebudayaan - kebudayaan etnis serta komunikasi antar budaya 
 				yang berada di Indonesia.</p>
-			<a href="#section-3" class="btn-img jumper"></a>
+				<span></span>
+			<a href="#section-3" class="btn-img jumper fa fa-chevron-circle-down"></a>
 		</div>
 	</div>
 </div>
@@ -74,7 +77,8 @@
 				Unit Kegiatan Kerohanian (UKKr) merupakan wadah yang dapat digunakan Mahasiswa untuk mengembangkan 
 				kehidupan spiritual dan komunikasi lintas keyakinan dalam kehidupan Mahasiswa.
 			</p>
-			<a href="#section-4" class="btn-img jumper"></a>
+			<span></span>
+			<a href="#section-4" class="btn-img jumper fa fa-chevron-circle-down"></a>
 		</div>
 	</div>
 </div>
@@ -85,10 +89,11 @@
 		<div class="text-content">
 			<h1 class="title-content  align-right col-md-10 col-md-offset-2 bg-color-transparent">Unit Kegiatan Mahasiswa</h1>
 			<p class="desc-content  align-right col-md-10 col-md-offset-2 bg-color-transparent font-white">
-				Unit Kegiatan Kerohanian (UKKr) merupakan wadah yang dapat digunakan Mahasiswa untuk mengembangkan 
-				kehidupan spiritual dan komunikasi lintas keyakinan dalam kehidupan Mahasiswa.
+				Unit Kegiatan Mahasiswa (UKM) merupakan wadah yang dapat digunakan Mahasiswa untuk mengembangkan 
+				hobi mereka dalam bidang non akademik.
 			</p>
-			<a href="#section-5" class="btn-img jumper"></a>
+			<span></span>
+			<a href="#section-5" class="btn-img jumper fa fa-chevron-circle-down"></a>
 		</div>
 	</div>
 </div>

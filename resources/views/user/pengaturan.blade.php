@@ -11,8 +11,8 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Menu</div>
 	    	<ul class="list-group">
-			    <li class="list-group-item"><a class="link" href="profil">Profil</a></li>
-			    <li class="list-group-item"><a class="link" href="privasi">Privasi</a></li>
+			    <li class="list-group-item" {{ (Request::is('pengaturan/profil') ? 'id=active-border-left' : '') }}><a href="profil">Profil</a></li>
+			    <li class="list-group-item" {{ (Request::is('pengaturan/privasi') ? 'id=active-border-left' : '') }}><a href="privasi">Privasi</a></li>
 		  	</ul>
 		</div>
 	</div>
@@ -20,22 +20,4 @@
 		@yield('tes')
 	</div>
 </div>
-
-<script type="text/javascript">
-function ajax(link){
-	$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-    });
-
-    $.ajax({
-        type: "GET",
-        url: link,
-        success: function(data){
-            $('#content').html(data.html);
-        }
-    })
-}
-</script>
 @stop
