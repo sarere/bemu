@@ -22,7 +22,10 @@ class ProposalController extends Controller
 
     public function indexStatus(){
         $proposals = DB::table('proposals')->orderBy('tracking', 'desc')->paginate(20);
-        return view('p3dk.status', ['proposals' => $proposals]);
+        $emails = DB::table('users')
+                            ->select('email')
+                            ->get();
+        return view('p3dk.status', ['proposals' => $proposals, 'emails' => $emails]);
     }
 
     public function indexPendahuluan(){
@@ -104,13 +107,13 @@ class ProposalController extends Controller
 
     public function uploadRevision(Request $request){
       $proposal = DB::table('proposals')->where('id', $request->id);
-      $timestamp=date("Y-m-d H:i:s");
+      $timestamp=Carbon::now()->toDateTimeString();
 
       $file = $request->uploadFile;
       $filename = $proposal->value('nama_proposal');
       Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
 
-      $now = new DateTime();
+      $now = Carbon::now();
       $revision = $proposal->value('revision') + 1;
 
       DB::table('proposals')
@@ -120,15 +123,16 @@ class ProposalController extends Controller
               'jalur' => 'online',
               'status' => 'BELUM DIPERIKSA',
               'download_link' => '-',
-              'revision' => $revision,
-              'tracking' => $timestamp
+              'tracking' => $timestamp,
+              'revision' => $revision
               ]);
     }
 
     public function uploadStorage(Request $request){
     	$file = $request->uploadFile;
         $filename = $file->getClientOriginalName();
-        $now = new DateTime();
+        $timestamp=Carbon::now()->toDateTimeString();
+        $now = Carbon::now();
 
         Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
         $user = Auth::user();
@@ -141,13 +145,14 @@ class ProposalController extends Controller
             'download_link' => '-',
             'pemeriksa' => '-',
             'revision' => 0,
+            'tracking' => $timestamp,
             'email' => $user->email
             ]);
     }
 
     public function download(Request $request){
         $proposal = $request->proposal;
-        $timestamp=date("Y-m-d H:i:s");
+        $timestamp=Carbon::now()->toDateTimeString();
         DB::table('proposals')
             ->where('id', $request->id)
             ->update([
@@ -167,11 +172,11 @@ class ProposalController extends Controller
     }
 
     public function statusUpdate(Request $request){
-        $now = new DateTime();
+        $now = Carbon::now();
         $filename = $request->nama_proposal;
         $file = $request->uploadGuideFile;
         $filename = $request->nama_proposal;
-        $timestamp=date("Y-m-d H:i:s");
+        $timestamp=Carbon::now()->toDateTimeString();
         
         
         $now = new DateTime();
@@ -194,8 +199,8 @@ class ProposalController extends Controller
     }
 
     public function statusTambah(Request $request){
-      $now = new DateTime();
-      $timestamp=date("Y-m-d H:i:s");
+      $now = Carbon::now();
+      $timestamp=Carbon::now()->toDateTimeString();
 
       $pemeriksa = '-';
       if($request->pemeriksa){

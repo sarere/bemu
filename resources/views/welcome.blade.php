@@ -20,7 +20,7 @@
 		</div>
 	</div>
 </div>
-<div class="col-md-12 box-content" id="section-0">
+<div class="col-md-12 box-content b" id="section-0">
 	<div class="col-md-10 col-md-offset-1 content">
 		<div class="text-content align-center">
 			<h1 class="title-content col-md-12 col-sm-12 col-xs-12">Badan Eksekutif Mahasiswa <br> Universitas Kristen Duta Wacana</h1>

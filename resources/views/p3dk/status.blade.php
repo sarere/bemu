@@ -3,7 +3,7 @@
 @section('title','Status Proposal - ')
 
 @section('content')
-<div class="col-md-10 col-md-offset-1 pad-top pad-left-null scrollable-y">
+<div class="col-md-10 col-md-offset-1 pad-top pad-left-null table-responsive">
   <ol class="breadcrumb bg-color-white font-2-em " style="min-width:400px">
     <li><a {{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}} href="{{ url('p3dk') }}">Pengantar</a></li>
     <li><a {{{ (Request::is('status') ? 'class=nav-active' : '') }}} href="{{ url('status') }}">Status Proposal</a></li>
@@ -22,7 +22,7 @@
 @endif
 @if(Auth::user()->admin)
 <div class="col-md-10 col-md-offset-1 pad-bot align-right">
-    <button class="btn btn-primary" id='tambah'>Tambah Status</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">Tambah Status</button>
 </div>
 @endif
 
@@ -72,7 +72,26 @@
 		  
 
 		  @if (Auth::user()->admin)
-		  	<td class="active align-center" style="vertical-align:middle"><button type="button"  style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-edit" onclick="pilihAksi({{$proposal->id}},'{{$proposal->nama_proposal}}')"></button></td>
+<!--           <td class="active align-center" style="vertical-align:middle">
+            <button type="button"  style="vertical-align:middle"
+             class="btn btn-primary glyphicon glyphicon-edit" onclick="pilihAksi({{$proposal->id}},'{{$proposal->nama_proposal}}')">
+         </button>
+     </td> -->
+		  	<td class="active align-center" style="vertical-align:middle">
+                <button type="button" style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-edit" data-container="body" data-toggle="popover" data-trigger="focus"  data-placement="left" data-contentwrapper="#pop-{{$proposal->id}}">
+                </button>
+            </td>
+            <div id="pop-{{$proposal->id}}" class="hidden">
+                @if($proposal->jalur!='offline')
+                <a href="{{url('status/download')}}?proposal={{$proposal->nama_proposal}}&id={{$proposal->id}}" class="btn btn-primary btn-xs btn-block" id="download">Download Proposal</a>
+                @endif
+                <button class="btn btn-success btn-xs btn-block" id="update" data-toggle="modal" data-target="#modalUpdate" onclick="fileDetail({{$proposal->id}})">Update Status</button>
+                <button type="submit" class="btn btn-danger btn-xs btn-block" form="del-{{$proposal->id}}">Hapus Status</button>
+                <form id="del-{{$proposal->id}}" method="POST" action="{{url('status/delete')}}" class="hidden">
+                    {{ csrf_field() }}
+                    <input name="id" value="{{$proposal->id}}" class="hidden">
+                </form>
+            </div>
           @else
             @if($proposal->status == 'BELUM DIPERIKSA' || $proposal->jalur == 'offline' || $proposal->status == 'PROSES')
                 <td class="active align-center" style="vertical-align:middle">{{ $proposal->download_link }}</td>
@@ -106,159 +125,162 @@
   {{ $proposals->links() }}
 </div>
 
-<div class="fades col-md-12 bg-color-darker hidden align-center">
-	<div class="padding-large bg-color-white border-rad vertical-align-abs col-md-4 col-md-offset-4" id="section-one">
-		<button class="margin-top-small btn btn-danger close-window" style="top:0; right:3rem; position:absolute; cursor:pointer;">(X)Close</button>
-		<a href="" class="btn btn-primary btn-lg padding col-md-12 margin-top-small" id="download">Download Proposal</a>
-		<button class="btn btn-success btn-lg padding col-md-12 margin-top-small" id="update">Update Status</button>
-        <button class="btn btn-danger btn-lg padding col-md-12 margin-top-small" id="delete">Hapus Status</button>
-	</div>
-
-	<div class="padding-large bg-color-white border-rad vertical-align-abs col-md-6 col-md-offset-3 hidden" id="section-two">
-		
-		<form class="form-horizontal" method="POST" action="{{ route('status.update') }}" enctype="multipart/form-data">
-            <button type="reset" class="margin-top-small btn btn-danger close-window" style="top:0; right:3rem; position:absolute; cursor:pointer;">(X)Close</button>
-            {{ csrf_field() }}
-            <input id="id" type="text" class="hidden" name="id" value="">
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="nama_proposal" class="col-md-4 control-label">Nama Proposal</label>
-
-                <div class="col-md-6">
-                    <input id="nama_proposal" type="text" class="form-control" name="nama_proposal" readonly>
-
-                    <!-- @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="labelModalUpdate">
+  <div class="modal-dialog" role="document">
+    <form class="form-horizontal" method="POST" action="{{ route('status.update') }}" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="reset" class="close batal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="labelModalUpdate">Update Status</h4>
+          </div>
+          <div class="modal-body">
+                {{ csrf_field() }}
+                <input id="id" type="text" class="hidden" name="id" value="">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="nama_proposal" class="col-md-4 control-label">Nama Proposal</label>
+                    <div class="col-md-6">
+                        <input id="nama_proposal" type="text" class="form-control" name="nama_proposal" readonly>
+                    </div>
                 </div>
-           	</div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="jalur" class="col-md-4 control-label">Jalur</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="jalur" class="col-md-4 control-label">Jalur</label>
 
-                <div class="col-md-6">
-                    <input id="jalur" type="text" class="form-control" name="jalur" disabled>
+                    <div class="col-md-6">
+                        <input id="jalur" type="text" class="form-control" name="jalur" disabled>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="status" class="col-md-4 control-label">Status</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="status" class="col-md-4 control-label">Status</label>
 
-                <div class="col-md-6">
-                    <select class="form-control" name="status">
-                    	<option >-select-</option>
-                        <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
-                        <option value="PROSES" id='proses'>PROSES</option>
-					  	<option value="REVISI" id='revisi'>REVISI</option>
-					  	<option value="OK" id='ok'>OK</option>
-					</select>
+                    <div class="col-md-6">
+                        <select class="form-control" name="status">
+                            <option id="none">-select-</option>
+                            <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
+                            <option value="PROSES" id='proses'>PROSES</option>
+                            <option value="REVISI" id='revisi'>REVISI</option>
+                            <option value="OK" id='ok'>OK</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="upload">
-                <label for="uploadGuideFile" class="col-md-4 control-label">Upload File</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="upload">
+                    <label for="uploadGuideFile" class="col-md-4 control-label">Upload File</label>
 
-                <div class="col-md-6">
-                    <input id="uploadGuideFile" type="file" class="form-control" name="uploadGuideFile">
+                    <div class="col-md-6">
+                        <input id="uploadGuideFile" type="file" class="form-control" name="uploadGuideFile">
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
 
-                <div class="col-md-6">
-                    <input id="pemeriksa" type="text" class="form-control" name="pemeriksa">
+                    <div class="col-md-6">
+                        <input id="pemeriksa" type="text" class="form-control" name="pemeriksa">
+                    </div>
                 </div>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default batal">Batal</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
 
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-6">
-                    <button type="submit" class="btn btn-primary">
-                        Update
-                    </button>
+<div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="labelModalTambah">
+  <div class="modal-dialog" role="document">
+    <form class="form-horizontal" method="POST" action="{{ route('status.tambah') }}">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="reset" class="close batal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="labelModalTambah">Tambah Status</h4>
+          </div>
+          <div class="modal-body">
+                {{ csrf_field() }}
+                <input id="id" type="text" class="hidden" name="id" value="">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="nama_proposal" class="col-md-4 control-label">Nama Proposal</label>
+
+                    <div class="col-md-6">
+                        <input id="nama_proposal" type="text" placeholder="P3DK - DWPRO (PROKER)" class="form-control" name="nama_proposal">
+
+                        <!-- @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif -->
+                    </div>
                 </div>
-            </div>
-        </form>
-	</div>
 
-
-    <div class="padding-large bg-color-white border-rad vertical-align-abs col-md-6 col-md-offset-3 hidden" id="section-three">
-        
-        <form class="form-horizontal" method="POST" action="{{ route('status.tambah') }}">
-            <button type="reset" class="margin-top-small btn btn-danger close-window" style="top:0; right:3rem; position:absolute; cursor:pointer;">(X)Close</button>
-            {{ csrf_field() }}
-            <input id="id" type="text" class="hidden" name="id" value="">
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="nama_proposal" class="col-md-4 control-label">Nama Proposal</label>
-
-                <div class="col-md-6">
-                    <input id="nama_proposal" type="text" class="form-control" name="nama_proposal">
-
-                    <!-- @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif -->
+                <div class="form-group">
+                    <label for="email" class="col-md-4 control-label">Email</label>
+                    <div class="col-md-6">
+                        <select class="selectpicker" name="email" data-live-search="true">
+                            @foreach($emails as $i)
+                            <option value="{{ $i->email }}">{{ $i->email }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="email" class="col-md-4 control-label">Email</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="jalur" class="col-md-4 control-label">Jalur</label>
 
-                <div class="col-md-6">
-                    <input type="email" class="form-control" name="email">
+                    <div class="col-md-6">
+                        <input id="jalurTambah" type="text" class="form-control" name="jalur" value='offline' readonly>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="jalur" class="col-md-4 control-label">Jalur</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="status" class="col-md-4 control-label">Status</label>
 
-                <div class="col-md-6">
-                    <input id="jalurTambah" type="text" class="form-control" name="jalur" value='offline' readonly>
+                    <div class="col-md-6">
+                        <select class="form-control" name="status">
+                            <option >-select-</option>
+                            <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
+                            <option value="PROSES" id='proses'>PROSES</option>
+                            <option value="REVISI" id='revisi'>REVISI</option>
+                            <option value="OK" id='ok'>OK</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="status" class="col-md-4 control-label">Status</label>
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                    <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
 
-                <div class="col-md-6">
-                    <select class="form-control" name="status">
-                        <option >-select-</option>
-                        <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
-                        <option value="PROSES" id='proses'>PROSES</option>
-                        <option value="REVISI" id='revisi'>REVISI</option>
-                        <option value="OK" id='ok'>OK</option>
-                    </select>
+                    <div class="col-md-6">
+                        <input id="pemeriksa" type="text" class="form-control" name="pemeriksa">
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
-
-                <div class="col-md-6">
-                    <input id="pemeriksa" type="text" class="form-control" name="pemeriksa">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-6">
-                    <button type="submit" class="btn btn-primary">
-                        Tambah
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default batal">Batal</button>
+            <button type="submit" class="btn btn-primary">Tambah Status</button>
+          </div>
+        </div>
+    </form>
+  </div>
 </div>
 
 
 
-
 <script>
+$('[data-toggle="popover"]').popover({
+    html:true,
+    content:function(){
+        return $($(this).data('contentwrapper')).html();
+    }
+})
+
 $('#upload').hide();
+
+$('.batal').click(function(){
+    $('#modalTambah').modal('hide');
+    $('#modalUpdate').modal('hide');
+});
 
 $('input:file[name="uploadFile"]').change(function(){    
     alert(this.files[0].name)
@@ -267,11 +289,6 @@ $('input:file[name="uploadFile"]').change(function(){
 
 $('#download').click(function(){
     setTimeout(function(){ location.href = "status"; },1000)    
-})
-
-$('#tambah').click(function(){
-    $('.bg-color-darker').removeClass('hidden');
-    $('#section-three').removeClass('hidden');
 })
 
 function pilihAksi(id,proposal){
@@ -305,10 +322,12 @@ function deleteStatus(id){
 }
 
 $('select').on('change', function() {
-  if(this.value == 'REVISI'){
-  	$('#upload').slideDown();
-  } else{
-  	$('#upload').slideUp();
+  if($('#jalur').val() != 'offline'){
+    if(this.value == 'REVISI'){
+        $('#upload').slideDown();
+    } else{
+  	 $('#upload').slideUp();
+    }
   }
 })
 
@@ -331,6 +350,10 @@ function fileDetail(id){
         url: "status/detail",
         data: 'id='+id,
         success: function(data){
+            $('#revisi').attr('selected',false);
+            $('#belum-diperiksa').attr('selected',false);
+            $('#ok').attr('selected',false);
+
             $('#section-one').addClass('hidden');
             $('#section-two').removeClass('hidden');
             $('#nama_proposal').val(data[0]['nama_proposal']);

@@ -13,7 +13,7 @@
 <form  id="dropzone" class="form-horizontal col-md-8 col-md-offset-2">
     <div class="col-md-12">
         <span class="fa fa-file-word-o font-10-em margin-btm-med-tiny"></span>
-        <h1 class="margin-btm-med-tiny margin-top-med mssg">Drop atau <label for="fileUpload" id="lblSelectFile"> Pilih File</label> Untuk Upload Proposal</h1>
+        <h1 class="margin-btm-med-tiny margin-top-med mssg">Drop atau <label for="fileUpload" id="lblSelectFile" class="primary-color"> Pilih File</label> Untuk Upload Proposal</h1>
         <h3 class="margin-btm-med-tiny error hidden"></h3>
         <div class="progress margin-top-med hidden">
           <div class="progress-bar" role="progressbar" id="progress-upload" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">

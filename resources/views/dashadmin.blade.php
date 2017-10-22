@@ -17,10 +17,9 @@
 		</div>
 	</div>
 	<div class="col-md-9">
-		<div class="col-md-12 pad-bot">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Tambah Akun</button>
-		</div>
-		<div class="col-md-12">
+		<button type="button" class="btn btn-success margin-btm-small" data-toggle="modal" data-target="#myModal">Tambah Akun</button>
+	
+		<div class="table-responsive">
 			<table class="table table-striped table-bordered table-hover table-condensed">
 				<thead>
 					<td class="align-center" style="vertical-align:middle">Nama Lengkap</td>
@@ -39,8 +38,8 @@
 				</tr>
 				@endforeach
 			</table>
-			{{ $users->links() }}
 		</div>
+		{{ $users->links() }}
 	</div>
 </div>
 

@@ -60,22 +60,47 @@
 				      </button>
 				</div>
 				<div class="collapse navbar-collapse padding-null margin-null" id="bs-example-navbar-collapse-1">
-					<ul class="padding-null margin-null" style="float:left">
-						<li class="master-item"><a href="{{ url('/') }}" {{{ (Request::is('/') ? 'class=nav-active' : '') }}}>Beranda</a></li>
+					<ul class="padding-null" style="float:left">
+						<li class="master-item align-center">
+							<a href="{{ url('/') }}" class="icon-item {{{ (Request::is('/') ? 'nav-active' : '') }}}" >
+								<span class="fa fa-home fa-2x" style="display:block"></span>
+								<span style="display:block">Beranda</span>
+							</a>
+						</li>
+							<!-- <a href="{{ url('/') }}" class=""><span class="fa fa-home fa-2x"></span> Beranda</a></li> -->
 						<li class="hidden"><a href="">KEGIATAN</a></li>
-						<li class="master-item"><a href="{{ route('ok.index') }}"{{{ (Request::is('ok') ? 'class=nav-active' : '') }}}>Org. Kemahasiswaan</a></li>
+						<li class="master-item">
+							<a href="{{ url('ok') }}" class="icon-item {{{ (Request::is('ok') ? 'nav-active' : '') }}}" >
+								<span class="fa fa-sitemap fa-2x" style="display:block"></span>
+								<span style="display:block">Org. Kemahasiswaan</span>
+							</a>
+						</li>
+						@if(!Auth::guest())
+						<li class="master-item">
+							<a href="{{ url('p3dk') }}" class="icon-item {{ (Request::is('p3dk') ? 'nav-active' : (Request::is('status') ? 'nav-active' : (Request::is('upload') ? 'nav-active' : ''))) }}" >
+								<span class="fa fa-book fa-2x" style="display:block"></span>
+								<span style="display:block">P3DK</span>
+							</a>
+						</li>
+						@endif
 						<li class="hidden"><a href="{{ route('profil.index') }}" {{{ (Request::is('profil') ? 'class=nav-active' : '') }}}>BEM UKDW</a></li>
-						@if (Auth::guest())
 					</ul>
-					<ul style="float:right">
-							<li class="master-item"><a href="{{ url('login') }}" {{{ (Request::is('login') ? 'class=nav-active' : '') }}}>Login</a></li>
-						</ul>
+					<ul style="float:right" class="pad-right">
+						@if (Auth::guest())
+						<li class="master-item">
+							<a href="{{ url('login') }}" class="icon-item {{{ (Request::is('login') ? 'nav-active' : '') }}}" >
+								<span class="fa fa-sign-in fa-2x" style="display:block"></span>
+								<span style="display:block">Login</span>
+							</a>
+						</li>
 						@else
-							<li class="master-item"><a href="{{ url('p3dk') }}"{{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}}>P3DK</a></li>
-						</ul>
-						<ul style="float:right" class="pad-right">
 							@if(Auth::user()->admin)
-						    	<li class="master-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
+						    	<li class="master-item">
+						    		<a href="{{ url('dashboard') }}" class="icon-item {{{ (Request::is('dashboard') ? 'nav-active' : '') }}}" >
+										<span class="fa fa-dashboard fa-2x" style="display:block"></span>
+										<span style="display:block">Dashboard</span>
+									</a>
+								</li>
 			            	@endif
 							<li class="master-item">
 								<div class="btn-group" role="group">
@@ -84,17 +109,18 @@
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel">
-										<li><a href="{{ route('pengaturan.profil') }}">Pengaturan Pengguna</a></li>
+										<li><a href="{{ route('pengaturan.profil') }}" class="fa fa-cog"> Pengaturan Pengguna</a></li>
 										@if(Auth::user()->user_mode)
 						                	@if(Auth::user()->admin)
-						                		<li><a href="{{ url('user/mode') }}?user=1&admin=0">Mode Pengguna</a></li>
+						                		<li><a href="{{ url('user/mode') }}?user=1&admin=0" class="fa fa-user"> Mode Pengguna</a></li>
 						                	@else
-						                		<li><a href="{{ url('user/mode') }}?user=0&admin=1">Mode Admin</a></li>
+						                		<li><a href="{{ url('user/mode') }}?user=0&admin=1" class="fa fa-user-secret"> Mode Admin</a></li>
 						                	@endif
 						                @endif
 									    <li role="separator" class="divider"></li>
 									    <li>
 									    	<a href="{{ route('logout') }}"
+									    		class="fa fa-sign-out"
 							                    onclick="event.preventDefault();
 							                             document.getElementById('logout-form').submit();">
 							                    Logout
@@ -121,11 +147,11 @@
 			<a href="{{ url('/') }}"><span class="{{ (Request::is('/') ? 'nav-active fa fa-home' : 'fa fa-home') }}" aria-hidden="true"></span></a>
 		</div>
 		<div>
-			<a href="{{ route('ok.index') }}"><span class="{{ (Request::is('ok') ? 'nav-active fa fa-users' : 'fa fa-users') }}" aria-hidden="true"></span></a>
+			<a href="{{ route('ok.index') }}"><span class="{{ (Request::is('ok') ? 'nav-active fa fa-sitemap' : 'fa fa-sitemap') }}" aria-hidden="true"></span></a>
 		</div>
 		@if (!Auth::guest())
 		<div>
-			<a href="{{ url('p3dk') }}"><span class="{{ (Request::is('p3dk') ? 'nav-active fa fa-money' : (Request::is('status') ? 'nav-active fa fa-money' : (Request::is('upload') ? 'nav-active fa fa-money' : 'fa fa-money'))) }}" aria-hidden="true"></span></a>
+			<a href="{{ url('p3dk') }}"><span class="{{ (Request::is('p3dk') ? 'nav-active fa fa-book' : (Request::is('status') ? 'nav-active fa fa-book' : (Request::is('upload') ? 'nav-active fa fa-book' : 'fa fa-book'))) }}" aria-hidden="true"></span></a>
 		</div>
 		@endif
 	</div>
