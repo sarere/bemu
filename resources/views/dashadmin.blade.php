@@ -25,16 +25,32 @@
 					<td class="align-center" style="vertical-align:middle">Nama Lengkap</td>
 				  	<td class="align-center" style="vertical-align:middle">Nama Panggilan</td>
 					<td class="align-center" style="vertical-align:middle">Organisasi Kemahasiswaan</td>
-					<td class="align-center" style="vertical-align:middle">Hapus Akun</td>
-					<td class="align-center" style="vertical-align:middle">Generate Password</td>
+					<td class="align-center" style="vertical-align:middle">Email</td>
+					<td class="align-center" style="vertical-align:middle">Action</td>
 				</thead>
 				@foreach ($users as $user)
 				<tr>
-					<td style="vertical-align:middle">{{ $user->name }}</td>
+					<td style="vertical-align:middle">
+						{{ $user->name }} 
+						@if($user->admin)
+							<span class="fa fa-user-secret"></span>
+						@endif
+					</td>
 				  	<td style="vertical-align:middle">{{ $user->nickname }}</td>
 					<td style="vertical-align:middle">{{ $user->ok }}</td>
-					<td class="align-center" style="vertical-align:middle"><button class="btn btn-danger">Hapus</button></td>
-					<td class="align-center" style="vertical-align:middle"><a href="notify/{{ $user->id }}" class="btn btn-info">Generate Password</a></td>
+					<td style="vertical-align:middle">{{ $user->email }}</td>
+					<td class="align-center" style="vertical-align:middle">
+						<button type="button" class="btn btn-primary glyphicon glyphicon-edit" data-container="body" data-toggle="popover" data-trigger="focus"  data-placement="left" data-contentwrapper="#pop-{{$user->id}}">
+						</button>
+					</td>
+					<div id="pop-{{$user->id}}" class="hidden">
+						<button class="btn btn-warning btn-xs btn-block" data-toggle="modal" data-target="#modalSuntingAkun" onclick="fileDetail({{$user->id}})">Sunting Akun</button>
+						<button type="submit" class="btn btn-danger btn-xs btn-block" form="del-{{$user->id}}">Hapus Akun</button>
+						<form id="del-{{$user->id}}" method="POST" class="hidden">
+								{{ csrf_field() }}
+								<input name="id" value="{{$user->id}}" class="hidden">
+						</form>
+					</div>
 				</tr>
 				@endforeach
 			</table>
@@ -47,7 +63,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="reset" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="reset" class="close batal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Akun</h4>
       </div>
       <form action="dashboard/tambah-akun" method="POST">
@@ -82,17 +98,88 @@
 			    <input type="radio" name="admin" id="blankRadio1" value="1" aria-label="Ya">Ya
 			  </label>
 			  <label class="radio-inline">
-			    <input type="radio" name="admin" id="blankRadio2" value="2" aria-label="Tidak">Tidak
+			    <input type="radio" name="admin" id="blankRadio2" value="0" aria-label="Tidak">Tidak
 			  </label>
 			</div>
 	  	</div>
       </div>
       <div class="modal-footer">
-        <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success">Tambah Akun</button>
+        <button type="reset" class="btn btn-default batal">Batal</button>
+        <button type="submit" class="btn btn-primary">Tambah Akun</button>
       </div>
       </form>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalSuntingAkun" tabindex="-1" role="dialog" aria-labelledby="labelModalSuntingAkun">
+  <div class="modal-dialog" role="document">
+    <form class="form-horizontal" method="POST" action="{{ route('status.update') }}" enctype="multipart/form-data">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="reset" class="close batal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="labelModalUpdate">Suting Akun</h4>
+          </div>
+          <div class="modal-body">
+                {{ csrf_field() }}
+                <input id="id" type="text" class="hidden" name="id" value="">
+                <div class="form-group">
+                    <label for="nama_proposal" class="col-md-4 control-label" readonly>Nama Lengkap</label>
+                    <div class="col-md-6">
+                        <input id="nama_proposal" type="text" class="form-control" name="nama_proposal" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-md-4 control-label">Email</label>
+
+                    <div class="col-md-6">
+                        <input id="name" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status" class="col-md-4 control-label">Status</label>
+
+                    <div class="col-md-6">
+                        <select class="form-control" name="status">
+                            <option id="none">-select-</option>
+                            <option value="BELUM DIPERIKSA" id='belum-diperiksa'>BELUM DIPERIKSA</option>
+                            <option value="PROSES" id='proses'>PROSES</option>
+                            <option value="REVISI" id='revisi'>REVISI</option>
+                            <option value="OK" id='ok'>OK</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
+
+                    <div class="col-md-6">
+                        <input id="pemeriksa" type="text" class="form-control" name="pemeriksa">
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="reset" class="btn btn-default batal">Batal</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+<script>
+$('.batal').click(function(){   
+	$('#myModal ').modal('hide');
+	$('#modalSuntingAkun').modal('hide');
+});
+
+$('[data-toggle="popover"]').popover({
+    html:true,
+    content:function(){
+        return $($(this).data('contentwrapper')).html();
+    }
+})
+</script>
 @stop
