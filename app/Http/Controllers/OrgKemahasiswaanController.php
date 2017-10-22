@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 use App\Layout;
 use App\Thumbnail;
@@ -27,7 +28,13 @@ class OrgKemahasiswaanController extends Controller
             $prev = ''
         );
         
-        $user = User::all();
+        $url = request()->url();
+        $minutes = Carbon::now()->addMinutes(10);
+        
+        $user = Cache::remember('users', $minutes, function () {
+            return User::all();
+        });
+
         return view('ok/index', array('user' => $user, 'data' => $data));
     }
 
