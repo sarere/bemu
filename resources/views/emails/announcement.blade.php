@@ -4,11 +4,13 @@
 <?php echo $message 
 ?>
 
-@if(false)
-@component('mail::button', ['url' => ''])
-Button Text
+@if($button)
+@component('mail::button', ['url' => $url])
+Klik Disini
 @endcomponent
 @endif
+
+{{ $closing }}
 
 Terima Kasih,<br>
 {{ config('app.name') }}

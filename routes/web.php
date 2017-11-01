@@ -33,6 +33,8 @@ Route::get('status','ProposalController@indexStatus');
 
 Route::get('status/detail','ProposalController@detailStatus');
 
+Route::get('status/detail-revisi','ProposalController@detailRevisi');
+
 Route::get('status/download','ProposalController@download');
 
 Route::post('upload/file','ProposalController@uploadStorage');

@@ -33,6 +33,9 @@ class Announcement extends Mailable
                     ->with([
                         'greeting' => 'Hi '.$this->message['name'],
                         'message' => $this->message['content'],
+                        'button' => $this->message['button'],
+                        'url' => $this->message['url'],
+                        'closing' => $this->message['closing']
                     ]);
     }
 }

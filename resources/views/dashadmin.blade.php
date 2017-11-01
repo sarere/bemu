@@ -181,5 +181,7 @@ $('[data-toggle="popover"]').popover({
         return $($(this).data('contentwrapper')).html();
     }
 })
+
+	$('div.alert').delay(3000).slideUp(300);
 </script>
 @stop

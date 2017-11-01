@@ -7,11 +7,11 @@
     	<form action="profil/update" method="POST">
     		{{ csrf_field() }}
     	  <div class="form-group">
-    	    <label for="namaLengkap">Email address</label>
+    	    <label for="namaLengkap">Nama Lengkap / Nama Organisasi</label>
     	    <input type="text" class="form-control" id="namaLengkap" name="name" placeholder="Nama Lengkap" value="{{ $user->value('name') }}">
     	  </div>
     	  <div class="form-group">
-    	    <label for="namaPanggilan">Nama Panggilan</label>
+    	    <label for="namaPanggilan">Nama Panggilan / Singkatan Organisasi</label>
     	    <input type="text" class="form-control" id="namaPanggilan" name="nickname" placeholder="Nama Panggilan" value="{{ $user->value('nickname') }}">
     	  </div>
     	  <div class="form-group">

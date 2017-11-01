@@ -3,6 +3,9 @@
 @section('title','Status Proposal - ')
 
 @section('content')
+@if (Session::has('message'))
+    <div class="col-md-12 alert alert-{{ Session::get('status') }}"><p class="col-md-10 col-md-offset-1">{{ Session::get('message') }}</p></div>
+@endif
 <div class="col-md-10 col-md-offset-1 pad-top pad-left-null table-responsive">
   <ol class="breadcrumb bg-color-white font-2-em " style="min-width:400px">
     <li><a {{{ (Request::is('p3dk') ? 'class=nav-active' : '') }}} href="{{ url('p3dk') }}">Pengantar</a></li>
@@ -42,6 +45,7 @@
       @else
         <td class="align-center">Download</td>
         <td class="align-center">Upload</td>
+        <td class="align-center">Detail Revisi</td>
 	  @endif
 	</tr>
 	@foreach ($proposals as $proposal)
@@ -118,11 +122,39 @@
                 @endif
                 </td>
             @endif
+            <td class="active align-center" style="vertical-align:middle">
+            @if($proposal->status == 'REVISI')
+                @if(Auth::user()->email == $proposal->email)
+                <label style="vertical-align:middle" class="btn btn-default glyphicon glyphicon-th-list" onclick="detailRevisi({{$proposal->id}})" data-toggle="modal" data-target="#modalDetail"></label>
+                @else
+                    <span> - </span>
+                @endif
+            @else
+                <span> - </span>
+            @endif
+            </td>
 		  @endif
 		</tr>
 	@endforeach
   </table>
   {{ $proposals->links() }}
+</div>
+
+<div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="labelModalDetail">
+  <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="reset" class="close batal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="labelModalUpdate">Detail Revisi</h4>
+          </div>
+          <div class="modal-body" id="detailRevisiContent">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default batal">OK</button>
+          </div>
+        </div>
+  </div>
 </div>
 
 <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="labelModalUpdate">
@@ -170,6 +202,14 @@
 
                     <div class="col-md-6">
                         <input id="uploadGuideFile" type="file" class="form-control" name="uploadGuideFile">
+                    </div>
+                </div>
+
+                <div class="form-group detail">
+                    <label for="detail" class="col-md-4 control-label">Detail Revisi</label>
+
+                    <div class="col-md-6">
+                        <textarea id="detailRevisi" type="text" class="form-control" name="detail" style="resize:none" rows="6"></textarea>
                     </div>
                 </div>
 
@@ -248,6 +288,14 @@
                     </div>
                 </div>
 
+                <div class="form-group detail">
+                    <label for="detail" class="col-md-4 control-label">Detail Revisi</label>
+
+                    <div class="col-md-6">
+                        <textarea id="detailRevisi" type="text" class="form-control" name="detail" style="resize:none" rows="6"></textarea>
+                    </div>
+                </div>
+
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="pemeriksa" class="col-md-4 control-label">Pemeriksa</label>
 
@@ -276,10 +324,14 @@ $('[data-toggle="popover"]').popover({
 })
 
 $('#upload').hide();
+$('.detail').hide();
 
 $('.batal').click(function(){
     $('#modalTambah').modal('hide');
     $('#modalUpdate').modal('hide');
+    $('#modalDetail').modal('hide');
+    $('#upload').hide();
+    $('.detail').hide();
 });
 
 $('input:file[name="uploadFile"]').change(function(){    
@@ -322,22 +374,33 @@ function deleteStatus(id){
 }
 
 $('select').on('change', function() {
-  if($('#jalur').val() != 'offline'){
     if(this.value == 'REVISI'){
-        $('#upload').slideDown();
+        if($('#jalur').val() != 'offline'){
+            $('#upload').slideDown();
+        }
+        $('.detail').slideDown();
     } else{
-  	 $('#upload').slideUp();
+     $('#upload').slideUp();
+     $('.detail').slideUp();
     }
-  }
+  
 })
 
-$('.close-window').click(function(){
-	$('.bg-color-darker').addClass('hidden');
-	$('body').removeClass('hidden-overflow');
-    $('#section-one').removeClass('hidden');
-    $('#section-two').addClass('hidden');
-    $('#section-three').addClass('hidden');
-})
+function detailRevisi(id){
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
+    $.ajax({
+        type: "GET",
+        url: "status/detail-revisi",
+        data: 'id='+id,
+        success: function(data){
+            $('#detailRevisiContent').text(data[0]['detail']);
+        }
+    })
+}
 
 function fileDetail(id){
 	$.ajaxSetup({
@@ -358,14 +421,21 @@ function fileDetail(id){
             $('#section-two').removeClass('hidden');
             $('#nama_proposal').val(data[0]['nama_proposal']);
             $('#jalur').val(data[0]['jalur']);
+            $('#detailRevisi').val(data[0]['detail']);
             if(data[0]['status'] == 'REVISI'){
                 $('#revisi').attr('selected',true);
+                if(data[0]['jalur']!='offline'){
+                    $('#upload').show();
+                }
+                $('.detail').show();
             } else if(data[0]['status'] == 'BELUM DIPERIKSA'){
                 $('#belum-diperiksa').attr('selected',true);
             } else if(data[0]['status'] == 'OK'){
                 $('#ok').attr('selected',true);
+            } else if(data[0]['status'] == 'PROSES'){
+                $('#proses').attr('selected',true);
             }
-            
+            $('#pemeriksa').val(data[0]['pemeriksa']);
             $('#id').val(data[0]['id']);
         }
     })
@@ -444,5 +514,9 @@ function docxValidation(filename){
     }
 }
 
+</script>
+
+<script type="text/javascript">
+    $('div.alert').delay(3000).slideUp(300);
 </script>
 @stop

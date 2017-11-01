@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Announcement;
 use Carbon\Carbon;
 use DateTime;
 
@@ -35,32 +37,23 @@ class ProposalController extends Controller
      public function downloadTemplate(Request $request)
     {
       $proker = strtoupper($request->proker);
-      if($request->skipped === 'true'){
-        if($request->danaFakultas === 'Ya'){
-          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Dana Fak.docx');
-          $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
-        } else{
-          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Non Dana Fak.docx');
-        }
-      } else {
-        if($request->danaFakultas === 'Ya'){
-          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Non Kop Surat - Dana Fak.docx');
-          $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
-        } else{
-          $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Non Kop Surat - Non Dana Fak.docx');
-        }
-        $templateProcessor->setValue('namaOrganisasiKemahasiswaan', $request->organisasiKemahasiswaan);
-        $templateProcessor->setValue('tempatSekretariat', $request->kesekretariatan);
-        $templateProcessor->setValue('email', $request->email);
-        $templateProcessor->setValue('alamat', $request->alamatMedsos);
-        $templateProcessor->setValue('medsos', $request->medsos);
+      $terbilang = strtolower($request->skDanaTerbilang);
+
+      if($request->danaFakultas === 'Ya'){
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Dana Fak.docx');
+        $templateProcessor->setValue('wakilDekan', $request->wakilDekan);
+      } else{
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('template/P3DK - Kop Surat - Non Dana Fak.docx');
       }
+     
     
-      $templateProcessor->setValue('programKerja', $proker);      
+      $templateProcessor->setValue('programKerja', $proker);
+      $templateProcessor->setValue('programKerjaBiasa', $request->proker);
+      $templateProcessor->setValue('singkatanOK', $request->singkatanOK);
       $templateProcessor->setValue('nama', $request->namaKontak);
       $templateProcessor->setValue('nomorKontak', $request->nomorKontak);
       $templateProcessor->setValue('nominal', $request->skDanaJumlah);
-      $templateProcessor->setValue('terbilang', $request->skDanaTerbilang);
+      $templateProcessor->setValue('terbilang', $terbilang);
       $templateProcessor->setValue('nimKetuaProker', $request->nimKetuaProker);
       $templateProcessor->setValue('nimSekreProker', $request->nimSekreProker);
       $templateProcessor->setValue('nimKetuaOK', $request->nimKetuaOK);
@@ -152,13 +145,6 @@ class ProposalController extends Controller
 
     public function download(Request $request){
         $proposal = $request->proposal;
-        $timestamp=Carbon::now()->toDateTimeString();
-        DB::table('proposals')
-            ->where('id', $request->id)
-            ->update([
-              'status' => 'PROSES',
-              'tracking' => $timestamp
-              ]);
         return response()->download(storage_path("app/proposal/$proposal"));
     }
 
@@ -184,7 +170,13 @@ class ProposalController extends Controller
         if($file){
           Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
         }
-        
+
+        $proposal = DB::table('proposals')
+            ->where('id', $request->id);
+        $email = $proposal->value('email');
+
+        $user = DB::table('users')
+            ->where('email', $email);
 
         DB::table('proposals')
             ->where('id', $request->id)
@@ -193,14 +185,54 @@ class ProposalController extends Controller
               'waktu_pengecekan' => $now,
               'pemeriksa' => $request->pemeriksa,
               'status' => $request->status,
+              'detail' => $request->detail,
               'tracking' => $timestamp
               ]);
-        return redirect('status');
+
+        if($request->status == 'REVISI'){
+          $content = 'Mohon maaf masih ada kesalahan pada proposal Anda, silahkan untuk mengunduh file Anda untuk melakukan perbaikan. Untuk penjelasan kesalahan dapat dilihat pada 
+                      Detail Revisi pada halaman status.';
+
+          $closing = 'Klik tombol di atas untuk menuju ke halaman status.';
+          $url = 'bem.ukdw.ac.id/status';
+          $button = true;
+        } else if($request->status == 'OK'){
+          $content = 'Selamat, proposal Anda sudah benar. Anda dapat mengunduh file proposal anda pada halaman status atau klik tombol di bawah';
+
+          $closing = 'Klik tombol di atas untuk menuju ke halaman status.';
+
+          $button = true;
+          $url = '';
+        } else if($request->status == 'PROSES'){
+          $content = 'Proposal yang Anda masukan sedang kami proses. Mohon untuk bersabar menunggu hasilnya';
+
+          $closing = '';
+          $button = false;
+          $url = '';
+        }
+
+        if($request->status != 'BELUM DIPERIKSA'){
+          $message = array(
+              'content' => $content,
+              'closing' => $closing,
+              'name' => $user->value('name'),
+              'subject' => 'Status Proposal',
+              'button' => $button,
+              'url' => $url
+              );
+
+          Mail::to($email)->send(new Announcement($message));
+        }
+                
+
+        return redirect('status')
+                ->with('message', 'Status berhasil diperbaharui')
+                ->with('status', 'success');
     }
 
     public function statusTambah(Request $request){
       $now = Carbon::now();
-      $timestamp=Carbon::now()->toDateTimeString();
+      $timestamp= Carbon::now()->toDateTimeString();
 
       $pemeriksa = '-';
       if($request->pemeriksa){
@@ -230,5 +262,14 @@ class ProposalController extends Controller
         DB::table('proposals')->where('id', $request->id)->delete();
         return redirect('status');
       }
+    }
+
+    function detailRevisi(Request $request){
+      $detail = DB::table('proposals')
+                        ->select('detail')
+                        ->where('id', $request->id)
+                        ->get();
+
+      return $detail;
     }
 }

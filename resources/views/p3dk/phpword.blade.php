@@ -18,6 +18,7 @@
         yang dijalankan maka perlu adanya penetapan pembagian alokasi dana kemahasiswaan tahun 2017 kepada 
         seluruh Organisasi Kemahasiswaan Universitas Kristen Duta Wacana.
     </div>
+
 	<h2 class="primary-color pad-top">Alur Pencairan Dana</h2>
 	<h3 class="pad-top-tiny pad-bot-small col-md-12">Secara Online</h3>
 	<div class="col-md-12 col-sm-12 col-xs-10 padding-small">
@@ -65,24 +66,45 @@
 			<span class="vertical-align-abs font-2-em align-center col-md-12 col-sm-12 col-xs-12">Kumpulkan Ke Biro III</span>
 		</div>
 	</div>
+
+	<h2 class="primary-color pad-top col-md-12 pad-left-null">Sampul Proposal</h2>
+	<div class="profile-desc">
+		Terdapat warna khusus untuk Sampul Proposal pada setiap OK, yakni:<br/>
+		<ul>
+			<li>BPMU : Mika Cokelat</li>
+			<li>BEMU : Mika Merah</li>
+			<li>Lembaga Kemahasiswaan : Mika Kuning</li>
+			<li>Unit Kegiatan Mahasiswa : Mika Bening</li>
+			<li>Unit Kegiatan Kerohanian : Mika Biru Muda</li>
+			<li>Unit Kegiatan Kebudayaan : Mika Hijau</li>
+		</ul>
+		
+	</div>
+
 	<h2 class="primary-color pad-top col-md-12 pad-left-null">Template Proposal</h2>
 	<div class="profile-desc">
 		Template Proposal dapat di download melalui tombol berikut 
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
 		  Unduh Template
-		</button>
+		</button><br/><br/>
+		Format pada template ini adalah template umum. Jika membutuhkan format khusus seperti pengajuan dana kesekretariatan 
+		maka template dapat diubah sesuai dengan kebutuhan. Terutama pada halaman pengesahan, jika ada format khusus seperti membutuhkan tanda tangan 
+		dari pihak berwenang yang lainnya atau ketua proker dan ketua OK sama, maka kolom tanda tangan dapat ditambah atau dikurangi.
 	</div>
+
 	<h2 class="primary-color pad-top">Upload Proposal</h2>
 	<div class="profile-desc">
         Setelah mengedit proposal yang telah di download. Proposal dapat diupload pada <a href="{{url('upload')}}">Upload Proposal</a>. 
         Akan dilakukan pengecekan proposal oleh pihak BEMU. Tunggu hasil pengecekan pada bagian <a href="{{url('status')}}">Status Proposal</a> 
     </div>
+
 	<h2 class="primary-color pad-top">Status Proposal</h2>
 	<div class="profile-desc">
         Proposal yang telah di upload ataupun dikumpulkan ke BEMU untuk dicek dapat dilihat statusnya pada 
         bagian <a href="{{url('status')}}">Status Proposal</a>
         agar dapat mengetahui apakah proposal sudah benar atau masih ada kesalahan.
     </div>
+
     <h2 class="primary-color pad-top">Download Proposal Sesudah Dicek (Alur Pencairan Dana Secara Online)</h2>
 	<div class="profile-desc">
         Proposal yang dikumpulkan melalui <a href="{{url('upload')}}">Upload Proposal</a> dapat mendownload file yang sudah dicek melalu <a href="{{url('status')}}">Status Proposal</a>. 
@@ -97,51 +119,22 @@
 	      <div class="modal-header">
 	        <button type="button" class="close btn-batal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title primary-color align-center" id="myModalLabel">
-	        	<span class="form-sec-one">
-	        		Kop Surat
-	        	</span>
-	        	<span class="form-sec-two hidden">
+	        	<span class="form-sec-two">
 	        		Detail Program Kerja
 	        	</span>
 	        </h4>
 	      </div>
 	      <div class="modal-body">
 					{{ csrf_field() }}
-				<div class="form-sec-one">
-					<div class="form-group">
-						<label for="organisasiKemahasiswaan">Organisasi Kemahasiswaan</label>
-						<input type="text" class="form-control form-one" id="organisasiKemahasiswaan" name="organisasiKemahasiswaan" placeholder="Cth : Badan Eksekutif Mahasiswa Universitas">
-					</div>
-					<div class="form-group">
-						<label for="kesekretariatan">Tempat kesekretariatan</label>
-						<input type="text" class="form-control form-one" id="keskretariatan" name="kesekretariatan" placeholder="Cth : Gedung Bundar Atrium Didaktos">			
-					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="email" class="form-control form-one" id="email" name="email" placeholder="Email">
-					</div>
-					<div class="form-group">
-						<label for="mediaSosial">Media Sosial</label>
-						<div class="row">
-							<div class="col-xs-4">
-								<select class="form-control" id="selectMedsos" name="medsos">
-									<option>website</option>
-									<option>facebook</option>
-									<option>twitter</option>
-								</select>
-							</div>
-							<div class="col-xs-8">
-								<input type="text" class="form-control form-one" id="alamatMedsos" name="alamatMedsos" placeholder="Cth : bem.ukdw.ac.id">
-							</div>
-						</div>
-					</div>
-					<input type="hidden" name="skipped" id="skipped" value='true'>
-				</div>
-				<div class="form-sec-two hidden">
+				<div class="form-sec-two">
 					<!-- <h2 class="primary-color col-md-12 align-center pad-bot">Detail Program Kerja</h2>	 -->
 					<div class="form-group">
 						<label for="programKerja">Program Kerja</label>
 						<input type="text" class="form-control form-two" id="proker" name="proker" placeholder="Cth : Duta Wacana Project">
+					</div>
+					<div class="form-group">
+						<label for="singkatanOK">Singkatan Organisasi Kemahaiswaan & Tahun Jabatan Pemegang Proker</label>
+						<input type="text" class="form-control form-two" id="singkatanOK" name="singkatanOK" placeholder="Cth : BEMU 2017">
 					</div>
 					<div class="form-group">
 						<label for="kontak">Nama & No Kontak</label>
@@ -219,10 +212,6 @@
 						<input type="text" class="form-control form-two" id="wakilDekan" name="wakilDekan" placeholder="Nama">
 				  	</div>
 				  	<div class="form-group">
-						<label for="temaAcara">Tema Acara</label>
-						<input type="text" class="form-control form-two" id="temaAcara" name="temaAcara" placeholder="Nama">
-				  	</div>
-				  	<div class="form-group">
 						<div class="col-md-3 col-md-offset-1 col-xs-12 col-sm-12 margin-top-small">
 							
 						</div>
@@ -236,14 +225,8 @@
 				</div>
 			</div>
 	      <div class="modal-footer">
-	      	<div class="form-sec-one">
-		      	<button type="reset" class="btn btn-danger btn-batal" data-dismiss="modal">Batal</button>
-		      	<button type="button" class="btn btn-primary" id="btn-lanjut" disabled>Lanjut</button>
-		      	<button type="button" class="btn btn-warning" id="btn-lewati">Lewati</button>
-	      	</div>
-	      	<div class="form-sec-two hidden">
+	      	<div class="form-sec-two">
 	      		<button type="reset" class="btn btn-danger btn-batal" data-dismiss="modal">Batal</button>
-	      		<button type="button" class="btn btn-primary" id="btn-kembali">Kembali</button>
 	      		<button type="submit" class="btn btn-success"  id="btn-unduh" disabled>Unduh</button>
 	      	</div>
 	      </div>
@@ -258,35 +241,13 @@
 
 	$('#download-template').click(function(){
 		$('body').addClass('hidden-overflow');
-		$('.form-sec-one').fadeIn().removeClass('hidden');
 		formOneValidation();
 	});
 
-	$('#btn-lewati').click(function(){
-		$('.form-sec-one').fadeIn().addClass('hidden');
-		$('.form-sec-two').fadeIn().removeClass('hidden');
-		$('.form-one').val('');
-		$('#skipped').val('true');
-	});
-
 	$('.btn-batal').click(function(){
-		$('.form-sec-one').removeClass('hidden');
-		$('.form-sec-two').addClass('hidden');
 		$('#wakil-dekan').hide();
 		$('#form-p3dk')[0].reset();
 		document.querySelector("input[type=text][id=alamatMedsos]").setAttribute("placeholder", "cth: bem.ukdw.ac.id");
-	});
-
-	$('#btn-kembali').click(function(){
-		$('.form-sec-two').addClass('hidden');
-		$('.form-sec-one').removeClass('hidden');
-	});
-
-	$('#btn-lanjut').click(function(){
-		$('.form-sec-one').fadeIn().addClass('hidden');
-		$('.form-sec-two').fadeIn().removeClass('hidden');
-		$('#skipped').val('false');
-		console.log($('#skipped').val())
 	});
 
 	$('input:radio[name="danaFakultas"]').change(function() {
@@ -300,38 +261,13 @@
 		  formTwoValidation();
 	});
 
-	$('select').on('change', function (e) {
-	    var optionSelected = $("option:selected", this);
-	    var valueSelected = this.value;
-	    var element = document.querySelector("input[type=text][id=alamatMedsos]");
-
-	    if(valueSelected == 'facebook'){
-	    	element.setAttribute("placeholder", "cth: facebook.com/BEM.UKDW.Jogja");
-	    } else if(valueSelected == 'website'){
-	    	element.setAttribute("placeholder", "cth: bem.ukdw.ac.id");
-	    } else{
-	    	element.setAttribute("placeholder", "cth: twitter.com/bem_ukdw");
-	    }
-	});
-
-	$('.form-one').keyup(function() {
-		formOneValidation();
-	});
-
 	$('.form-two').keyup(function() {
 		formTwoValidation();
 	});
 
-	function formOneValidation(){
-		if(!$('#organisasiKemahasiswaan').val() || !$('#keskretariatan').val() || !$('#email').val() || !$('#alamatMedsos').val()){
-			$('#btn-lanjut').prop("disabled", true);
-		} else {
-			$('#btn-lanjut').prop("disabled", false);
-		}
-	}
 
 	function formTwoValidation(){
-		if(!$('#proker').val() || !wD || !$('#temaAcara').val() || !$('#namaKetuaOK').val() || !$('#namaKetuaProker').val() || !$('#namaSekreProker').val() ||
+		if(!$('#proker').val() || !wD || !$('#singkatanOK').val() || !$('#namaKetuaOK').val() || !$('#namaKetuaProker').val() || !$('#namaSekreProker').val() ||
 		!$('#nimKetuaOK').val() || !$('#nimKetuaProker').val() || !$('#nimSekreProker').val() || !$('#skDanaJumlah').val() || !$('#skDanaTerbilang').val()){
 			$('#btn-unduh').prop("disabled", true);
 		} else {
@@ -348,8 +284,6 @@
 
 	$('#btn-unduh').click(function(){
 		$('#myModal').modal('hide');
-		$('.form-sec-two').addClass('hidden');
-		$('.form-sec-one').removeClass('hidden');
 		$('#wakil-dekan').hide();
 		setTimeout(function(){
 			$('#form-p3dk')[0].reset();

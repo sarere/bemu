@@ -81,7 +81,7 @@ class DashboardController extends Controller
 
             $message = array(
                 'content' => $content,
-                'name' => $request->name,
+                'name' => $request->namaLengkap,
                 'subject' => 'Akun BEMU Anda Telah Dibuat'
                 );
 
