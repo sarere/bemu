@@ -10,7 +10,8 @@ Klik Disini
 @endcomponent
 @endif
 
-{{ $closing }}
+<?php echo $closing
+?>
 
 Terima Kasih,<br>
 {{ config('app.name') }}

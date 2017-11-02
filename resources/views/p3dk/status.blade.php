@@ -13,10 +13,12 @@
     <li><a {{{ (Request::is('upload') ? 'class=nav-active' : '') }}} href="{{ url('upload') }}">Upload Proposal</a></li>
   </ol>
 </div>
-<div class="progress col-md-10 col-md-offset-1 hidden">
-  <div class="progress-bar" role="progressbar" id="progress-upload" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-    0%
-  </div>
+<div class="col-md-10 col-md-offset-1">
+    <div class="progress hidden">
+      <div class="progress-bar" role="progressbar" id="progress-upload" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+        0%
+      </div>
+    </div>
 </div>
 @if (session('status'))
 <div class="alert alert-success col-md-10 col-md-offset-1 hidden" id="success-msg" role="alert">
@@ -29,115 +31,117 @@
 </div>
 @endif
 
-<div class="table-responsive col-md-10 col-md-offset-1">
-  <table class="table">
-  	<tr>
-	  <td>Nama Proposal</td>
-	  <td class="align-center">Jalur</td>
-	  <td class="align-center">Status</td>
-	  <td class="align-center">Proposal Masuk</td>
-	  <td class="align-center">Pengecekan</td>
-	  <td class="align-center">Pemeriksa</td>
-      <td class="align-center">Revision</td>
-	  
-	  @if (Auth::user()->admin)
-	  	<td class="align-center">Action</td>
-      @else
-        <td class="align-center">Download</td>
-        <td class="align-center">Upload</td>
-        <td class="align-center">Detail Revisi</td>
-	  @endif
-	</tr>
-	@foreach ($proposals as $proposal)
-	    <tr>
-		  <td class="active" style="vertical-align:middle">{{ pathinfo($proposal->nama_proposal, PATHINFO_FILENAME)}}</td>
-		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->jalur }}</td>
-
-		  @if($proposal->status == 'BELUM DIPERIKSA')
-		  	<td class="active align-center padding" style="vertical-align:middle"><span class="label label-default padding-small">{{ $proposal->status }}</span></td>
-		  @elseif($proposal->status == 'REVISI')
-		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-warning padding-small">{{ $proposal->status }}</span></td>
-		  @elseif($proposal->status == 'PROSES')
-		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-info padding-small">{{ $proposal->status }}</span></td>
+<div class="col-md-10 col-md-offset-1">
+    <div class="table-responsive">
+      <table class="table table-condensed">
+      	<tr>
+    	  <td>Nama Proposal</td>
+    	  <td class="align-center">Jalur</td>
+    	  <td class="align-center">Status</td>
+    	  <td class="align-center">Proposal Masuk</td>
+    	  <td class="align-center">Pengecekan</td>
+    	  <td class="align-center">Pemeriksa</td>
+          <td class="align-center">Revision</td>
+    	  
+    	  @if (Auth::user()->admin)
+    	  	<td class="align-center">Action</td>
           @else
-            <td class="active align-center" style="vertical-align:middle"><span class="label label-success padding-small">{{ $proposal->status }}</span></td>
-		  @endif
+            <td class="align-center">Download</td>
+            <td class="align-center">Upload</td>
+            <td class="align-center">Detail Revisi</td>
+    	  @endif
+    	</tr>
+    	@foreach ($proposals as $proposal)
+    	    <tr>
+    		  <td class="active" style="vertical-align:middle">{{ pathinfo($proposal->nama_proposal, PATHINFO_FILENAME)}}</td>
+    		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->jalur }}</td>
 
-		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->waktu_masuk }}</td>
-		  @if(!$proposal->waktu_pengecekan)
-		  	<td class="active align-center" style="vertical-align:middle">-</td>
-		  @else
-		  	<td class="active align-center" style="vertical-align:middle">{{ $proposal->waktu_pengecekan }}</td>
-		  @endif
+    		  @if($proposal->status == 'BELUM DIPERIKSA')
+    		  	<td class="active align-center padding" style="vertical-align:middle"><span class="label label-default padding-small">{{ $proposal->status }}</span></td>
+    		  @elseif($proposal->status == 'REVISI')
+    		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-warning padding-small">{{ $proposal->status }}</span></td>
+    		  @elseif($proposal->status == 'PROSES')
+    		  	<td class="active align-center" style="vertical-align:middle"><span class="label label-info padding-small">{{ $proposal->status }}</span></td>
+              @else
+                <td class="active align-center" style="vertical-align:middle"><span class="label label-success padding-small">{{ $proposal->status }}</span></td>
+    		  @endif
 
-		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->pemeriksa }}</td>
-          <td class="active align-center" style="vertical-align:middle">{{$proposal->revision}}</td>
+    		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->waktu_masuk }}</td>
+    		  @if(!$proposal->waktu_pengecekan)
+    		  	<td class="active align-center" style="vertical-align:middle">-</td>
+    		  @else
+    		  	<td class="active align-center" style="vertical-align:middle">{{ $proposal->waktu_pengecekan }}</td>
+    		  @endif
 
-		  
+    		  <td class="active align-center" style="vertical-align:middle">{{ $proposal->pemeriksa }}</td>
+              <td class="active align-center" style="vertical-align:middle">{{$proposal->revision}}</td>
 
-		  @if (Auth::user()->admin)
-<!--           <td class="active align-center" style="vertical-align:middle">
-            <button type="button"  style="vertical-align:middle"
-             class="btn btn-primary glyphicon glyphicon-edit" onclick="pilihAksi({{$proposal->id}},'{{$proposal->nama_proposal}}')">
-         </button>
-     </td> -->
-		  	<td class="active align-center" style="vertical-align:middle">
-                <button type="button" style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-edit" data-container="body" data-toggle="popover" data-trigger="focus"  data-placement="left" data-contentwrapper="#pop-{{$proposal->id}}">
-                </button>
-            </td>
-            <div id="pop-{{$proposal->id}}" class="hidden">
-                @if($proposal->jalur!='offline')
-                <a href="{{url('status/download')}}?proposal={{$proposal->nama_proposal}}&id={{$proposal->id}}" class="btn btn-primary btn-xs btn-block" id="download">Download Proposal</a>
-                @endif
-                <button class="btn btn-success btn-xs btn-block" id="update" data-toggle="modal" data-target="#modalUpdate" onclick="fileDetail({{$proposal->id}})">Update Status</button>
-                <button type="submit" class="btn btn-danger btn-xs btn-block" form="del-{{$proposal->id}}">Hapus Status</button>
-                <form id="del-{{$proposal->id}}" method="POST" action="{{url('status/delete')}}" class="hidden">
-                    {{ csrf_field() }}
-                    <input name="id" value="{{$proposal->id}}" class="hidden">
-                </form>
-            </div>
-          @else
-            @if($proposal->status == 'BELUM DIPERIKSA' || $proposal->jalur == 'offline' || $proposal->status == 'PROSES')
-                <td class="active align-center" style="vertical-align:middle">{{ $proposal->download_link }}</td>
-                <td class="active align-center" style="vertical-align:middle"><span> - </span></td>
-            @else
-                <td class="active align-center" style="vertical-align:middle">
-                    @if(Auth::user()->email == $proposal->email)
-                        <a href="{{url('status/download')}}?proposal={{$proposal->nama_proposal}}"  style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-cloud-download"></a>
-                    @else
+    		  
+
+    		  @if (Auth::user()->admin)
+    <!--           <td class="active align-center" style="vertical-align:middle">
+                <button type="button"  style="vertical-align:middle"
+                 class="btn btn-primary glyphicon glyphicon-edit" onclick="pilihAksi({{$proposal->id}},'{{$proposal->nama_proposal}}')">
+             </button>
+         </td> -->
+    		  	<td class="active align-center" style="vertical-align:middle">
+                    <button type="button" style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-edit" data-container="body" data-toggle="popover" data-trigger="focus"  data-placement="left" data-contentwrapper="#pop-{{$proposal->id}}">
+                    </button>
+                </td>
+                <div id="pop-{{$proposal->id}}" class="hidden">
+                    @if($proposal->jalur!='offline')
+                    <a href="{{url('status/download')}}?proposal={{$proposal->nama_proposal}}&id={{$proposal->id}}" class="btn btn-primary btn-xs btn-block" id="download">Download Proposal</a>
+                    @endif
+                    <button class="btn btn-success btn-xs btn-block" id="update" data-toggle="modal" data-target="#modalUpdate" onclick="fileDetail({{$proposal->id}})">Update Status</button>
+                    <button type="submit" class="btn btn-danger btn-xs btn-block" form="del-{{$proposal->id}}">Hapus Status</button>
+                    <form id="del-{{$proposal->id}}" method="POST" action="{{url('status/delete')}}" class="hidden">
+                        {{ csrf_field() }}
+                        <input name="id" value="{{$proposal->id}}" class="hidden">
+                    </form>
+                </div>
+              @else
+                @if($proposal->status == 'BELUM DIPERIKSA' || $proposal->jalur == 'offline' || $proposal->status == 'PROSES')
+                    <td class="active align-center" style="vertical-align:middle">{{ $proposal->download_link }}</td>
+                    <td class="active align-center" style="vertical-align:middle"><span> - </span></td>
+                @else
+                    <td class="active align-center" style="vertical-align:middle">
+                        @if(Auth::user()->email == $proposal->email)
+                            <a href="{{url('status/download')}}?proposal={{$proposal->nama_proposal}}"  style="vertical-align:middle" class="btn btn-primary glyphicon glyphicon-cloud-download"></a>
+                        @else
+                            <span> - </span>
+                        @endif
+                    </td>
+                    <td class="active align-center" style="vertical-align:middle">
+                    @if($proposal->status == 'OK')
                         <span> - </span>
                     @endif
-                </td>
-                <td class="active align-center" style="vertical-align:middle">
-                @if($proposal->status == 'OK')
-                    <span> - </span>
+                    @if($proposal->status == 'REVISI')
+                        @if(Auth::user()->email == $proposal->email)
+                        <label for="{{$proposal->id}}" style="vertical-align:middle" class="btn btn-warning glyphicon glyphicon-cloud-upload"></label>
+                        <input type="file" name="uploadFile" id="{{$proposal->id}}" class="hidden"/>
+                        @else
+                            <span> - </span>
+                        @endif
+                    @endif
+                    </td>
                 @endif
+                <td class="active align-center" style="vertical-align:middle">
                 @if($proposal->status == 'REVISI')
                     @if(Auth::user()->email == $proposal->email)
-                    <label for="{{$proposal->id}}" style="vertical-align:middle" class="btn btn-warning glyphicon glyphicon-cloud-upload"></label>
-                    <input type="file" name="uploadFile" id="{{$proposal->id}}" class="hidden"/>
+                    <label style="vertical-align:middle" class="btn btn-default glyphicon glyphicon-th-list" onclick="detailRevisi({{$proposal->id}})" data-toggle="modal" data-target="#modalDetail"></label>
                     @else
                         <span> - </span>
                     @endif
-                @endif
-                </td>
-            @endif
-            <td class="active align-center" style="vertical-align:middle">
-            @if($proposal->status == 'REVISI')
-                @if(Auth::user()->email == $proposal->email)
-                <label style="vertical-align:middle" class="btn btn-default glyphicon glyphicon-th-list" onclick="detailRevisi({{$proposal->id}})" data-toggle="modal" data-target="#modalDetail"></label>
                 @else
                     <span> - </span>
                 @endif
-            @else
-                <span> - </span>
-            @endif
-            </td>
-		  @endif
-		</tr>
-	@endforeach
-  </table>
-  {{ $proposals->links() }}
+                </td>
+    		  @endif
+    		</tr>
+    	@endforeach
+      </table>
+      {{ $proposals->links() }}
+    </div>
 </div>
 
 <div class="modal fade" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="labelModalDetail">
@@ -335,7 +339,6 @@ $('.batal').click(function(){
 });
 
 $('input:file[name="uploadFile"]').change(function(){    
-    alert(this.files[0].name)
     upload(this.files,this.id);
 });
 
@@ -374,11 +377,15 @@ function deleteStatus(id){
 }
 
 $('select').on('change', function() {
-    if(this.value == 'REVISI'){
+    if(this.value == 'REVISI' || this.value == 'OK'){
         if($('#jalur').val() != 'offline'){
             $('#upload').slideDown();
         }
-        $('.detail').slideDown();
+        if(this.value!='OK'){
+            $('.detail').slideDown();
+        } else{
+            $('.detail').slideUp();
+        }
     } else{
      $('#upload').slideUp();
      $('.detail').slideUp();
@@ -422,12 +429,16 @@ function fileDetail(id){
             $('#nama_proposal').val(data[0]['nama_proposal']);
             $('#jalur').val(data[0]['jalur']);
             $('#detailRevisi').val(data[0]['detail']);
-            if(data[0]['status'] == 'REVISI'){
+            if(data[0]['status'] == 'REVISI' || data[0]['status'] == 'OK'){
                 $('#revisi').attr('selected',true);
                 if(data[0]['jalur']!='offline'){
                     $('#upload').show();
                 }
-                $('.detail').show();
+                if(data[0]['status']!='OK'){
+                    $('.detail').show();
+                } else{
+                    $('.detail').slideUp();
+                }
             } else if(data[0]['status'] == 'BELUM DIPERIKSA'){
                 $('#belum-diperiksa').attr('selected',true);
             } else if(data[0]['status'] == 'OK'){

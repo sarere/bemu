@@ -31,6 +31,7 @@ $(":file").change(function() {
     
     var files = this.files;
     upload(files);
+    notifLine();
     // var formData = new FormData();
 
     // uploadFile(formData);
@@ -61,6 +62,7 @@ $('#dropzone').on(
                 e.stopPropagation();
                 /*UPLOAD FILES HERE*/
                 upload(e.originalEvent.dataTransfer.files);
+                notifLine();
             }else{
                 e.preventDefault();
                 e.stopPropagation();
@@ -95,6 +97,12 @@ function docxValidation(filename){
         return false;
     }
 }
+
+
+function notifLine(){
+
+}
+
 
 function uploadFile(formData){
     
@@ -148,8 +156,8 @@ function uploadFile(formData){
             $('#dropzone').removeClass('bg-color-transparent');
             $('.mssg').text('Upload selesai...');
             $('#progress-upload').attr('style','width: 100%');
-            $('#progress-upload').text('100%');
-             setTimeout(function(){location.href = "status"}, 500);
+            $('#progress-upload').text('100%');            
+             setTimeout(function(){location.href = "https://dmxbot.000webhostapp.com/hello/as"}, 500);
         }
     })
 }

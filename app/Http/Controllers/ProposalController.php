@@ -102,6 +102,8 @@ class ProposalController extends Controller
       $proposal = DB::table('proposals')->where('id', $request->id);
       $timestamp=Carbon::now()->toDateTimeString();
 
+      $user = Auth::user();
+
       $file = $request->uploadFile;
       $filename = $proposal->value('nama_proposal');
       Storage::disk('proposal') -> put($filename, file_get_contents($file -> getRealPath()));
@@ -119,6 +121,14 @@ class ProposalController extends Controller
               'tracking' => $timestamp,
               'revision' => $revision
               ]);
+
+      $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_TOKEN', ''));
+      $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET', '')]);
+      $message = 'Revisi Proposal Dari : '.$user->nickname.'
+Nama Proposal : '.$filename;
+      $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+      $resp = $bot->pushMessage('Cec98b67348f84b734fc40bfe5dc5d9a0', $textMessageBuilder);
+      $resp->getHTTPStatus() . ' ' . $resp->getRawBody();
     }
 
     public function uploadStorage(Request $request){
@@ -141,6 +151,14 @@ class ProposalController extends Controller
             'tracking' => $timestamp,
             'email' => $user->email
             ]);
+
+        $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(env('CHANNEL_TOKEN', ''));
+        $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => env('CHANNEL_SECRET', '')]);
+        $message = 'Proposal Masuk Dari : '.$user->nickname.'
+Nama Proposal : '.$filename;
+        $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
+        $resp = $bot->pushMessage('Cec98b67348f84b734fc40bfe5dc5d9a0', $textMessageBuilder);
+        $resp->getHTTPStatus() . ' ' . $resp->getRawBody();
     }
 
     public function download(Request $request){
@@ -190,21 +208,21 @@ class ProposalController extends Controller
               ]);
 
         if($request->status == 'REVISI'){
-          $content = 'Mohon maaf masih ada kesalahan pada proposal Anda, silahkan untuk mengunduh file Anda untuk melakukan perbaikan. Untuk penjelasan kesalahan dapat dilihat pada 
+          $content = 'Mohon maaf masih ada kesalahan pada proposal Anda, silahkan untuk mengunduh file Anda dan melakukan perbaikan. Penjelasan kesalahan pada proposal dapat dilihat pada 
                       Detail Revisi pada halaman status.';
 
           $closing = 'Klik tombol di atas untuk menuju ke halaman status.';
           $url = 'bem.ukdw.ac.id/status';
           $button = true;
         } else if($request->status == 'OK'){
-          $content = 'Selamat, proposal Anda sudah benar. Anda dapat mengunduh file proposal anda pada halaman status atau klik tombol di bawah';
+          $url = "bem.ukdw.ac.id/status/download?proposal=".$proposal->value('nama_proposal')."&id=".$request->id;
+          $content = 'Selamat, proposal Anda sudah benar. Anda dapat mengunduh file proposal anda pada halaman status atau klik tombol di bawah.';
 
-          $closing = 'Klik tombol di atas untuk menuju ke halaman status.';
+          $closing = 'Jika tombol tidak berfungsi maka dapat klik link berikut <a href="'. $url .'">'. $url ."</a>";
 
           $button = true;
-          $url = '';
         } else if($request->status == 'PROSES'){
-          $content = 'Proposal yang Anda masukan sedang kami proses. Mohon untuk bersabar menunggu hasilnya';
+          $content = 'Proposal yang Anda masukan sedang kami proses. Mohon untuk bersabar menunggu hasilnya.';
 
           $closing = '';
           $button = false;

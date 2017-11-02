@@ -41,7 +41,10 @@ class DashboardController extends Controller
 	    $message = array(
 	    	'content' => $content,
 	    	'name' => $user->name,
-	    	'subject' => 'Akun BEMU Anda Telah Dibuat'
+	    	'subject' => 'Akun BEMU Anda Telah Dibuat',
+            'button' => false,
+            'url' => null,
+            'closing' => null
 	    	);
         Mail::to($user->email)->send(new Announcement($message));
 		return redirect()->back()
@@ -82,7 +85,10 @@ class DashboardController extends Controller
             $message = array(
                 'content' => $content,
                 'name' => $request->namaLengkap,
-                'subject' => 'Akun BEMU Anda Telah Dibuat'
+                'subject' => 'Akun BEMU Anda Telah Dibuat',
+                'button' => false,
+                'url' => null,
+                'closing' => null
                 );
 
             Mail::to($request->email)->send(new Announcement($message));

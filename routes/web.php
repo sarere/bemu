@@ -67,4 +67,8 @@ Route::post('pengaturan/profil/change-password', 'PengaturanController@changePas
 
 Route::post('dashboard/tambah-akun', 'DashboardController@tambahAkun');
 
+Route::post('callback', 'LineController@callback');
+
+Route::get('notification', 'LineController@notification');
+
 Auth::routes();
